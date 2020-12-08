@@ -8,7 +8,7 @@ import * as firebase from "firebase"
 const RESPONSIVE_ALL = "100%"
 const RESPONSIVE_TOP = "10%"
 const RESPONSIVE_LEFT = "25%"
-export default function CharacterMain() {
+export default function SelectCharacter() {
 
     let character1 = require('../../assets/sources/Personajes/character_11.png');
     let character2 = require('../../assets/sources/Personajes/character_12.png');
