@@ -16,7 +16,7 @@ export default class LoginUser extends React.Component {
             <View>
                 <LogUs/>
                 <Text style={{marginTop: 10}}>¿Aún sin cuenta? {"  "}
-                    <Text style={styles.textRegister} onPress={()=>navigation.navigate('register')}>Registrate</Text>
+                    <Text style={styles.textRegister} onPress={()=>navigation.navigate('register')}>Registrarse</Text>
                 </Text>
             </View>
         )
@@ -28,7 +28,7 @@ export default class LoginUser extends React.Component {
                     <Text style={styles.text}>Happy Learning Land</Text>
                 </View>
                 <View style={styles.containerTitles}>
-                    <Text style={styles.titleText}>Registrate</Text>
+                    <Text style={styles.titleText}>Registrarse</Text>
                     <View style={styles.container} >
                         <this.registerFunction />
                     </View>

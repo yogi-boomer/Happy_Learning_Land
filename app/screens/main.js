@@ -10,11 +10,11 @@ export default class Main extends React.Component {
         return (
             <View style={styles.container}>
                 <Text style={styles.text}>
-                    Happy learning land
+                    Happy Learning Land
                 </Text>
                 <View style={styles.button}>
                     <TouchableOpacity onPress={()=> this.props.navigation.navigate('m')}>
-                        <Text>Juega</Text>
+                        <Text>Jugar</Text>
                     </TouchableOpacity>
                 </View>
             </View>
