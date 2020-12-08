@@ -5,7 +5,7 @@ import {createStackNavigator} from "@react-navigation/stack"
 import LoginUser from "../loginUser"
 import M from "../../utils/m"
 import Register from "../counts/register"
-import CharacterMain from "../characterMain"
+import SelectCharacter from "../selectCharacter"
 import Main from "../main"
 
 const Stack = createStackNavigator();
@@ -35,8 +35,8 @@ export default function ScreenStack(){
           options={{ title: '' , headerLeft:false, headerTransparent:true}}
           />
            <Stack.Screen
-          name= "characterMain"
-          component = {CharacterMain}
+          name= "selectCharacter"
+          component = {SelectCharacter}
           options={{ title: '' , headerLeft:false, headerTransparent:true}}
           />
       </Stack.Navigator>

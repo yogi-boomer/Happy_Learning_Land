@@ -31,7 +31,7 @@ export default function Register() {
             firebase.auth().signInWithEmailAndPassword(data.email, data.password)
             .then(response => {
                 setLoading(false); 
-                navigation.navigate('characterMain');
+                navigation.navigate('selectCharacter');
             }).catch(error => {
                 setLoading(false); 
                 Alert.alert("Este email ya se encuentra en uso...");
