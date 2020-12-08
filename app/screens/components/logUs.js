@@ -23,7 +23,7 @@ export default function Register() {
     //falta de implementacion de algun toast
     const onSubmit = () => {
         if (isEmpty(data.email) || isEmpty(data.password)) {
-            Alert.alert("Puede que algun campo se encuentre vacio")
+            Alert.alert("Puede que algún campo se encuentre vacío")
         } else if (!validateEmail(data.email)) {
             Alert.alert("Ingresa correctamente el email");
         } else {
@@ -47,7 +47,7 @@ export default function Register() {
     return (
         <View style={styles.formContainer}>
             <Input
-                placeholder="Correo electronico"
+                placeholder="Correo electrónico"
                 containerStyle={styles.inputForm}
                 onChange={(e) => onChange(e, "email")}
                 rightIcon={
