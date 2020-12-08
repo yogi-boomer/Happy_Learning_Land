@@ -17,7 +17,7 @@ export default function CharacterMain() {
     return (
         <View style={styles.container}>
             <View style={styles.titleContainer}>
-                <Text style={styles.title}> Eligue tu personaje:</Text>
+                <Text style={styles.title}> Elige tu personaje:</Text>
             </View>
             <View style={styles.elementsContainer}>
                 <View style={styles.characerWoman}>
