@@ -23,13 +23,13 @@ export default function Register() {
     //falta de implementacion de algun toast
     const onSubmit = () => {
         if (isEmpty(data.email) || isEmpty(data.password)) {
-            Alert.alert("Puede que algun campo se encuentre vacio")
+            Alert.alert("Puede que algún campo se encuentre vacío")
         } else if (!validateEmail(data.email)) {
             Alert.alert("Ingresa correctamente el email");
         } else if (size(data.password) < 6) {
             Alert.alert("Tu contraseña debe tener al menos 6 caracteres");
         } else if(data.password !== data.repeatePassword){
-            Alert.alert("Contraseñas diferentes");
+            Alert.alert("No coinciden contraseñas");
         } else {
             setLoading(true);
             firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
@@ -38,7 +38,7 @@ export default function Register() {
                 navigation.navigate('selectCharacter');
             }).catch(error => {
                 setLoading(false); 
-                Alert.alert("Este email ya se encuentra en uso... :c");
+                Alert.alert("Este email ya se encuentra en uso");
             });
         }
         console.log(data);
@@ -51,7 +51,7 @@ export default function Register() {
     return (
         <View style={styles.formContainer}>
             <Input
-                placeholder="Correo electronico"
+                placeholder="Correo electrónico"
                 containerStyle={styles.inputForm}
                 onChange={(e) => onChange(e, "email")}
                 rightIcon={

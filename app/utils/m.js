@@ -13,7 +13,7 @@ export default function M() {
     useEffect(() => {
         firebase.auth().onAuthStateChanged((user) => {
             console.log(user);
-            !user ? setLogin(false) :  setLogin(true);
+            !user ? setLogin(false) : setLogin(true);
         });
     }, []);  
     // Estado preliminar deacuerdo si el estado login es null

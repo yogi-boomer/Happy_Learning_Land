@@ -34,7 +34,7 @@ export default function Register() {
                 navigation.navigate('selectCharacter');
             }).catch(error => {
                 setLoading(false); 
-                Alert.alert("Este email ya se encuentra en uso...");
+                Alert.alert("Email en uso");
             });
         }
         console.log(data);
