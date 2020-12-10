@@ -43,8 +43,7 @@ export default function CharacterMain() {
                             <Image style={styles.imgCharacter} source={character4}></Image>
                         </TouchableOpacity>
                     </View>
-                </View>
-                
+                </View>    
             </View>
         </View>
     );
@@ -105,7 +104,6 @@ const styles = StyleSheet.create({
     imgCharacter: {
         width: 120,
         height: 160,
-        resizeMode: "contain",
-        
+        resizeMode: "contain",   
     },
 });
