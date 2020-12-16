@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet,TouchableOpacity } from "react-native";
 import * as firebase from "firebase";
 import LoginUser from "../screens/loginUser"
-import SelectCharacter from "../screens/SelectCharacter"
+import SelectCharacter from "../screens/selectCharacter"
 import Loagin from "../screens/components/loading"
 
 const RESPONSIVE_ALL = "100%"
