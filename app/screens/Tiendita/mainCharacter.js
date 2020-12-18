@@ -2,8 +2,11 @@ import React, { Component} from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import normalize from 'react-native-normalize';
+import {useNavigation} from '@react-navigation/native'
 
+const navigation = useNavigation();
 export default class MainCharacter extends Component {
+
     render() {
         return (
             <View style={styles.container}>
@@ -24,13 +27,13 @@ export default class MainCharacter extends Component {
                     <View style={styles.menuContainer}>
                         <View style={styles.containBtn}>
                             <View style={{ ...styles.Buttons}}>
-                                <TouchableOpacity style={{marginTop: 10}}>
+                                <TouchableOpacity style={{marginTop: 10}} onPress={()=> navigation.navigate('listActivity')}>
                                     <Image style={ styles.list } source={require('../../../assets/sources/Iconos/nota.png')}></Image>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={{marginTop: 10}}>
                                     <Image style={ styles.list } source={require('../../../assets/sources/Iconos/robot.png')}></Image>
                                 </TouchableOpacity>
-                                <TouchableOpacity style={{marginTop: 10}}>
+                                <TouchableOpacity style={{marginTop: 10}} onPress={()=> navigation.navigate('store')}>
                                     <Image style={ styles.list } source={require('../../../assets/sources/Iconos/supermarket.png')}></Image>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={{marginTop: 10}}>

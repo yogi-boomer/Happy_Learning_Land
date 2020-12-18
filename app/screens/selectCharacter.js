@@ -2,13 +2,14 @@ import React from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { Button } from "react-native-elements";
 import * as firebase from "firebase"
-
+import {useNavigation} from "@react-navigation/native"
 
 
 const RESPONSIVE_ALL = "100%"
 const RESPONSIVE_TOP = "10%"
 const RESPONSIVE_LEFT = "25%"
 export default function SelectCharacter() {
+    const navigation = useNavigation();
 
     let character1 = require('../../assets/sources/Personajes/character_11.png');
     let character2 = require('../../assets/sources/Personajes/character_12.png');
@@ -22,24 +23,24 @@ export default function SelectCharacter() {
             <View style={styles.elementsContainer}>
                 <View style={styles.characerWoman}>
                     <View style={styles.containerCharacter}>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={()=> navigation.navigate('mainCharacter')}>
                             <Image style={styles.imgCharacter} source={character1}></Image>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.containerCharacter}>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={()=> navigation.navigate('mainCharacter')}>
                             <Image style={styles.imgCharacter} source={character2}></Image>
                         </TouchableOpacity>
                     </View>
                 </View>
                 <View style={styles.characterMan}>
                     <View style={styles.containerCharacter}>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={()=> navigation.navigate('mainCharacter')}>
                             <Image style={styles.imgCharacter} source={character3}></Image>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.containerCharacter}>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={()=> navigation.navigate('mainCharacter')}>
                             <Image style={styles.imgCharacter} source={character4}></Image>
                         </TouchableOpacity>
                     </View>
