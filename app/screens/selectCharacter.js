@@ -10,7 +10,6 @@ const RESPONSIVE_TOP = "10%"
 const RESPONSIVE_LEFT = "25%"
 export default function SelectCharacter() {
     const navigation = useNavigation();
-
     let character1 = require('../../assets/sources/Personajes/character_11.png');
     let character2 = require('../../assets/sources/Personajes/character_12.png');
     let character3 = require('../../assets/sources/Personajes/character_21.png');

@@ -15,6 +15,7 @@ import Store from "../Tiendita/store"
 //#endregion
 
 export default function ScreenStack() {
+  const Stack = createStackNavigator();
   return (
     <Stack.Navigator>
       <Stack.Screen

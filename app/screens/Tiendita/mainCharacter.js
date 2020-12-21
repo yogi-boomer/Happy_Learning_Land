@@ -4,7 +4,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import normalize from 'react-native-normalize';
 import {useNavigation} from '@react-navigation/native'
 
-const navigation = useNavigation();
+
 export default class MainCharacter extends Component {
 
     render() {
@@ -27,13 +27,13 @@ export default class MainCharacter extends Component {
                     <View style={styles.menuContainer}>
                         <View style={styles.containBtn}>
                             <View style={{ ...styles.Buttons}}>
-                                <TouchableOpacity style={{marginTop: 10}} onPress={()=> navigation.navigate('listActivity')}>
+                                <TouchableOpacity style={{marginTop: 10}} onPress={()=>this.props.navigation.navigate('listActivity')}>
                                     <Image style={ styles.list } source={require('../../../assets/sources/Iconos/nota.png')}></Image>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={{marginTop: 10}}>
                                     <Image style={ styles.list } source={require('../../../assets/sources/Iconos/robot.png')}></Image>
                                 </TouchableOpacity>
-                                <TouchableOpacity style={{marginTop: 10}} onPress={()=> navigation.navigate('store')}>
+                                <TouchableOpacity style={{marginTop: 10}} onPress={()=>this.props.navigation.navigate('store')}>
                                     <Image style={ styles.list } source={require('../../../assets/sources/Iconos/supermarket.png')}></Image>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={{marginTop: 10}}>
@@ -54,7 +54,6 @@ export default class MainCharacter extends Component {
                 </View>
                 <View style={styles.bottomContainer}>
                     <View style={styles.barraBottom}>
-                    
                     </View>                    
                 </View>
             </View>
