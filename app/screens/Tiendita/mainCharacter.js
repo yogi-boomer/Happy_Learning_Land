@@ -33,7 +33,7 @@ export default class MainCharacter extends Component {
                                 <TouchableOpacity style={{marginTop: 10}}>
                                     <Image style={ styles.list } source={require('../../../assets/sources/Iconos/robot.png')}></Image>
                                 </TouchableOpacity>
-                                <TouchableOpacity style={{marginTop: 10}} onPress={()=>this.props.navigation.navigate('store')}>
+                                <TouchableOpacity style={{marginTop: 10}} onPress={()=>this.props.navigation.navigate('outsideStore')}>
                                     <Image style={ styles.list } source={require('../../../assets/sources/Iconos/supermarket.png')}></Image>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={{marginTop: 10}}>
@@ -146,6 +146,6 @@ const styles = StyleSheet.create({
   },
   img: {
     height: "100%",
-    resizeMode: "contain",
+    resizeMode: "contain"
   },
 });
