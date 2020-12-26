@@ -4,59 +4,6 @@ import normalize from "react-native-normalize";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default class Store extends Component {
-/*     constructor(props) {
-    super(props);
-
-    this.state = {
-      modalVisible: false,
-      counters: this.props.route.params.counters,
-      res: 0,
-      progress: 0,
-    };
-  }
-
-  modalType = 1;
-
-  setModalVisible = (visible, modalType) => {
-    this.setState({ modalVisible: visible });
-    this.modalType = modalType;
-  };
-  resta = (value) => {
-    let res = this.state.res;
-    let counters = this.state.counters;
-    if (counters < value) {
-      Alert.alert("No te alcanza 😟");
-    } else {
-      res = counters - value;
-      console.log(counters);
-      console.log(res);
-      this.setState({ res });
-      this.setState({ counters: res });
-    }
-  };
-
-  renderModal = (modalType) => {
-    switch (modalType) {
-      case 1:
-        return (
-          <View style={styles.viewModal}>
-            <View style={styles.modals}>
-              <Text style={styles.txtModal}>
-                Estas a punto de comprar leche
-              </Text>
-              <Image style={styles.imageModals} source={require("../../../assets/sources/Img-Tiendita/leche.png")}></Image>
-              <Text>Cuesta 9 monedas, ¿la quieres comprar?</Text>
-              <TouchableHighlight style={{ ...styles.btnOpen, backgroundColor: "red", marginTop: 30 }} onPress={() => this.setModalVisible(false)}>
-                <Text>✖</Text>
-              </TouchableHighlight>
-              <TouchableHighlight style={{ ...styles.btnOpen, backgroundColor: "green", marginTop: 30 }} onPress={() => this.resta(9, this.setModalVisible(false))}>
-                <Text>✔</Text>
-              </TouchableHighlight>
-            </View>
-          </View>
-        );
-    }
-  }; */
     render() {
         return (
             <View style={styles.container}>
