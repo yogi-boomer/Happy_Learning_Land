@@ -5715,6 +5715,11 @@ react-native-size-matters@^0.3.1:
   resolved "https://registry.yarnpkg.com/react-native-size-matters/-/react-native-size-matters-0.3.1.tgz#24d0cfc335a2c730f6d58bd7b43ea5a41be4b49f"
   integrity sha512-mKOfBLIBFBcs9br1rlZDvxD5+mAl8Gfr5CounwJtxI6Z82rGrMO+Kgl9EIg3RMVf3G855a85YVqHJL2f5EDRlw==
 
+react-native-sound-player@^0.10.5:
+  version "0.10.5"
+  resolved "https://registry.yarnpkg.com/react-native-sound-player/-/react-native-sound-player-0.10.5.tgz#a770d963b8ee4cc4f9d4531ff799e693fb96f101"
+  integrity sha512-dMb9iSJigSAulvw0vTFW1Wsq6rWwuv7OQQDWVLwFazk/+X6C0Kbx6QjdBLeMX/hWFTVCFEPzQNp2y+9LcHuorw==
+
 react-native-status-bar-height@^2.5.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/react-native-status-bar-height/-/react-native-status-bar-height-2.6.0.tgz#b6afd25b6e3d533c43d0fcdcfd5cafd775592cea"

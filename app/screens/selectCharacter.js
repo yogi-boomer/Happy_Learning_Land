@@ -14,6 +14,10 @@ export default function SelectCharacter() {
     let character2 = require('../../assets/sources/Personajes/character_12.png');
     let character3 = require('../../assets/sources/Personajes/character_21.png');
     let character4 = require('../../assets/sources/Personajes/character_22.png');
+    const character11 = 'https://i.ibb.co/dL2ZzTf/character-11.png';
+    const character22 = 'https://i.ibb.co/hX7DwMs/character-12.png';
+    const character33 = 'https://i.ibb.co/fF3Xq56/character-21.png';
+    const character44 = 'https://i.ibb.co/5kzLbRk/character-22.png';
     return (
         <View style={styles.container}>
             <View style={styles.titleContainer}>
@@ -22,7 +26,7 @@ export default function SelectCharacter() {
             <View style={styles.elementsContainer}>
                 <View style={styles.characerWoman}>
                     <View style={styles.containerCharacter}>
-                        <TouchableOpacity onPress={()=> navigation.navigate('mainCharacter')}>
+                        <TouchableOpacity onPress={()=> navigation.navigate('mainCharacter',load(character_11))}>
                             <Image style={styles.imgCharacter} source={character1}></Image>
                         </TouchableOpacity>
                     </View>
