@@ -2831,6 +2831,14 @@ create-react-class@^15.6.2:
     loose-envify "^1.3.1"
     object-assign "^4.1.1"
 
+create-react-context@^0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/create-react-context/-/create-react-context-0.2.3.tgz#9ec140a6914a22ef04b8b09b7771de89567cb6f3"
+  integrity sha512-CQBmD0+QGgTaxDL3OX1IDXYqjkp2It4RIbcb99jS6AEg27Ga+a9G3JtK6SIu0HBwPLZlmwt9F7UwWA4Bn92Rag==
+  dependencies:
+    fbjs "^0.8.0"
+    gud "^1.0.0"
+
 cross-spawn@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-5.1.0.tgz#e8bd0efee58fcff6f8f94510a0a554bbfa235449"
@@ -3389,7 +3397,7 @@ fbjs@1.0.0, fbjs@^1.0.0:
     setimmediate "^1.0.5"
     ua-parser-js "^0.7.18"
 
-fbjs@^0.8.4:
+fbjs@^0.8.0, fbjs@^0.8.4:
   version "0.8.17"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.17.tgz#c4d598ead6949112653d6588b01a5cdcd9f90fdd"
   integrity sha1-xNWY6taUkRJlPWWIsBpc3Nn5D90=
@@ -3662,6 +3670,11 @@ grpc@1.24.2:
     nan "^2.13.2"
     node-pre-gyp "^0.14.0"
     protobufjs "^5.0.3"
+
+gud@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/gud/-/gud-1.0.0.tgz#a489581b17e6a70beca9abe3ae57de7a499852c0"
+  integrity sha512-zGEOVKFM5sVPPrYs7J5/hYEw2Pof8KCyOwyhG8sAF26mCAeUFAcYPu1mwB7hhpIP29zOIBaDqwuHdLp0jvZXjw==
 
 handlebars@^4.7.3:
   version "4.7.6"
@@ -5608,6 +5621,13 @@ react-native-dimension@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/react-native-dimension/-/react-native-dimension-1.0.6.tgz#049e40746160137f5e1dde89983b04ff8dc288d5"
   integrity sha1-BJ5AdGFgE39eHd6JmDsE/43CiNU=
+
+react-native-easy-dnd@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-easy-dnd/-/react-native-easy-dnd-1.0.2.tgz#ee34369601a42c1bc874c44927816b6ae11f503a"
+  integrity sha512-3+uX1/rbnj8pgdkxKSAeW6qpJ4sVA4fj1vVqwX0JiODWSoeMYo5ZMk241AuQO6nSSP3sf2o1IMgFB8rbO8C43Q==
+  dependencies:
+    create-react-context "^0.2.3"
 
 react-native-easy-toast@~1.2.0:
   version "1.2.0"
