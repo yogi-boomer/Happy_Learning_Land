@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#b2f7ef",
   },
   topContainer: {
-    flex: 0.4,
+    flex: 0.35,
     //backgroundColor: "gray",
   },
   elementsContainer: {

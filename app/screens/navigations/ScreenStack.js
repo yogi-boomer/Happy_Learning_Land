@@ -13,6 +13,7 @@ import MainCharacter from "../Tiendita/mainCharacter";
 import ListActivity from "../Tiendita/listActivity";
 import Store from "../Tiendita/store";
 import OutsideStore from "../Tiendita/outsideStore";
+import GameRobot from "../Robot/gameRobot";
 //#endregion
 
 export default function ScreenStack() {
@@ -62,6 +63,11 @@ export default function ScreenStack() {
       <Stack.Screen
         name="outsideStore"
         component={OutsideStore}
+        options={{ title: "", headerLeft: false, headerTransparent: true }}
+      />
+      <Stack.Screen
+        name="gameRobot"
+        component={GameRobot}
         options={{ title: "", headerLeft: false, headerTransparent: true }}
       />
     </Stack.Navigator>

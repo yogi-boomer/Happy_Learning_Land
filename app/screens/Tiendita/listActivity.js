@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#b2f7ef",
     },
     topContainer: {
-        flex: .4,
+        flex: 0.35,
         //backgroundColor: "gray"
     },
     elementsContainer: {
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
         //backgroundColor: "white",
     },
     bottomContainer: {
-        flex: .2,
+        flex: 0.2,
         //backgroundColor: "green"
     },
     topList: {

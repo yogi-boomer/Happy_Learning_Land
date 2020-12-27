@@ -30,7 +30,7 @@ export default class MainCharacter extends Component {
                                 <TouchableOpacity style={{marginTop: 10}} onPress={()=>this.props.navigation.navigate('listActivity')}>
                                     <Image style={ styles.list } source={require('../../../assets/sources/Iconos/nota.png')}></Image>
                                 </TouchableOpacity>
-                                <TouchableOpacity style={{marginTop: 10}}>
+                                <TouchableOpacity style={{marginTop: 10}} onPress={()=>this.props.navigation.navigate('gameRobot')}>
                                     <Image style={ styles.list } source={require('../../../assets/sources/Iconos/robot.png')}></Image>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={{marginTop: 10}} onPress={()=>this.props.navigation.navigate('outsideStore')}>
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     flex: 15
   },
   bottomContainer: {
-    flex: .5,
+    flex: 0.5,
     flexDirection: "row",
   },
   barraBottom: {
