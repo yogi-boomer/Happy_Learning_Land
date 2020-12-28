@@ -1,64 +1,145 @@
-import React, { Component} from 'react';
-import { StyleSheet, View, Image } from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, View, Image, Modal,Text,TouchableHighlight, } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import normalize from 'react-native-normalize';
-import {useNavigation} from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native';
+import { Audio } from "expo-av";
+
 
 
 export default class MainCharacter extends Component {
+  constructor(props) {
+    super(props);
 
-    render() {
-        return (
-            <View style={styles.container}>
-                <View style={styles.topContainer}>
-                    <View style = {styles.coins}>
-                        <Image style={styles.coin} source={require('../../../assets/sources/Img-Tiendita/moneda.png')}></Image>
-                    </View>
-                </View>
-                <View style={styles.elementsContainer}>
-                    <View style={styles.charaContainer}>
-                         <View style={styles.character}>
-                                <View style>
-                                    <Image style={ styles.img } source={require('../../../assets/sources/Personajes/character_12.png')}></Image>
-                                    {/* <Image source={{ uri: charac }} style={{ ...styles.img}}></Image> */}
-                                </View>
-                        </View> 
-                    </View>
-                    <View style={styles.menuContainer}>
-                        <View style={styles.containBtn}>
-                            <View style={{ ...styles.Buttons}}>
-                                <TouchableOpacity style={{marginTop: 10}} onPress={()=>this.props.navigation.navigate('listActivity')}>
-                                    <Image style={ styles.list } source={require('../../../assets/sources/Iconos/nota.png')}></Image>
-                                </TouchableOpacity>
-                                <TouchableOpacity style={{marginTop: 10}} onPress={()=>this.props.navigation.navigate('gameRobot')}>
-                                    <Image style={ styles.list } source={require('../../../assets/sources/Iconos/robot.png')}></Image>
-                                </TouchableOpacity>
-                                <TouchableOpacity style={{marginTop: 10}} onPress={()=>this.props.navigation.navigate('outsideStore')}>
-                                    <Image style={ styles.list } source={require('../../../assets/sources/Iconos/supermarket.png')}></Image>
-                                </TouchableOpacity>
-                                <TouchableOpacity style={{marginTop: 10}}>
-                                    <Image style={ styles.list } source={require('../../../assets/sources/Iconos/comer.png')}></Image>
-                                </TouchableOpacity>
-                                <TouchableOpacity style={{marginTop: 10}}>
-                                    <Image style={ styles.list } source={require('../../../assets/sources/Iconos/reciclaje.png')}></Image>
-                                </TouchableOpacity>
-                                <TouchableOpacity style={{marginTop: 10}}>
-                                    <Image style={ styles.list } source={require('../../../assets/sources/Iconos/ajustes.png')}></Image>
-                                </TouchableOpacity>
-                                <TouchableOpacity style={{marginTop: 10}}>
-                                    {/* <Image style={ styles.list } sources={require('../assets/sources/Iconos/regresar.png')}></Image> */}
-                                </TouchableOpacity>
-                            </View>
-                        </View> 
-                    </View>    
-                </View>
-                <View style={styles.bottomContainer}>
-                    <View style={styles.barraBottom}>
-                    </View>                    
-                </View>
-            </View>
-        )
+    this.state = {
+      modalVisible: false,
+    };
+  }
+  modalType = 1;
+  
+  setModalVisible = (visible, modalType) => {
+    this.setState({ modalVisible: visible });
+    this.modalType = modalType;
+  };
+
+  async componentDidMount() {
+    
+    this.sounds = [
+      new Audio.Sound
+    ]
+    const status = {
+      shouldPlay: true
     }
+    this.sounds[0].loadAsync(require('../../../assets/sources/Music/GameSample.mp3'), status, true);
+  }
+
+  
+
+//#region MUSIC SETTINGS 
+  playSound(index) {
+    this.sounds[index].playAsync();
+    this.sounds[index].setVolumeAsync(0.7);
+  }
+  stop(index) {
+    this.sounds[index].stopAsync();
+  }
+  pause(index) {
+    this.sounds[index].pauseAsync();
+  }
+//#endregion MUSIC SETTINGS
+
+
+renderModal = (modalType) => {
+  switch (modalType) {
+    case 1:
+      return (
+        <View style={styles.modalContainer}>
+          <View style={styles.viewModal}>
+            <View style={styles.elementsModal}>
+              <Text style={styles.txtModal}>
+                Configuración de sonido
+              </Text>
+            </View>
+            <View style={styles.bottomModal}>
+              <TouchableHighlight
+                style={{ ...styles.btnOpen, backgroundColor:  "#12947f" }} onPress={() =>this.setModalVisible(false,this.playSound(0))}
+              >
+                <Text>🔊</Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                style={{ ...styles.btnOpen, backgroundColor: "#e71414"}} onPress={() =>this.setModalVisible(false,this.pause(0))}
+              >
+                <Text>🔇</Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </View>
+      );
+    }
+  };
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style={styles.topContainer}>
+          <View style={styles.coins}>
+            <Image style={styles.coin} source={require('../../../assets/sources/Img-Tiendita/moneda.png')}></Image>
+          </View>
+        </View>
+        <View style={styles.elementsContainer}>
+        <Modal
+            animationType="slide"
+            transparent={true}
+            visible={this.state.modalVisible}
+            onRequestClose={() => {
+              this.setModalVisible(!this.state.modalVisible, this.modalType);
+            }}
+          >
+            {this.renderModal(this.modalType)}
+          </Modal>
+          <View style={styles.charaContainer}>
+            <View style={styles.character}>
+              <View style>
+                <Image style={styles.img} source={require('../../../assets/sources/Personajes/character_12.png')}></Image>
+                {/* <Image source={{ uri: charac }} style={{ ...styles.img}}></Image> */}
+              </View>
+            </View>
+          </View>
+          <View style={styles.menuContainer}>
+            <View style={styles.containBtn}>
+              <View style={{ ...styles.Buttons }}>
+                <TouchableOpacity style={{ marginTop: 10 }} onPress={() => this.props.navigation.navigate('listActivity')}>
+                  <Image style={styles.list} source={require('../../../assets/sources/Iconos/nota.png')}></Image>
+                </TouchableOpacity>
+                <TouchableOpacity style={{ marginTop: 10 }} onPress={() => this.props.navigation.navigate('gameRobot')}>
+                  <Image style={styles.list} source={require('../../../assets/sources/Iconos/robot.png')}></Image>
+                </TouchableOpacity>
+                <TouchableOpacity style={{ marginTop: 10 }} onPress={() => this.props.navigation.navigate('outsideStore')}>
+                  <Image style={styles.list} source={require('../../../assets/sources/Iconos/supermarket.png')}></Image>
+                </TouchableOpacity>
+                <TouchableOpacity style={{ marginTop: 10 }}>
+                  <Image style={styles.list} source={require('../../../assets/sources/Iconos/comer.png')}></Image>
+                </TouchableOpacity>
+                <TouchableOpacity style={{ marginTop: 10 }}>
+                  <Image style={styles.list} source={require('../../../assets/sources/Iconos/reciclaje.png')}></Image>
+                </TouchableOpacity>
+                <TouchableOpacity style={{ marginTop: 10 }} onPress={() =>this.setModalVisible(true,1)}>
+                  <Image style={styles.list} source={require('../../../assets/sources/Iconos/ajustes.png')}></Image>
+                </TouchableOpacity>
+                <TouchableOpacity style={{ marginTop: 10 }}>
+                  {/* <Image style={ styles.list } sources={require('../assets/sources/Iconos/regresar.png')}></Image> */}
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View style={styles.bottomContainer}>
+          <View style={styles.barraBottom}>
+          </View>
+        </View>
+      </View>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
@@ -92,7 +173,7 @@ const styles = StyleSheet.create({
   menuContainer: {
     flexDirection: "column",
     flex: 5,
-    justifyContent: 'flex-start'   
+    justifyContent: 'flex-start'
   },
   containBtn: {
     width: '100%',
@@ -147,5 +228,46 @@ const styles = StyleSheet.create({
   img: {
     height: "100%",
     resizeMode: "contain"
+  },
+  modalContainer: {
+    height: "100%",
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  txtModal: {
+    textAlign: "center",
+    fontSize: normalize(15),
+    fontWeight: "bold",
+  },
+  imgModals: {
+    width: normalize(100, "width"),
+    height: normalize(100, "height"),
+    resizeMode: "contain",
+  },
+  viewModal: {
+    backgroundColor: "white",
+    borderRadius: 25,
+    padding: 30,
+    alignItems: "center",
+    shadowColor: "black",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    elevation: 10,
+  },
+  elementsModal: {
+    alignItems: "center",
+  },
+  bottomModal: {
+    flexDirection: "row",
+  },
+  btnOpen: {
+    borderRadius: 25,
+    padding: 12,
+    margin: 10,
   },
 });

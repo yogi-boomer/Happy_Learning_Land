@@ -2,8 +2,9 @@ import React from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import normalize from "react-native-normalize";
 import { Button } from "react-native-elements";
-import * as firebase from "firebase"
-import {useNavigation} from "@react-navigation/native"
+import * as firebase from "firebase";
+import {useNavigation} from "@react-navigation/native";
+import { Audio } from "expo-av";
 
 export default function SelectCharacter() {
     const navigation = useNavigation();
