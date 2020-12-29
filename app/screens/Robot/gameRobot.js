@@ -216,9 +216,6 @@ export default class GameRobot extends Component {
                                         </Droppable>
                                 </View>
                                 <View style={styles.rightLegSilhouette}>
-
-                                </View>
-                                <View style={styles.blankRightLeg}>
                                     <Droppable  //CAMBIO CREACION DE DROPABLE
                                             onEnter={() => {
                                                 console.log('Draggable entered');
@@ -249,6 +246,9 @@ export default class GameRobot extends Component {
                                                 );
                                             }}
                                         </Droppable>
+                                </View>
+                                <View style={styles.blankRightLeg}>
+                                    
                                 </View>
                             </View>
                         </View>
