@@ -6,7 +6,8 @@ import { useNavigation } from '@react-navigation/native';
 import { createDndContext } from "react-native-easy-dnd";
 
 const { Provider, Droppable, Draggable } = createDndContext();
-
+const[headPc, setPayload] = useState(false);
+const [count2, setCount2] = useState(false);
 export default class GameRobot extends Component {
 
     render() {
@@ -271,9 +272,9 @@ export default class GameRobot extends Component {
                                                 console.log('Started draggging');
                                             }}
                                             onDragEnd={() => {
-                                                console.log('Ended draggging');
+                                                console.log('Ended draggging'), setPayload(true);
                                             }}
-                                            payload="my-draggable-item"
+                                            
                                         >
                                             {({ viewProps }) => {
                                                 return (
