@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
-import {View, Text, StyleSheet, ImageBackground, CheckBox, Image, Button} from 'react-native';
+import {View, Text, StyleSheet, ImageBackground, CheckBox, Image, Button, StatusBar} from 'react-native';
 import normalize from "react-native-normalize";
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
 export default class ListActivity extends Component {
     //const [isSelected, setSelection] = useState(false);
     //const [isDisabled, setDiseable] = useState(true);
-    
     render() {
         return (
             <View style={ styles.container }>
-                <View style={ styles.topContainer }>
-
+                <StatusBar barStyle = "dark-content"/>
+                <View>
+                  <StatusBar hidden = {true}/>
                 </View>
                 <View style={ styles.elementsContainer }> 
                     <ImageBackground source={require('../../../assets/sources/Img-Tiendita/lista_navidad.png')} style={ styles.img }>
@@ -66,23 +66,16 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         backgroundColor: "#b2f7ef",
     },
-    topContainer: {
-        flex: 0.35,
-        //backgroundColor: "gray"
-    },
     elementsContainer: {
-        flex: 10,
-        //backgroundColor: "white",
+        flex: 10
     },
     bottomContainer: {
-        flex: 0.2,
-        //backgroundColor: "green"
+        flex: 0.2
     },
     topList: {
         flex: 7,
         justifyContent: 'flex-end',
-        alignItems: "center",
-        //backgroundColor: "orange"
+        alignItems: "center"
     },
     txtTitle: {
         fontSize: normalize(30),
@@ -90,14 +83,12 @@ const styles = StyleSheet.create({
     },
     homework: {
         flex: 10,
-        flexDirection: "column",
-        //backgroundColor: "red"
+        flexDirection: "column"
     },
     bottomList: {
         flex: 4,
         alignItems: "center",
-        alignContent: 'center',
-        //backgroundColor: "purple"
+        alignContent: 'center'
     },
     txtReward: {
         fontWeight: 'bold',
@@ -118,7 +109,6 @@ const styles = StyleSheet.create({
         fontSize: normalize(20)
     },
     img: {
-        //flex: 10,
         height: '100%',
         resizeMode: 'stretch'
     }

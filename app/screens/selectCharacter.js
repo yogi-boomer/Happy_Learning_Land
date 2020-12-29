@@ -1,9 +1,9 @@
 import React from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity, StatusBar } from "react-native";
 import normalize from "react-native-normalize";
 import { Button } from "react-native-elements";
-import * as firebase from "firebase";
-import {useNavigation} from "@react-navigation/native";
+import * as firebase from "firebase"
+import {useNavigation} from "@react-navigation/native"
 import { Audio } from "expo-av";
 
 export default function SelectCharacter() {
@@ -14,9 +14,10 @@ export default function SelectCharacter() {
     let character4 = require('../../assets/sources/Personajes/character_22.png');
     return (
         <View style={styles.container}>
-            <View style={styles.topContainer}>
-
-            </View>
+            <StatusBar barStyle = "dark-content"/>
+                <View>
+                  <StatusBar hidden = {true}/>
+                </View>
             <View style={styles.elementsContainer}>
                 <View style={styles.elementsTop}>
                     <Text style={styles.txtTitle}>Escoge tu personaje:</Text>
@@ -55,9 +56,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "salmon"
-    },
-    topContainer: {
-        flex: 0.35
     },
     elementsContainer: {
         flex: 10,
