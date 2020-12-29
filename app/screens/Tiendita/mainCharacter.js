@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
-import { StyleSheet, View, Image, Modal,Text,TouchableHighlight, } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import normalize from 'react-native-normalize';
-import { useNavigation } from '@react-navigation/native';
+import React, { Component } from "react";
+import { StyleSheet, View, Image, StatusBar, Modal,Text,TouchableHighlight } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import normalize from "react-native-normalize";
+import { useNavigation } from "@react-navigation/native";
 import { Audio } from "expo-av";
-
-
 
 export default class MainCharacter extends Component {
   constructor(props) {
@@ -34,8 +32,6 @@ export default class MainCharacter extends Component {
     this.sounds[0].loadAsync(require('../../../assets/sources/Music/GameSample.mp3'), status, true);
   }
 
-  
-
 //#region MUSIC SETTINGS 
   playSound(index) {
     this.sounds[index].playAsync(0);
@@ -47,7 +43,6 @@ export default class MainCharacter extends Component {
     this.sounds[index].pauseAsync(0);
   }
 //#endregion MUSIC SETTINGS
-
 
 renderModal = (modalType) => {
   switch (modalType) {
@@ -81,61 +76,56 @@ renderModal = (modalType) => {
   render() {
     return (
       <View style={styles.container}>
+        <StatusBar barStyle = "dark-content"/>
+          <View>
+            <StatusBar hidden = {true}/>
+          </View>
         <View style={styles.topContainer}>
-          <View style={styles.coins}>
+          <View style = {styles.coins}>
             <Image style={styles.coin} source={require('../../../assets/sources/Img-Tiendita/moneda.png')}></Image>
           </View>
         </View>
         <View style={styles.elementsContainer}>
-        <Modal
-            animationType="slide"
-            transparent={true}
-            visible={this.state.modalVisible}
-            onRequestClose={() => {
-              this.setModalVisible(!this.state.modalVisible, this.modalType);
-            }}
-          >
-            {this.renderModal(this.modalType)}
-          </Modal>
           <View style={styles.charaContainer}>
             <View style={styles.character}>
               <View style>
-                <Image style={styles.img} source={require('../../../assets/sources/Personajes/character_12.png')}></Image>
-                {/* <Image source={{ uri: charac }} style={{ ...styles.img}}></Image> */}
+                <Image style={ styles.img } source={require('../../../assets/sources/Personajes/character_12.png')}></Image>
+                  {/* <Image source={{ uri: charac }} style={{ ...styles.img}}></Image> */}
               </View>
-            </View>
+            </View> 
           </View>
           <View style={styles.menuContainer}>
             <View style={styles.containBtn}>
-              <View style={{ ...styles.Buttons }}>
-                <TouchableOpacity style={{ marginTop: 10 }} onPress={() => this.props.navigation.navigate('listActivity')}>
-                  <Image style={styles.list} source={require('../../../assets/sources/Iconos/nota.png')}></Image>
+              <View style={{ ...styles.Buttons}}>
+                <TouchableOpacity style={{marginTop: 10}} onPress={()=>this.props.navigation.navigate('listActivity')}>
+                  <Image style={ styles.list } source={require('../../../assets/sources/Iconos/nota.png')}></Image>
                 </TouchableOpacity>
-                <TouchableOpacity style={{ marginTop: 10 }} onPress={() => this.props.navigation.navigate('gameRobot')}>
-                  <Image style={styles.list} source={require('../../../assets/sources/Iconos/robot.png')}></Image>
+                <TouchableOpacity style={{marginTop: 10}} onPress={()=>this.props.navigation.navigate('gameRobot')}>
+                  <Image style={ styles.list } source={require('../../../assets/sources/Iconos/robot.png')}></Image>
                 </TouchableOpacity>
-                <TouchableOpacity style={{ marginTop: 10 }} onPress={() => this.props.navigation.navigate('outsideStore')}>
-                  <Image style={styles.list} source={require('../../../assets/sources/Iconos/supermarket.png')}></Image>
+                <TouchableOpacity style={{marginTop: 10}} onPress={()=>this.props.navigation.navigate('outsideStore')}>
+                  <Image style={ styles.list } source={require('../../../assets/sources/Iconos/supermarket.png')}></Image>
                 </TouchableOpacity>
-                <TouchableOpacity style={{ marginTop: 10 }}>
-                  <Image style={styles.list} source={require('../../../assets/sources/Iconos/comer.png')}></Image>
+                <TouchableOpacity style={{marginTop: 10}}>
+                    <Image style={ styles.list } source={require('../../../assets/sources/Iconos/comer.png')}></Image>
                 </TouchableOpacity>
-                <TouchableOpacity style={{ marginTop: 10 }}>
-                  <Image style={styles.list} source={require('../../../assets/sources/Iconos/reciclaje.png')}></Image>
+                <TouchableOpacity style={{marginTop: 10}} onPress={()=>this.props.navigation.navigate('menuReciclaje')}>
+                  <Image style={ styles.list } source={require('../../../assets/sources/Iconos/reciclaje.png')}></Image>
                 </TouchableOpacity>
-                <TouchableOpacity style={{ marginTop: 10 }} onPress={() =>this.setModalVisible(true,1)}>
-                  <Image style={styles.list} source={require('../../../assets/sources/Iconos/ajustes.png')}></Image>
+                <TouchableOpacity style={{marginTop: 10}}>
+                  <Image style={ styles.list } source={require('../../../assets/sources/Iconos/ajustes.png')}></Image>
                 </TouchableOpacity>
-                <TouchableOpacity style={{ marginTop: 10 }}>
-                  {/* <Image style={ styles.list } sources={require('../assets/sources/Iconos/regresar.png')}></Image> */}
+                <TouchableOpacity style={{marginTop: 10}}>
+                {/* <Image style={ styles.list } sources={require('../assets/sources/Iconos/regresar.png')}></Image> */}
                 </TouchableOpacity>
               </View>
-            </View>
-          </View>
+            </View> 
+          </View>    
         </View>
         <View style={styles.bottomContainer}>
           <View style={styles.barraBottom}>
-          </View>
+          
+          </View>                    
         </View>
       </View>
     )
@@ -162,8 +152,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   barraBottom: {
-    width: '100%',
-    //backgroundColor: "green"
+    width: '100%'
   },
   charaContainer: {
     flexDirection: "column",
@@ -173,17 +162,15 @@ const styles = StyleSheet.create({
   menuContainer: {
     flexDirection: "column",
     flex: 5,
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start'   
   },
   containBtn: {
     width: '100%',
-    height: '65%',
-    //backgroundColor: "gray",
+    height: '65%'
   },
   character: {
     height: '60%',
-    alignItems: "center",
-    //backgroundColor: "#FFF"
+    alignItems: "center"
   },
   coins: {
     flexDirection: "row",
@@ -210,8 +197,7 @@ const styles = StyleSheet.create({
     left: normalize(135, "width"),
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: normalize(25),
-    //backgroundColor: "#58B1C2",
+    borderRadius: normalize(25)
   },
   text: {
     alignItems: "center",
@@ -269,5 +255,5 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     padding: 12,
     margin: 10,
-  },
+  }
 });

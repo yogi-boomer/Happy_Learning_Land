@@ -7,6 +7,7 @@ import {
   Text,
   Button,
   Modal,
+  StatusBar,
   Alert,
   TouchableHighlight,
 } from "react-native";
@@ -292,12 +293,15 @@ export default class Store extends Component {
             </View>
           </View>
         );
-    }
-  };
+      }
+    };
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.topContainer}></View>
+        <StatusBar barStyle="dark-content" />
+        <View>
+          <StatusBar hidden={true} />
+        </View>
         <View style={styles.elementsContainer}>
           <Modal
             animationType="slide"
@@ -442,9 +446,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     backgroundColor: "#f8f5f2",
   },
-  topContainer: {
-    flex: 0.35, //cambiar
-  },
   elementsContainer: {
     flex: 10,
     flexDirection: "column",
@@ -457,8 +458,7 @@ const styles = StyleSheet.create({
   },
   bottomElement: {
     flex: 1.5,
-    flexDirection: "row",
-    //backgroundColor: "orange",
+    flexDirection: "row"
   },
   bottomContainer: {
     flex: 0.2,
@@ -594,5 +594,5 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     padding: 12,
     margin: 10,
-  },
+  }
 });
