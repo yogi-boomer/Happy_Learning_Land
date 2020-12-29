@@ -86,6 +86,16 @@ renderModal = (modalType) => {
           </View>
         </View>
         <View style={styles.elementsContainer}>
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={this.state.modalVisible}
+            onRequestClose={() => {
+              this.setModalVisible(!this.state.modalVisible, this.modalType);
+            }}
+          >
+            {this.renderModal(this.modalType)}
+          </Modal>
           <View style={styles.charaContainer}>
             <View style={styles.character}>
               <View style>
@@ -97,22 +107,22 @@ renderModal = (modalType) => {
           <View style={styles.menuContainer}>
             <View style={styles.containBtn}>
               <View style={{ ...styles.Buttons}}>
-                <TouchableOpacity style={{marginTop: 10}} onPress={()=>this.props.navigation.navigate('listActivity')}>
+                <TouchableOpacity style={{marginTop: 10}} onPress={() => this.props.navigation.navigate('listActivity')}>
                   <Image style={ styles.list } source={require('../../../assets/sources/Iconos/nota.png')}></Image>
                 </TouchableOpacity>
-                <TouchableOpacity style={{marginTop: 10}} onPress={()=>this.props.navigation.navigate('gameRobot')}>
+                <TouchableOpacity style={{marginTop: 10}} onPress={() => this.props.navigation.navigate('gameRobot')}>
                   <Image style={ styles.list } source={require('../../../assets/sources/Iconos/robot.png')}></Image>
                 </TouchableOpacity>
-                <TouchableOpacity style={{marginTop: 10}} onPress={()=>this.props.navigation.navigate('outsideStore')}>
+                <TouchableOpacity style={{marginTop: 10}} onPress={() => this.props.navigation.navigate('outsideStore')}>
                   <Image style={ styles.list } source={require('../../../assets/sources/Iconos/supermarket.png')}></Image>
                 </TouchableOpacity>
                 <TouchableOpacity style={{marginTop: 10}}>
                     <Image style={ styles.list } source={require('../../../assets/sources/Iconos/comer.png')}></Image>
                 </TouchableOpacity>
-                <TouchableOpacity style={{marginTop: 10}} onPress={()=>this.props.navigation.navigate('menuReciclaje')}>
+                <TouchableOpacity style={{marginTop: 10}}>
                   <Image style={ styles.list } source={require('../../../assets/sources/Iconos/reciclaje.png')}></Image>
                 </TouchableOpacity>
-                <TouchableOpacity style={{marginTop: 10}}>
+                <TouchableOpacity style={{marginTop: 10}} onPress={() => this.setModalVisible(true,1)}>
                   <Image style={ styles.list } source={require('../../../assets/sources/Iconos/ajustes.png')}></Image>
                 </TouchableOpacity>
                 <TouchableOpacity style={{marginTop: 10}}>
