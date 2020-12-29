@@ -28,7 +28,8 @@ export default class MainCharacter extends Component {
       new Audio.Sound
     ]
     const status = {
-      shouldPlay: true
+      shouldPlay: true,
+      isLooping: true
     }
     this.sounds[0].loadAsync(require('../../../assets/sources/Music/GameSample.mp3'), status, true);
   }
@@ -37,14 +38,13 @@ export default class MainCharacter extends Component {
 
 //#region MUSIC SETTINGS 
   playSound(index) {
-    this.sounds[index].playAsync();
-    this.sounds[index].setVolumeAsync(0.7);
+    this.sounds[index].playAsync(0);
   }
   stop(index) {
-    this.sounds[index].stopAsync();
+    this.sounds[index].stopAsync(0);
   }
   pause(index) {
-    this.sounds[index].pauseAsync();
+    this.sounds[index].pauseAsync(0);
   }
 //#endregion MUSIC SETTINGS
 
