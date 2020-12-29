@@ -2,7 +2,7 @@ import React, { Component, useRef, useState } from 'react';
 import { StyleSheet, View, StatusBar, Image, Text, Button, Animated, ToastAndroid, ScrollView } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import normalize from 'react-native-normalize';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { createDndContext } from "react-native-easy-dnd";
 
 const { Provider, Droppable, Draggable } = createDndContext();
@@ -10,6 +10,7 @@ const { Provider, Droppable, Draggable } = createDndContext();
 export default class GameRobot extends Component {    
     render() {
         return (
+            <Provider>
             <View style={styles.container}>
                 <StatusBar barStyle = "dark-content"/>
                 <View>
@@ -415,6 +416,7 @@ export default class GameRobot extends Component {
 
                 </View>
             </View>
+            </Provider>
         )
     }
 }
