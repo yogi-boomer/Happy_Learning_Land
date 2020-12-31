@@ -1,5 +1,4 @@
 import React from "react";
-import { View, Text } from "react-native";
 import { NavigationContainer, StackActions } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -14,6 +13,12 @@ import ListActivity from "../Tiendita/listActivity";
 import Store from "../Tiendita/store";
 import OutsideStore from "../Tiendita/outsideStore";
 import GameRobot from "../Robot/gameRobot";
+import MenuReciclaje from "../Reciclaje/recidis/menuReciclaje";
+import Game_Tutorial from "../Reciclaje/recidis/game_tutorial";
+import Game_Facil from "../Reciclaje/recidis/game_facil";
+import Game_Intermedio from "../Reciclaje/recidis/game_intermedio";
+import Game_Dificil from "../Reciclaje/recidis/game_dificil";
+import Alimentacion from "../Alimentacion/alimentacion";
 //#endregion
 
 export default function ScreenStack() {
@@ -68,6 +73,36 @@ export default function ScreenStack() {
       <Stack.Screen
         name="gameRobot"
         component={GameRobot}
+        options={{ title: "", headerLeft: false, headerTransparent: true }}
+      />
+      <Stack.Screen
+        name="menuReciclaje"
+        component={MenuReciclaje}
+        options={{ title: "", headerLeft: false, headerTransparent: true }}
+      />
+      <Stack.Screen
+        name="game_tutorial"
+        component={Game_Tutorial}
+        options={{ title: "", headerLeft: false, headerTransparent: true }}
+      />
+      <Stack.Screen
+        name="game_facil"
+        component={Game_Facil}
+        options={{ title: "", headerLeft: false, headerTransparent: true }}
+      />
+      <Stack.Screen
+        name="game_intermedio"
+        component={Game_Intermedio}
+        options={{ title: "", headerLeft: false, headerTransparent: true }}
+      />
+      <Stack.Screen
+        name="game_dificil"
+        component={Game_Dificil}
+        options={{ title: "", headerLeft: false, headerTransparent: true }}
+      />
+      <Stack.Screen
+        name="alimentacion"
+        component={Alimentacion}
         options={{ title: "", headerLeft: false, headerTransparent: true }}
       />
     </Stack.Navigator>

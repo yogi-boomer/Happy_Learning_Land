@@ -100,7 +100,6 @@ renderModal = (modalType) => {
             <View style={styles.character}>
               <View style>
                 <Image style={ styles.img } source={require('../../../assets/sources/Personajes/character_12.png')}></Image>
-                  {/* <Image source={{ uri: charac }} style={{ ...styles.img}}></Image> */}
               </View>
             </View> 
           </View>
@@ -116,17 +115,14 @@ renderModal = (modalType) => {
                 <TouchableOpacity style={{marginTop: 10}} onPress={() => this.props.navigation.navigate('outsideStore')}>
                   <Image style={ styles.list } source={require('../../../assets/sources/Iconos/supermarket.png')}></Image>
                 </TouchableOpacity>
-                <TouchableOpacity style={{marginTop: 10}}>
+                <TouchableOpacity style={{marginTop: 10}} onPress={()=>this.props.navigation.navigate('alimentacion')}>
                     <Image style={ styles.list } source={require('../../../assets/sources/Iconos/comer.png')}></Image>
                 </TouchableOpacity>
-                <TouchableOpacity style={{marginTop: 10}}>
+                <TouchableOpacity style={{marginTop: 10}} onPress={()=>this.props.navigation.navigate('menuReciclaje')}>
                   <Image style={ styles.list } source={require('../../../assets/sources/Iconos/reciclaje.png')}></Image>
                 </TouchableOpacity>
                 <TouchableOpacity style={{marginTop: 10}} onPress={() => this.setModalVisible(true,1)}>
                   <Image style={ styles.list } source={require('../../../assets/sources/Iconos/ajustes.png')}></Image>
-                </TouchableOpacity>
-                <TouchableOpacity style={{marginTop: 10}}>
-                {/* <Image style={ styles.list } sources={require('../assets/sources/Iconos/regresar.png')}></Image> */}
                 </TouchableOpacity>
               </View>
             </View> 
