@@ -6,6 +6,7 @@ import {
   Image,
   Text,
   Animated,
+  AsyncStorage
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import normalize from "react-native-normalize";
@@ -18,6 +19,7 @@ export default class Game_Dificil extends Component {
     super(props);
     this.state = {
       timer: 7,
+      monedax: 0,
       correctCount: 0,
       totalCount: this.props.route.params.questions.length,
       suma: 0,
@@ -26,6 +28,7 @@ export default class Game_Dificil extends Component {
       answered: false,
       answerCorrect: false,
       value: 0,
+      tareas: this.props.route.params.tareas
     };
   }
 
@@ -33,11 +36,36 @@ export default class Game_Dificil extends Component {
     this.setState({ value: this.state.value + 1 });
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     this.clockCall = setInterval(() => {
       this.decrementClock();
     }, 1000);
+
+    const storage = async () => {
+      const value = await AsyncStorage.getItem('coins');
+      const monedax = parseInt(value);
+      if (value != null) {
+        if (monedax >= 1) {
+          this.setState({ monedax: monedax });
+        }
+        console.log(value);
+      }
+    }
+    storage();
   }
+
+  load = async (value) => {
+    await AsyncStorage.setItem('coins', value);
+    console.log(value);
+  }
+
+  suma = () => {
+    let counters = this.state.monedax;
+    let suma = this.state.suma;
+    suma = counters + 1;
+    console.log(suma);
+    this.setState({ monedax: suma });
+  };
 
   componentWillMount() {
     this.position = new Animated.ValueXY(0, 0);
@@ -65,7 +93,7 @@ export default class Game_Dificil extends Component {
         const nextState = { answered: true };
         if (correct) {
           nextState.correctCount = state.correctCount + 1;
-          //this.suma();
+          this.suma();
           nextState.answerCorrect = true;
           this._startAnimation();
         } else {
@@ -86,7 +114,8 @@ export default class Game_Dificil extends Component {
       });
       const nextIndex = state.activeQuestionIndex + 1;
       if (nextIndex >= state.totalCount) {
-        return this.props.navigation.navigate("menuReciclaje");
+        this.load(String(this.state.monedax));
+        return this.props.navigation.push("mainCharacter", { tareas: this.state.tareas });
       }
       return {
         activeQuestionIndex: nextIndex,
@@ -95,110 +124,110 @@ export default class Game_Dificil extends Component {
     });
   };
 
-    render() {
-        const { timer } = this.state;
-        const questions = this.props.route.params.questions;
-        const question = questions[this.state.activeQuestionIndex];
-        console.log(question.answers[0].text);
-    
-        return (
-            <View style={styles.container}>
-                <StatusBar barStyle="dark-content" />
-                <View>
-                    <StatusBar hidden={true} />
+  render() {
+    const { timer } = this.state;
+    const questions = this.props.route.params.questions;
+    const question = questions[this.state.activeQuestionIndex];
+    console.log(question.answers[0].text);
+
+    return (
+      <View style={styles.container}>
+        <StatusBar barStyle="dark-content" />
+        <View>
+          <StatusBar hidden={true} />
+        </View>
+        <View style={styles.topContainer}></View>
+        <View style={styles.elementsContainer}>
+          <View style={styles.elementsTop}>
+            <View style={styles.coinContainer}>
+              <View style={styles.coins}>
+                <Image
+                  style={styles.coin}
+                  source={require("../../../../assets/sources/Img-Tiendita/moneda.png")}
+                ></Image>
+                <Text style={styles.txtCoin}>x {this.state.monedax}</Text>
+              </View>
+            </View>
+            <View style={styles.blankSpace}></View>
+            <View style={styles.timeContainer}>
+              <Text style={styles.txtTimer}>Tiempo: {timer}</Text>
+            </View>
+          </View>
+          <View style={styles.elementsCenter}>
+            <View style={styles.topImg}>
+              <View style={styles.answerContainer}>
+                <Alert
+                  correct={this.state.answerCorrect}
+                  visible={this.state.answered}
+                />
+              </View>
+              <View style={styles.imgContainer}>
+                <Image source={question.question} style={styles.img} />
+              </View>
+            </View>
+            <View style={styles.questionContainer}>
+              <Text style={styles.txtQuestion}>{question.name}</Text>
+            </View>
+            <View style={styles.garbageContainer}>
+              <View style={styles.garbageTop}>
+                <View style={styles.trashOne}>
+                  <TouchableOpacity
+                    onPress={() => this.answer(question.answers[0].correct)}
+                  >
+                    <Image
+                      style={styles.img}
+                      source={question.answers[0].text}
+                    ></Image>
+                  </TouchableOpacity>
                 </View>
-                <View style={styles.topContainer}></View>
-                <View style={styles.elementsContainer}>
-                    <View style={styles.elementsTop}>
-                        <View style={styles.coinContainer}>
-                            <View style={styles.coins}>
-                                <Image
-                                    style={styles.coin}
-                                    source={require("../../../../assets/sources/Img-Tiendita/moneda.png")}
-                                ></Image>
-                                <Text style={styles.txtCoin}>x</Text>
-                            </View>
-                        </View>
-                        <View style={styles.blankSpace}></View>
-                        <View style={styles.timeContainer}>
-                            <Text style={styles.txtTimer}>Tiempo: {timer}</Text>
-                        </View>
-                    </View>
-                    <View style={styles.elementsCenter}>
-                        <View style={styles.topImg}>
-                            <View style={styles.answerContainer}>
-                                <Alert
-                                    correct={this.state.answerCorrect}
-                                    visible={this.state.answered}
-                                />
-                            </View>
-                            <View style={styles.imgContainer}>
-                                <Image source={question.question} style={styles.img} />
-                            </View>
-                        </View>
-                        <View style={styles.questionContainer}>
-                            <Text style={styles.txtQuestion}>{question.name}</Text>
-                        </View>
-                        <View style={styles.garbageContainer}>
-                            <View style={styles.garbageTop}>
-                                <View style={styles.trashOne}>
-                                    <TouchableOpacity
-                                        onPress={() => this.answer(question.answers[0].correct)}
-                                    >
-                                        <Image
-                                            style={styles.img}
-                                            source={question.answers[0].text}
-                                        ></Image>
-                                    </TouchableOpacity>
-                                </View>
-                                <View style={styles.trashTwo}>
-                                    <TouchableOpacity
-                                        onPress={() => this.answer(question.answers[1].correct)}
-                                    >
-                                        <Image
-                                            style={styles.img}
-                                            source={question.answers[1].text}
-                                            ></Image>
-                                    </TouchableOpacity>
-                                </View>
-                            </View>
-                            <View style={styles.garbageBottom}>
-                                <View style={styles.trashThree}>
-                                    <TouchableOpacity
-                                        onPress={() => this.answer(question.answers[2].correct)}
-                                    >
-                                        <Image
-                                            style={styles.img}
-                                            source={question.answers[2].text}
-                                        ></Image>
-                                    </TouchableOpacity>
-                                </View>
-                                <View style={styles.trashFour}>
-                                    <TouchableOpacity
-                                        onPress={() => this.answer(question.answers[3].correct)}
-                                    >
-                                        <Image
-                                            style={styles.img}
-                                            source={question.answers[3].text}
-                                        ></Image>
-                                    </TouchableOpacity>
-                                </View>
-                            </View>
-                        </View>
-                    </View>
-                    <View style={styles.elementsBottom}>
-                        <View style={styles.counterContainer}>
-                            <Text style={styles.txtCounter}>
-                                {`${this.state.correctCount}/${this.state.totalCount}`}
-                            </Text>
-                        </View>
-                    </View>
+                <View style={styles.trashTwo}>
+                  <TouchableOpacity
+                    onPress={() => this.answer(question.answers[1].correct)}
+                  >
+                    <Image
+                      style={styles.img}
+                      source={question.answers[1].text}
+                    ></Image>
+                  </TouchableOpacity>
                 </View>
-                    <View style={styles.bottomContainer}></View>
+              </View>
+              <View style={styles.garbageBottom}>
+                <View style={styles.trashThree}>
+                  <TouchableOpacity
+                    onPress={() => this.answer(question.answers[2].correct)}
+                  >
+                    <Image
+                      style={styles.img}
+                      source={question.answers[2].text}
+                    ></Image>
+                  </TouchableOpacity>
                 </View>
-            );
-        }
-    }
+                <View style={styles.trashFour}>
+                  <TouchableOpacity
+                    onPress={() => this.answer(question.answers[3].correct)}
+                  >
+                    <Image
+                      style={styles.img}
+                      source={question.answers[3].text}
+                    ></Image>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View style={styles.elementsBottom}>
+            <View style={styles.counterContainer}>
+              <Text style={styles.txtCounter}>
+                {`${this.state.correctCount}/${this.state.totalCount}`}
+              </Text>
+            </View>
+          </View>
+        </View>
+        <View style={styles.bottomContainer}></View>
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {

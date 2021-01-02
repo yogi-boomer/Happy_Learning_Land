@@ -1,28 +1,35 @@
-import React, { Component} from 'react'
+import React, { Component } from 'react'
 import { StyleSheet, View, Image, ImageBackground, StatusBar } from 'react-native'
 import normalize from "react-native-normalize";
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
 export default class outsideStore extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tareas: this.props.route.params.tareas
+    };
+  }
   render() {
+    console.log(this.state.tareas);
     return (
       <View style={styles.container}>
-        <StatusBar barStyle = "dark-content"/>
-          <View>
-            <StatusBar hidden = {true}/>
-          </View>        
+        <StatusBar barStyle="dark-content" />
+        <View>
+          <StatusBar hidden={true} />
+        </View>
         <View style={styles.elementsContainer}>
           <View style={styles.imageBackground}>
             <ImageBackground style={styles.imageBackground} source={require('../../../assets/sources/Img-Tiendita/tienda.png')}></ImageBackground>
           </View>
           <View style={styles.buttonsContainer}>
-            <View style={styles.btnStyle }>
-              <TouchableOpacity style={{borderRadius: 35, backgroundColor: "#0d7377"}} onPress={()=>this.props.navigation.goBack()}>
-                <Image style={ styles.arrows } source={require('../../../assets/sources/Img-Tiendita/flecha_atras.png')}></Image>
-              </TouchableOpacity>    
-              <TouchableOpacity style={{borderRadius: 35, backgroundColor: "#0d7377"}} onPress={()=>this.props.navigation.navigate('store')}>
-                <Image style={ styles.arrows } source={require('../../../assets/sources/Img-Tiendita/flecha_arriba.png')}></Image>
-              </TouchableOpacity>        
+            <View style={styles.btnStyle}>
+              <TouchableOpacity style={{ borderRadius: 35, backgroundColor: "#0d7377" }} onPress={() => this.props.navigation.goBack()}>
+                <Image style={styles.arrows} source={require('../../../assets/sources/Img-Tiendita/flecha_atras.png')}></Image>
+              </TouchableOpacity>
+              <TouchableOpacity style={{ borderRadius: 35, backgroundColor: "#0d7377" }} onPress={() => this.props.navigation.navigate('store', { tareas: this.state.tareas })}>
+                <Image style={styles.arrows} source={require('../../../assets/sources/Img-Tiendita/flecha_arriba.png')}></Image>
+              </TouchableOpacity>
             </View>
           </View>
         </View>

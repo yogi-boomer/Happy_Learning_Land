@@ -10,6 +10,7 @@ import {
   StatusBar,
   Alert,
   TouchableHighlight,
+  AsyncStorage
 } from "react-native";
 import normalize from "react-native-normalize";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -20,15 +21,53 @@ export default class Store extends Component {
 
     this.state = {
       modalVisible: false,
+      monedax: 0,
+      res: 0,
+      tareas: this.props.route.params.tareas
     };
   }
 
   modalType = 1;
 
+  async componentDidMount() {
+    const storage = async () => {
+      const value = await AsyncStorage.getItem('character');
+      const value2 = await AsyncStorage.getItem('coins');
+      const monedax = parseInt(value2);
+      if (value != null && value2 != null) {
+        if (monedax > 0) {
+          this.setState({ monedax: monedax });
+        }
+        console.log(this.state.monedax);
+      }
+    };
+
+    storage();
+  }
+
+  load = async (value) => {
+    await AsyncStorage.setItem('coins', value);
+    console.log(value);
+  }
+
   setModalVisible = (visible, modalType) => {
     this.setState({ modalVisible: visible });
     this.modalType = modalType;
   };
+
+  resta = (value) => {
+    let res = this.state.res;
+    let counters = this.state.monedax;
+    if (counters < value) {
+      Alert.alert('No te alcanza 😟');
+    } else {
+      res = counters - value;
+      console.log(counters);
+      console.log(res);
+      this.setState({ monedax: res });
+    }
+
+  }
 
   renderModal = (modalType) => {
     switch (modalType) {
@@ -49,11 +88,13 @@ export default class Store extends Component {
               <View style={styles.bottomModal}>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#e71414" }}
+                  onPress={() => this.setModalVisible(false)}
                 >
                   <Text>✖</Text>
                 </TouchableHighlight>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#12947f" }}
+                  onPress={() => this.resta(10, this.setModalVisible(false))}
                 >
                   <Text>✔</Text>
                 </TouchableHighlight>
@@ -78,11 +119,13 @@ export default class Store extends Component {
               <View style={styles.bottomModal}>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#e71414" }}
+                  onPress={() => this.setModalVisible(false)}
                 >
                   <Text>✖</Text>
                 </TouchableHighlight>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#12947f" }}
+                  onPress={() => this.resta(2, this.setModalVisible(false))}
                 >
                   <Text>✔</Text>
                 </TouchableHighlight>
@@ -107,11 +150,13 @@ export default class Store extends Component {
               <View style={styles.bottomModal}>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#e71414" }}
+                  onPress={() => this.setModalVisible(false)}
                 >
                   <Text>✖</Text>
                 </TouchableHighlight>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#12947f" }}
+                  onPress={() => this.resta(2, this.setModalVisible(false))}
                 >
                   <Text>✔</Text>
                 </TouchableHighlight>
@@ -136,11 +181,13 @@ export default class Store extends Component {
               <View style={styles.bottomModal}>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#e71414" }}
+                  onPress={() => this.setModalVisible(false)}
                 >
                   <Text>✖</Text>
                 </TouchableHighlight>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#12947f" }}
+                  onPress={() => this.resta(9, this.setModalVisible(false))}
                 >
                   <Text>✔</Text>
                 </TouchableHighlight>
@@ -165,11 +212,13 @@ export default class Store extends Component {
               <View style={styles.bottomModal}>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#e71414" }}
+                  onPress={() => this.setModalVisible(false)}
                 >
                   <Text>✖</Text>
                 </TouchableHighlight>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#12947f" }}
+                  onPress={() => this.resta(7, this.setModalVisible(false))}
                 >
                   <Text>✔</Text>
                 </TouchableHighlight>
@@ -194,11 +243,13 @@ export default class Store extends Component {
               <View style={styles.bottomModal}>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#e71414" }}
+                  onPress={() => this.setModalVisible(false)}
                 >
                   <Text>✖</Text>
                 </TouchableHighlight>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#12947f" }}
+                  onPress={() => this.resta(10, this.setModalVisible(false))}
                 >
                   <Text>✔</Text>
                 </TouchableHighlight>
@@ -223,11 +274,13 @@ export default class Store extends Component {
               <View style={styles.bottomModal}>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#e71414" }}
+                  onPress={() => this.setModalVisible(false)}
                 >
                   <Text>✖</Text>
                 </TouchableHighlight>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#12947f" }}
+                  onPress={() => this.resta(7, this.setModalVisible(false))}
                 >
                   <Text>✔</Text>
                 </TouchableHighlight>
@@ -252,11 +305,13 @@ export default class Store extends Component {
               <View style={styles.bottomModal}>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#e71414" }}
+                  onPress={() => this.setModalVisible(false)}
                 >
                   <Text>✖</Text>
                 </TouchableHighlight>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#12947f" }}
+                  onPress={() => this.resta(10, this.setModalVisible(false))}
                 >
                   <Text>✔</Text>
                 </TouchableHighlight>
@@ -281,11 +336,13 @@ export default class Store extends Component {
               <View style={styles.bottomModal}>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#e71414" }}
+                  onPress={() => this.setModalVisible(false)}
                 >
                   <Text>✖</Text>
                 </TouchableHighlight>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#12947f" }}
+                  onPress={() => this.resta(8, this.setModalVisible(false))}
                 >
                   <Text>✔</Text>
                 </TouchableHighlight>
@@ -293,8 +350,9 @@ export default class Store extends Component {
             </View>
           </View>
         );
-      }
-    };
+    }
+  };
+
   render() {
     return (
       <View style={styles.container}>
@@ -424,11 +482,11 @@ export default class Store extends Component {
                   style={styles.coin}
                   source={require("../../../assets/sources/Img-Tiendita/moneda.png")}
                 ></Image>
-                <Text style={styles.txtCoin}>x</Text>
+                <Text style={styles.txtCoin}>x {this.state.monedax}</Text>
               </View>
             </View>
             <View style={styles.btnCompra}>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => this.props.navigation.push('mainCharacter', { tareas: this.state.tareas }, this.load(String(this.state.monedax)))}>
                 <Button title="Comprar Lista"></Button>
               </TouchableOpacity>
             </View>

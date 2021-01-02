@@ -20,6 +20,7 @@ export default class Game_Tutorial extends Component {
       totalCount: this.props.route.params.questions.length,
       activeQuestionIndex: 0,
       value: 0,
+      tareas: this.props.route.params.tareas
     };
   }
 
@@ -31,7 +32,7 @@ export default class Game_Tutorial extends Component {
     this.setState((state) => {
       const nextIndex = state.activeQuestionIndex + 1;
       if (nextIndex >= state.totalCount) {
-        return this.props.navigation.navigate("menuReciclaje");
+        return this.props.navigation.navigate("menuReciclaje", { tareas: this.state.tareas });
       } else {
         return {
           activeQuestionIndex: nextIndex,
@@ -46,108 +47,108 @@ export default class Game_Tutorial extends Component {
     this._startAnimation();
   }
 
-render() {
+  render() {
     const questions = this.props.route.params.questions;
     const question = questions[this.state.activeQuestionIndex];
-    
+
     return (
-        <View style={styles.container}>
-            <StatusBar barStyle="dark-content" />
-            <View>
-                <StatusBar hidden={true} />
-            </View>
-            <View style={styles.topContainer}></View>
-            <View style={styles.elementsContainer}>
-                <View style={styles.blankSpaceLeft}></View>
-                <View style={styles.elements}>
-                    <View style={styles.garbage}>
-                        <View style={styles.topGarbage}>
-                            <View style={styles.one}>
-                                <TouchableOpacity onPress={() => this.nextQuestion()}>
-                                    <Image
-                                        style={styles.img}
-                                        source={question.answers[0].text}
-                                    ></Image>
-                                </TouchableOpacity>
-                            </View>
-                            <View style={styles.two}>
-                                <TouchableOpacity onPress={() => this.nextQuestion()}>
-                                    <Image
-                                        style={styles.img}
-                                        source={question.answers[1].text}
-                                    ></Image>
-                                </TouchableOpacity>
-                            </View>
-                            <View style={styles.three}>
-                                <TouchableOpacity onPress={() => this.nextQuestion()}>
-                                    <Image
-                                        style={styles.img}
-                                        source={question.answers[2].text}
-                                    ></Image>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                        <View style={styles.centerGarbage}>
-                            <View style={styles.four}>
-                                <TouchableOpacity onPress={() => this.nextQuestion()}>
-                                    <Image
-                                        style={styles.img}
-                                        source={question.answers[3].text}
-                                    ></Image>
-                                </TouchableOpacity>
-                            </View>
-                            <View style={styles.five}>
-                                <TouchableOpacity onPress={() => this.nextQuestion()}>
-                                    <Image
-                                        style={styles.img}
-                                        source={question.answers[4].text}
-                                    ></Image>
-                                </TouchableOpacity>
-                            </View>
-                            <View style={styles.six}>
-                                <TouchableOpacity onPress={() => this.nextQuestion()}>
-                                    <Image
-                                        style={styles.img}
-                                        source={question.answers[5].text}
-                                    ></Image>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                        <View style={styles.bottomGarbage}>
-                            <View style={styles.blankSpaceLeftGarbage}></View>
-                            <View style={styles.seven}>
-                                <TouchableOpacity onPress={() => this.nextQuestion()}>
-                                    <Image
-                                        style={styles.img}
-                                        source={question.answers[6].text}
-                                    ></Image>
-                                </TouchableOpacity>
-                            </View>
-                            <View style={styles.eight}>
-                                <TouchableOpacity onPress={() => this.nextQuestion()}>
-                                    <Image
-                                        style={styles.img}
-                                        source={question.answers[7].text}
-                                    ></Image>
-                                </TouchableOpacity>
-                            </View>
-                            <View style={styles.blankSpaceRightGarbage}></View>
-                        </View>
-                    </View>
-                    <View style={styles.trashContainer}>
-                        <View style={styles.trash}>
-                            <TouchableOpacity onPress={() => this.functionTwo()}>
-                                <Image source={question.question} style={styles.img} />
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                </View>
-                <View style={styles.blankSpaceRight}></View>
-            </View>
-            <View style={styles.bottomContainer}></View>
+      <View style={styles.container}>
+        <StatusBar barStyle="dark-content" />
+        <View>
+          <StatusBar hidden={true} />
         </View>
-        );
-    }
+        <View style={styles.topContainer}></View>
+        <View style={styles.elementsContainer}>
+          <View style={styles.blankSpaceLeft}></View>
+          <View style={styles.elements}>
+            <View style={styles.garbage}>
+              <View style={styles.topGarbage}>
+                <View style={styles.one}>
+                  <TouchableOpacity onPress={() => this.nextQuestion()}>
+                    <Image
+                      style={styles.img}
+                      source={question.answers[0].text}
+                    ></Image>
+                  </TouchableOpacity>
+                </View>
+                <View style={styles.two}>
+                  <TouchableOpacity onPress={() => this.nextQuestion()}>
+                    <Image
+                      style={styles.img}
+                      source={question.answers[1].text}
+                    ></Image>
+                  </TouchableOpacity>
+                </View>
+                <View style={styles.three}>
+                  <TouchableOpacity onPress={() => this.nextQuestion()}>
+                    <Image
+                      style={styles.img}
+                      source={question.answers[2].text}
+                    ></Image>
+                  </TouchableOpacity>
+                </View>
+              </View>
+              <View style={styles.centerGarbage}>
+                <View style={styles.four}>
+                  <TouchableOpacity onPress={() => this.nextQuestion()}>
+                    <Image
+                      style={styles.img}
+                      source={question.answers[3].text}
+                    ></Image>
+                  </TouchableOpacity>
+                </View>
+                <View style={styles.five}>
+                  <TouchableOpacity onPress={() => this.nextQuestion()}>
+                    <Image
+                      style={styles.img}
+                      source={question.answers[4].text}
+                    ></Image>
+                  </TouchableOpacity>
+                </View>
+                <View style={styles.six}>
+                  <TouchableOpacity onPress={() => this.nextQuestion()}>
+                    <Image
+                      style={styles.img}
+                      source={question.answers[5].text}
+                    ></Image>
+                  </TouchableOpacity>
+                </View>
+              </View>
+              <View style={styles.bottomGarbage}>
+                <View style={styles.blankSpaceLeftGarbage}></View>
+                <View style={styles.seven}>
+                  <TouchableOpacity onPress={() => this.nextQuestion()}>
+                    <Image
+                      style={styles.img}
+                      source={question.answers[6].text}
+                    ></Image>
+                  </TouchableOpacity>
+                </View>
+                <View style={styles.eight}>
+                  <TouchableOpacity onPress={() => this.nextQuestion()}>
+                    <Image
+                      style={styles.img}
+                      source={question.answers[7].text}
+                    ></Image>
+                  </TouchableOpacity>
+                </View>
+                <View style={styles.blankSpaceRightGarbage}></View>
+              </View>
+            </View>
+            <View style={styles.trashContainer}>
+              <View style={styles.trash}>
+                <TouchableOpacity onPress={() => this.functionTwo()}>
+                  <Image source={question.question} style={styles.img} />
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+          <View style={styles.blankSpaceRight}></View>
+        </View>
+        <View style={styles.bottomContainer}></View>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({

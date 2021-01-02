@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Image, StatusBar, Modal,Text,TouchableHighlight } from "react-native";
+import { StyleSheet, View, Image, StatusBar, Modal, Text, TouchableHighlight, AsyncStorage, Alert } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import normalize from "react-native-normalize";
 import { useNavigation } from "@react-navigation/native";
@@ -11,17 +11,20 @@ export default class MainCharacter extends Component {
 
     this.state = {
       modalVisible: false,
+      charac: '',
+      monedax: 0,
+      tareas: this.props.route.params.tareas
     };
   }
   modalType = 1;
-  
+
   setModalVisible = (visible, modalType) => {
     this.setState({ modalVisible: visible });
     this.modalType = modalType;
   };
 
   async componentDidMount() {
-    
+
     this.sounds = [
       new Audio.Sound
     ]
@@ -30,9 +33,27 @@ export default class MainCharacter extends Component {
       isLooping: true
     }
     this.sounds[0].loadAsync(require('../../../assets/sources/Music/GameSample.mp3'), status, true);
+
+    const storage = async () => {
+      const value = await AsyncStorage.getItem('character');
+      const value2 = await AsyncStorage.getItem('coins');
+      const monedax = parseInt(value2);
+      if (value != null && value2 != null) {
+        this.setState({ charac: value });
+        if (monedax > 0) {
+          this.setState({ monedax: monedax });
+        }
+        console.log(this.state.charac);
+        console.log(this.state.monedax);
+        console.log(this.state.tareas);
+      }
+    };
+
+    storage();
+
   }
 
-//#region MUSIC SETTINGS 
+  //#region MUSIC SETTINGS 
   playSound(index) {
     this.sounds[index].playAsync(0);
   }
@@ -42,47 +63,51 @@ export default class MainCharacter extends Component {
   pause(index) {
     this.sounds[index].pauseAsync(0);
   }
-//#endregion MUSIC SETTINGS
+  //#endregion MUSIC SETTINGS
 
-renderModal = (modalType) => {
-  switch (modalType) {
-    case 1:
-      return (
-        <View style={styles.modalContainer}>
-          <View style={styles.viewModal}>
-            <View style={styles.elementsModal}>
-              <Text style={styles.txtModal}>
-                Configuración de sonido
+  renderModal = (modalType) => {
+    switch (modalType) {
+      case 1:
+        return (
+          <View style={styles.modalContainer}>
+            <View style={styles.viewModal}>
+              <View style={styles.elementsModal}>
+                <Text style={styles.txtModal}>
+                  Configuración de sonido
               </Text>
-            </View>
-            <View style={styles.bottomModal}>
-              <TouchableHighlight
-                style={{ ...styles.btnOpen, backgroundColor:  "#12947f" }} onPress={() =>this.setModalVisible(false,this.playSound(0))}
-              >
-                <Text>🔊</Text>
-              </TouchableHighlight>
-              <TouchableHighlight
-                style={{ ...styles.btnOpen, backgroundColor: "#e71414"}} onPress={() =>this.setModalVisible(false,this.pause(0))}
-              >
-                <Text>🔇</Text>
-              </TouchableHighlight>
+              </View>
+              <View style={styles.bottomModal}>
+                <TouchableHighlight
+                  style={{ ...styles.btnOpen, backgroundColor: "#12947f" }} onPress={() => this.setModalVisible(false, this.playSound(0))}
+                >
+                  <Text>🔊</Text>
+                </TouchableHighlight>
+                <TouchableHighlight
+                  style={{ ...styles.btnOpen, backgroundColor: "#e71414" }} onPress={() => this.setModalVisible(false, this.pause(0))}
+                >
+                  <Text>🔇</Text>
+                </TouchableHighlight>
+              </View>
             </View>
           </View>
-        </View>
-      );
+        );
     }
   };
 
   render() {
+    const imagen = this.state.charac;
+    const monedax = this.state.monedax;
+    console.log(imagen);
     return (
       <View style={styles.container}>
-        <StatusBar barStyle = "dark-content"/>
-          <View>
-            <StatusBar hidden = {true}/>
-          </View>
+        <StatusBar barStyle="dark-content" />
+        <View>
+          <StatusBar hidden={true} />
+        </View>
         <View style={styles.topContainer}>
-          <View style = {styles.coins}>
+          <View style={styles.coins}>
             <Image style={styles.coin} source={require('../../../assets/sources/Img-Tiendita/moneda.png')}></Image>
+            <Text style={styles.txtMoneda}>x {monedax}</Text>
           </View>
         </View>
         <View style={styles.elementsContainer}>
@@ -98,40 +123,38 @@ renderModal = (modalType) => {
           </Modal>
           <View style={styles.charaContainer}>
             <View style={styles.character}>
-              <View style>
-                <Image style={ styles.img } source={require('../../../assets/sources/Personajes/character_12.png')}></Image>
-              </View>
-            </View> 
+              <Image style={styles.img} source={{ uri: this.state.charac }}></Image>
+            </View>
           </View>
           <View style={styles.menuContainer}>
             <View style={styles.containBtn}>
-              <View style={{ ...styles.Buttons}}>
-                <TouchableOpacity style={{marginTop: 10}} onPress={() => this.props.navigation.navigate('listActivity')}>
-                  <Image style={ styles.list } source={require('../../../assets/sources/Iconos/nota.png')}></Image>
+              <View style={{ ...styles.Buttons }}>
+                <TouchableOpacity style={{ marginTop: 10 }} onPress={() => this.props.navigation.navigate('listActivity', { tareas: this.state.tareas })}>
+                  <Image style={styles.list} source={require('../../../assets/sources/Iconos/nota.png')}></Image>
                 </TouchableOpacity>
-                <TouchableOpacity style={{marginTop: 10}} onPress={() => this.props.navigation.navigate('gameRobot')}>
-                  <Image style={ styles.list } source={require('../../../assets/sources/Iconos/robot.png')}></Image>
+                <TouchableOpacity style={{ marginTop: 10 }} onPress={() => this.props.navigation.navigate('gameRobot', { tareas: this.state.tareas })}>
+                  <Image style={styles.list} source={require('../../../assets/sources/Iconos/robot.png')}></Image>
                 </TouchableOpacity>
-                <TouchableOpacity style={{marginTop: 10}} onPress={() => this.props.navigation.navigate('outsideStore')}>
-                  <Image style={ styles.list } source={require('../../../assets/sources/Iconos/supermarket.png')}></Image>
+                <TouchableOpacity style={{ marginTop: 10 }} onPress={() => this.props.navigation.navigate('outsideStore', { tareas: this.state.tareas })}>
+                  <Image style={styles.list} source={require('../../../assets/sources/Iconos/supermarket.png')}></Image>
                 </TouchableOpacity>
-                <TouchableOpacity style={{marginTop: 10}} onPress={()=>this.props.navigation.navigate('alimentacion')}>
-                    <Image style={ styles.list } source={require('../../../assets/sources/Iconos/comer.png')}></Image>
+                <TouchableOpacity style={{ marginTop: 10 }} onPress={() => this.props.navigation.navigate('alimentacion', { tareas: this.state.tareas })}>
+                  <Image style={styles.list} source={require('../../../assets/sources/Iconos/comer.png')}></Image>
                 </TouchableOpacity>
-                <TouchableOpacity style={{marginTop: 10}} onPress={()=>this.props.navigation.navigate('menuReciclaje')}>
-                  <Image style={ styles.list } source={require('../../../assets/sources/Iconos/reciclaje.png')}></Image>
+                <TouchableOpacity style={{ marginTop: 10 }} onPress={() => this.props.navigation.navigate('menuReciclaje', { tareas: this.state.tareas })}>
+                  <Image style={styles.list} source={require('../../../assets/sources/Iconos/reciclaje.png')}></Image>
                 </TouchableOpacity>
-                <TouchableOpacity style={{marginTop: 10}} onPress={() => this.setModalVisible(true,1)}>
-                  <Image style={ styles.list } source={require('../../../assets/sources/Iconos/ajustes.png')}></Image>
+                <TouchableOpacity style={{ marginTop: 10 }} onPress={() => this.setModalVisible(true, 1)}>
+                  <Image style={styles.list} source={require('../../../assets/sources/Iconos/ajustes.png')}></Image>
                 </TouchableOpacity>
               </View>
-            </View> 
-          </View>    
+            </View>
+          </View>
         </View>
         <View style={styles.bottomContainer}>
           <View style={styles.barraBottom}>
-          
-          </View>                    
+
+          </View>
         </View>
       </View>
     )
@@ -168,7 +191,7 @@ const styles = StyleSheet.create({
   menuContainer: {
     flexDirection: "column",
     flex: 5,
-    justifyContent: 'flex-start'   
+    justifyContent: 'flex-start'
   },
   containBtn: {
     width: '100%',

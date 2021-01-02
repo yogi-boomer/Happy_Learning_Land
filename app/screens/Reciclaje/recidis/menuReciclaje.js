@@ -17,86 +17,92 @@ import dificil from "../data/dificil";
 import tutorial from "../data/tutorial";
 
 export default class MenuReciclaje extends Component {
-    render() {
-        return (
-            <View style={styles.container}>
-                <StatusBar barStyle="dark-content" />
-                <View>
-                    <StatusBar hidden={true} />
+  constructor(props) {
+    super(props);
+    this.state = {
+      tareas: this.props.route.params.tareas
+    };
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <StatusBar barStyle="dark-content" />
+        <View>
+          <StatusBar hidden={true} />
+        </View>
+        <View style={styles.elementsContainer}>
+          <View style={styles.blankLeft}></View>
+          <View style={styles.elements}>
+            <View style={styles.centerMenu}>
+              <View style={styles.logotipo}>
+                <Image
+                  style={styles.imgLogo}
+                  source={require("../../../../assets/sources/Img-Reciclaje/logo.png")}
+                ></Image>
+              </View>
+              <View style={styles.btnContainer}>
+                <View style={styles.viewTutorial}>
+                  <View style={{ ...styles.buttons, backgroundColor: "beige" }}>
+                    <TouchableOpacity
+                      onPress={() =>
+                        this.props.navigation.navigate("game_tutorial", {
+                          questions: tutorial, tareas: this.state.tareas
+                        })
+                      }
+                    >
+                      <Text style={styles.txtMenu}>Tutorial</Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
-                <View style={styles.elementsContainer}>
-                    <View style={styles.blankLeft}></View>
-                    <View style={styles.elements}>
-                        <View style={styles.centerMenu}>
-                            <View style={styles.logotipo}>
-                                <Image
-                                    style={styles.imgLogo}
-                                    source={require("../../../../assets/sources/Img-Reciclaje/logo.png")}
-                                ></Image>
-                            </View>
-                            <View style={styles.btnContainer}>
-                                <View style={styles.viewTutorial}>
-                                    <View style={{ ...styles.buttons, backgroundColor: "beige" }}>
-                                        <TouchableOpacity
-                                            onPress={() =>
-                                                this.props.navigation.navigate("game_tutorial", {
-                                                    questions: tutorial,
-                                                })
-                                            }
-                                        >
-                                            <Text style={styles.txtMenu}>Tutorial</Text>
-                                        </TouchableOpacity>
-                                    </View>
-                                </View>
-                                <View style={styles.viewFacil}>
-                                    <View style={{ ...styles.buttons, backgroundColor: "pink" }}>
-                                        <TouchableOpacity
-                                            onPress={() =>
-                                                this.props.navigation.navigate("game_facil", {
-                                                    questions: facil,
-                                                })
-                                            }
-                                        >
-                                            <Text style={styles.txtMenu}>Fácil</Text>
-                                        </TouchableOpacity>
-                                    </View>
-                                </View>
-                                <View style={styles.viewIntermedio}>
-                                    <View style={{ ...styles.buttons, backgroundColor: "salmon" }}>
-                                        <TouchableOpacity
-                                            onPress={() =>
-                                                this.props.navigation.navigate("game_intermedio", {
-                                                    questions: intermedio,
-                                                })
-                                            }
-                                        >
-                                            <Text style={styles.txtMenu}>Intermedio</Text>
-                                        </TouchableOpacity>
-                                    </View>
-                                </View>
-                                <View style={styles.viewDificil}>
-                                    <View style={{ ...styles.buttons, backgroundColor: "violet" }}>
-                                        <TouchableOpacity
-                                            onPress={() =>
-                                                this.props.navigation.navigate("game_dificil", {
-                                                    questions: dificil,
-                                                })
-                                            }
-                                        >
-                                            <Text style={styles.txtMenu}>Difícil</Text>
-                                        </TouchableOpacity>
-                                    </View>
-                                </View>
-                            </View>
-                        </View>
-                        <View style={styles.blankBottom}></View>
-                    </View>
-                    <View style={styles.blankRight}></View>
+                <View style={styles.viewFacil}>
+                  <View style={{ ...styles.buttons, backgroundColor: "pink" }}>
+                    <TouchableOpacity
+                      onPress={() =>
+                        this.props.navigation.navigate("game_facil", {
+                          questions: facil, tareas: this.state.tareas
+                        })
+                      }
+                    >
+                      <Text style={styles.txtMenu}>Fácil</Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
-                <View style={styles.bottomContainer}></View>
+                <View style={styles.viewIntermedio}>
+                  <View style={{ ...styles.buttons, backgroundColor: "salmon" }}>
+                    <TouchableOpacity
+                      onPress={() =>
+                        this.props.navigation.navigate("game_intermedio", {
+                          questions: intermedio, tareas: this.state.tareas
+                        })
+                      }
+                    >
+                      <Text style={styles.txtMenu}>Intermedio</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+                <View style={styles.viewDificil}>
+                  <View style={{ ...styles.buttons, backgroundColor: "violet" }}>
+                    <TouchableOpacity
+                      onPress={() =>
+                        this.props.navigation.navigate("game_dificil", {
+                          questions: dificil, tareas: this.state.tareas
+                        })
+                      }
+                    >
+                      <Text style={styles.txtMenu}>Difícil</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </View>
             </View>
-        );
-    }
+            <View style={styles.blankBottom}></View>
+          </View>
+          <View style={styles.blankRight}></View>
+        </View>
+        <View style={styles.bottomContainer}></View>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
