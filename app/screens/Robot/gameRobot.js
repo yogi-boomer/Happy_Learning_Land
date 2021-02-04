@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { StyleSheet, View, StatusBar, Image, Text, Animated, Modal, TouchableHighlight, Button, AsyncStorage, Alert } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import normalize from 'react-native-normalize';
-import { useNavigation } from '@react-navigation/native';
 import { createDndContext } from "react-native-easy-dnd";
 
 const { Provider, Droppable, Draggable } = createDndContext();
@@ -348,7 +347,7 @@ export default class GameRobot extends Component {
   probar() {
     let count = this.state.count;
     if (count === 6) {
-      Alert.alert("¡Tu Robot funciona!");
+      Alert.alert("¡Tú Robot funciona!");
       let moneda = this.state.monedax;
       let reco = this.state.reco;
       let suma = 0;
