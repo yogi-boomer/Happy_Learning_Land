@@ -348,16 +348,16 @@ export default class GameRobot extends Component {
   probar() {
     let count = this.state.count;
     if (count === 6) {
-      Alert.alert("¡¡Tu Robot funcia!!");
+      Alert.alert("¡Tu Robot funciona!");
       let moneda = this.state.monedax;
       let reco = this.state.reco;
       let suma = 0;
       suma = moneda + reco;
       this.setState({ monedax: suma });
       this.load(String(suma));
-      this.props.navigation.push('mainCharacter', { tareas: this.state.tareas });
+      this.props.navigation.push('gameRobot', { tareas: this.state.tareas });
     } else {
-      Alert.alert("Parece que te faltan Piezas");
+      Alert.alert("Parece que te faltan piezas por colocar");
     }
   }
 
