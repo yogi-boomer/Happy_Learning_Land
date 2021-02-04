@@ -4,7 +4,6 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import normalize from 'react-native-normalize';
 import { useNavigation } from '@react-navigation/native';
 import { createDndContext } from "react-native-easy-dnd";
-import { Alert } from 'react-native';
 
 const { Provider, Droppable, Draggable } = createDndContext();
 
@@ -432,7 +431,6 @@ export default class GameRobot extends Component {
                 </TouchableOpacity>
               </View>
             </View>
-
             <Animated.View style={styles.robotContainer}>
               <View style={styles.robotContainer}>
                 <View style={styles.blankLeft}></View>
