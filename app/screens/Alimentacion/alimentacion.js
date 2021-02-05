@@ -2,44 +2,21 @@ import React, { Component} from 'react';
 import { StyleSheet, View, Image, Text, StatusBar, TouchableHighlight, Modal } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import normalize from 'react-native-normalize';
+import Animated from 'react-native-reanimated';
 
-const foodList = [
-  {healtPoints: 5, health_value: 1, src_value: 1, type: 1, name: 'Verduras'},
-  {healtPoints: 5, health_value: 1, src_value: 2, type: 1, name: 'Ensalada'},
-  {healtPoints: 5, health_value: 1, src_value: 3, type: 1, name: 'Frutas'},
-  {healtPoints: 3, health_value: 2, src_value: 4, type: 1, name: 'Pollo'},
-  {healtPoints: 4, health_value: 1, src_value: 5, type: 1, name: 'Pescado'},
-  {healtPoints: 2, health_value: 2, src_value: 6, type: 1, name: 'Huevos'},
-  {healtPoints: 2, health_value: 2, src_value: 7, type: 1, name: 'Queso'},
-  {healtPoints: 3, health_value: 2, src_value: 8, type: 1, name: 'Almendra'},
-  {healtPoints: 3, health_value: 2, src_value: 9, type: 1, name: 'Sandwich'},
-  {healtPoints: -5, health_value: 3, src_value: 10, type: 1, name: 'Pastel'},
-  {healtPoints: -3, health_value: 3, src_value: 11, type: 1, name: 'Hamburguesa'},
-  {healtPoints: -1, health_value: 3, src_value: 12, type: 1, name: 'Papas fritas'},
-]
-
-const beverageList = [
-  {healtPoints: 5, health_value: 1, src_value: 13, type: 2, name: 'Agua simple'},
-  {healtPoints: 3, health_value: 2, src_value: 14, type: 2, name: 'Agua de limón'},
-  {healtPoints: 3, health_value: 2, src_value: 15, type: 2, name: 'Agua de naranja'},
-  {healtPoints: 1, health_value: 2, src_value: 16, type: 2, name: 'Jugo de naranja'},
-  {healtPoints: 2, health_value: 2, src_value: 17, type: 2, name: 'Leche'},
-  {healtPoints: 1, health_value: 2, src_value: 18, type: 2, name: 'Café'},
-  {healtPoints: -5, health_value: 3, src_value: 19, type: 2, name: 'Refresco de cola'},
-  {healtPoints: -3, health_value: 3, src_value: 20, type: 2, name: 'Refresco'},
-]
 
 export default class alimentacion extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      modalVisible: false
+      modalVisible: false,
+      conteo : 0
     };
   }
 
+ 
   modalType = 1;
-
   item = [{key: '', src:''}];
   daysTranscurred = 0;
   stateOfDay = 0;
@@ -50,7 +27,6 @@ export default class alimentacion extends Component {
   healthIndicator = 100;
   lastPoint = this.healthIndicator;
   pointAmount = 0;
-  
   reward = 0;
   character = 0;
   initialPoints = this.healthIndicator;
@@ -60,15 +36,24 @@ export default class alimentacion extends Component {
     this.modalType = modalType;
     this.item = listItem;
   };
-
+  healthIndicatorOperations = (value) =>{
+    let points = value;
+    console.log(points);
+    let conteo  = this.state.conteo;
+    conteo = points + conteo;
+    this.setState({conteo: conteo});
+    console.log(conteo);
+  }
+  //render para las imagenes de estados de comida
   renderHealthIndicator = (item) => {
-    switch(item.health_value){
+    switch(item){
       case 1:
         return (
           <Image
             style={{ width: 30, height: 30, alignSelf: "center" }}
             source={require("../../../assets/sources/Img-Alimentacion/happy.png")}
           />
+          
         );
       case 2:
         return (
@@ -86,6 +71,7 @@ export default class alimentacion extends Component {
         )
     }
   }
+  
 
   renderModal = (modalType) => {
     switch (modalType) {
@@ -102,8 +88,8 @@ export default class alimentacion extends Component {
                   source={require("../../../assets/sources/Img-Alimentacion/foods/Verduras.png")}
                 ></Image>
                 <View style = {{flexDirection: "row"}}>
-                  <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
-                  {/* {this.renderHealthIndicator(this.item)} */}
+                  <Text style={{ ...styles.txtIndicador, marginTop: 5}}>Indicador de Salud:</Text>
+                  {this.renderHealthIndicator(1)}
                 </View>
                 <TouchableOpacity>
                   <Image
@@ -121,7 +107,7 @@ export default class alimentacion extends Component {
                 </TouchableHighlight>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#12947f" }}
-                  onPress={() => this.resta(10, this.setModalVisible(false))}
+                  onPress={() =>this.healthIndicatorOperations( 5,this.setModalVisible(false))}
                 >
                   <Text>Comer</Text>
                 </TouchableHighlight>
@@ -142,6 +128,7 @@ export default class alimentacion extends Component {
                   source={require("../../../assets/sources/Img-Alimentacion/foods/Ensalada.png")}
                 ></Image>
                 <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                {this.renderHealthIndicator(1)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
@@ -158,7 +145,7 @@ export default class alimentacion extends Component {
                 </TouchableHighlight>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#12947f" }}
-                  onPress={() => this.resta(10, this.setModalVisible(false))}
+                  onPress={() => this.healthIndicatorOperations(4, this.setModalVisible(false))}
                 >
                   <Text>Comer</Text>
                 </TouchableHighlight>
@@ -179,6 +166,7 @@ export default class alimentacion extends Component {
                   source={require("../../../assets/sources/Img-Alimentacion/foods/Frutas.png")}
                 ></Image>
                 <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                {this.renderHealthIndicator(1)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
@@ -195,7 +183,7 @@ export default class alimentacion extends Component {
                 </TouchableHighlight>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#12947f" }}
-                  onPress={() => this.resta(10, this.setModalVisible(false))}
+                  onPress={() => this.healthIndicatorOperations(5, this.setModalVisible(false))}
                 >
                   <Text>Comer</Text>
                 </TouchableHighlight>
@@ -216,6 +204,7 @@ export default class alimentacion extends Component {
                   source={require("../../../assets/sources/Img-Alimentacion/foods/Pollo.png")}
                 ></Image>
                 <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                {this.renderHealthIndicator(2)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
@@ -232,7 +221,7 @@ export default class alimentacion extends Component {
                 </TouchableHighlight>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#12947f" }}
-                  onPress={() => this.resta(10, this.setModalVisible(false))}
+                  onPress={() => this.healthIndicatorOperations(3, this.setModalVisible(false))}
                 >
                   <Text>Comer</Text>
                 </TouchableHighlight>
@@ -253,6 +242,7 @@ export default class alimentacion extends Component {
                   source={require("../../../assets/sources/Img-Alimentacion/foods/Pescado.png")}
                 ></Image>
                 <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                {this.renderHealthIndicator(1)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
@@ -269,7 +259,7 @@ export default class alimentacion extends Component {
                 </TouchableHighlight>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#12947f" }}
-                  onPress={() => this.resta(10, this.setModalVisible(false))}
+                  onPress={() => this.healthIndicatorOperations(4, this.setModalVisible(false))}
                 >
                   <Text>Comer</Text>
                 </TouchableHighlight>
@@ -290,6 +280,7 @@ export default class alimentacion extends Component {
                   source={require("../../../assets/sources/Img-Alimentacion/foods/Huevos.png")}
                 ></Image>
                 <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                {this.renderHealthIndicator(2)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
@@ -306,7 +297,7 @@ export default class alimentacion extends Component {
                 </TouchableHighlight>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#12947f" }}
-                  onPress={() => this.resta(10, this.setModalVisible(false))}
+                  onPress={() => this.healthIndicatorOperations(2, this.setModalVisible(false))}
                 >
                   <Text>Comer</Text>
                 </TouchableHighlight>
@@ -327,6 +318,7 @@ export default class alimentacion extends Component {
                   source={require("../../../assets/sources/Img-Alimentacion/foods/Queso.png")}
                 ></Image>
                 <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                {this.renderHealthIndicator(1)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
@@ -343,7 +335,7 @@ export default class alimentacion extends Component {
                 </TouchableHighlight>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#12947f" }}
-                  onPress={() => this.resta(10, this.setModalVisible(false))}
+                  onPress={() => this.healthIndicatorOperations(3, this.setModalVisible(false))}
                 >
                   <Text>Comer</Text>
                 </TouchableHighlight>
@@ -364,6 +356,7 @@ export default class alimentacion extends Component {
                   source={require("../../../assets/sources/Img-Alimentacion/foods/Almendra.png")}
                 ></Image>
                 <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                {this.renderHealthIndicator(1)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
@@ -380,7 +373,7 @@ export default class alimentacion extends Component {
                 </TouchableHighlight>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#12947f" }}
-                  onPress={() => this.resta(10, this.setModalVisible(false))}
+                  onPress={() => this.healthIndicatorOperations(3, this.setModalVisible(false))}
                 >
                   <Text>Comer</Text>
                 </TouchableHighlight>
@@ -401,6 +394,7 @@ export default class alimentacion extends Component {
                   source={require("../../../assets/sources/Img-Alimentacion/foods/Sandwich.png")}
                 ></Image>
                 <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                {this.renderHealthIndicator(2)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
@@ -417,7 +411,7 @@ export default class alimentacion extends Component {
                 </TouchableHighlight>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#12947f" }}
-                  onPress={() => this.resta(10, this.setModalVisible(false))}
+                  onPress={() => this.healthIndicatorOperations(2, this.setModalVisible(false))}
                 >
                   <Text>Comer</Text>
                 </TouchableHighlight>
@@ -438,6 +432,7 @@ export default class alimentacion extends Component {
                   source={require("../../../assets/sources/Img-Alimentacion/foods/Pastel.png")}
                 ></Image>
                 <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                {this.renderHealthIndicator(3)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
@@ -454,7 +449,7 @@ export default class alimentacion extends Component {
                 </TouchableHighlight>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#12947f" }}
-                  onPress={() => this.resta(10, this.setModalVisible(false))}
+                  onPress={() => this.healthIndicatorOperations(-1, this.setModalVisible(false))}
                 >
                   <Text>Comer</Text>
                 </TouchableHighlight>
@@ -475,6 +470,7 @@ export default class alimentacion extends Component {
                   source={require("../../../assets/sources/Img-Alimentacion/foods/Hamburguesa.png")}
                 ></Image>
                 <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                {this.renderHealthIndicator(3)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
@@ -491,7 +487,7 @@ export default class alimentacion extends Component {
                 </TouchableHighlight>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#12947f" }}
-                  onPress={() => this.resta(10, this.setModalVisible(false))}
+                  onPress={() => this.healthIndicatorOperations(-4, this.setModalVisible(false))}
                 >
                   <Text>Comer</Text>
                 </TouchableHighlight>
@@ -512,6 +508,7 @@ export default class alimentacion extends Component {
                   source={require("../../../assets/sources/Img-Alimentacion/foods/Papas.png")}
                 ></Image>
                 <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                {this.renderHealthIndicator(3)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
@@ -528,7 +525,7 @@ export default class alimentacion extends Component {
                 </TouchableHighlight>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#12947f" }}
-                  onPress={() => this.resta(10, this.setModalVisible(false))}
+                  onPress={() => this.healthIndicatorOperations(-2, this.setModalVisible(false))}
                 >
                   <Text>Comer</Text>
                 </TouchableHighlight>
@@ -549,6 +546,7 @@ export default class alimentacion extends Component {
                   source={require("../../../assets/sources/Img-Alimentacion/foods/AguaSimple.png")}
                 ></Image>
                 <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                {this.renderHealthIndicator(1)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
@@ -565,7 +563,7 @@ export default class alimentacion extends Component {
                 </TouchableHighlight>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#12947f" }}
-                  onPress={() => this.resta(10, this.setModalVisible(false))}
+                  onPress={() => this.healthIndicatorOperations(4, this.setModalVisible(false))}
                 >
                   <Text>Comer</Text>
                 </TouchableHighlight>
@@ -586,6 +584,7 @@ export default class alimentacion extends Component {
                   source={require("../../../assets/sources/Img-Alimentacion/foods/AguaLimon.png")}
                 ></Image>
                 <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                {this.renderHealthIndicator(2)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
@@ -602,7 +601,7 @@ export default class alimentacion extends Component {
                 </TouchableHighlight>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#12947f" }}
-                  onPress={() => this.resta(10, this.setModalVisible(false))}
+                  onPress={() => this.healthIndicatorOperations(2, this.setModalVisible(false))}
                 >
                   <Text>Comer</Text>
                 </TouchableHighlight>
@@ -623,6 +622,7 @@ export default class alimentacion extends Component {
                   source={require("../../../assets/sources/Img-Alimentacion/foods/AguaNaranja.png")}
                 ></Image>
                 <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                {this.renderHealthIndicator(1)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
@@ -639,7 +639,7 @@ export default class alimentacion extends Component {
                 </TouchableHighlight>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#12947f" }}
-                  onPress={() => this.resta(10, this.setModalVisible(false))}
+                  onPress={() => this.healthIndicatorOperations(3, this.setModalVisible(false))}
                 >
                   <Text>Comer</Text>
                 </TouchableHighlight>
@@ -660,6 +660,7 @@ export default class alimentacion extends Component {
                   source={require("../../../assets/sources/Img-Alimentacion/foods/JugoNaranja.png")}
                 ></Image>
                 <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                {this.renderHealthIndicator(1)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
@@ -676,7 +677,7 @@ export default class alimentacion extends Component {
                 </TouchableHighlight>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#12947f" }}
-                  onPress={() => this.resta(10, this.setModalVisible(false))}
+                  onPress={() => this.healthIndicatorOperations(4, this.setModalVisible(false))}
                 >
                   <Text>Comer</Text>
                 </TouchableHighlight>
@@ -697,6 +698,7 @@ export default class alimentacion extends Component {
                   source={require("../../../assets/sources/Img-Alimentacion/foods/Leche.png")}
                 ></Image>
                 <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                {this.renderHealthIndicator(1)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
@@ -713,7 +715,7 @@ export default class alimentacion extends Component {
                 </TouchableHighlight>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#12947f" }}
-                  onPress={() => this.resta(10, this.setModalVisible(false))}
+                  onPress={() => this.healthIndicatorOperations(3, this.setModalVisible(false))}
                 >
                   <Text>Comer</Text>
                 </TouchableHighlight>
@@ -727,13 +729,14 @@ export default class alimentacion extends Component {
             <View style={styles.viewModal}>
               <View style={styles.elementsModal}>
                 <Text style={styles.txtModal}>
-                  Estas a punto de tomar un café
+                  Estas a punto de tomar leche con chocolate
                 </Text>
                 <Image
                   style={{ ...styles.imgModals, marginTop: 20 }}
                   source={require("../../../assets/sources/Img-Alimentacion/foods/LecheC.png")}
                 ></Image>
                 <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                {this.renderHealthIndicator(2)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
@@ -750,7 +753,7 @@ export default class alimentacion extends Component {
                 </TouchableHighlight>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#12947f" }}
-                  onPress={() => this.resta(10, this.setModalVisible(false))}
+                  onPress={() => this.healthIndicatorOperations(2, this.setModalVisible(false))}
                 >
                   <Text>Comer</Text>
                 </TouchableHighlight>
@@ -771,6 +774,7 @@ export default class alimentacion extends Component {
                   source={require("../../../assets/sources/Img-Alimentacion/foods/RefrescoCola.png")}
                 ></Image>
                 <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                {this.renderHealthIndicator(3)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
@@ -787,7 +791,7 @@ export default class alimentacion extends Component {
                 </TouchableHighlight>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#12947f" }}
-                  onPress={() => this.resta(10, this.setModalVisible(false))}
+                  onPress={() => this.healthIndicatorOperations(-6, this.setModalVisible(false))}
                 >
                   <Text>Comer</Text>
                 </TouchableHighlight>
@@ -808,6 +812,7 @@ export default class alimentacion extends Component {
                   source={require("../../../assets/sources/Img-Alimentacion/foods/Refresco.png")}
                 ></Image>
                 <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                {this.renderHealthIndicator(3)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
@@ -824,7 +829,7 @@ export default class alimentacion extends Component {
                 </TouchableHighlight>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#12947f" }}
-                  onPress={() => this.resta(10, this.setModalVisible(false))}
+                  onPress={() => this.healthIndicatorOperations(-3, this.setModalVisible(false))}
                 >
                   <Text>Comer</Text>
                 </TouchableHighlight>

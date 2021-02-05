@@ -123,7 +123,7 @@ export default class MainCharacter extends Component {
           </Modal>
           <View style={styles.charaContainer}>
             <View style={styles.character}>
-              <Image style={styles.img} source={{ uri: this.state.charac }}></Image>
+              <Image style={styles.img} source={{ uri: imagen}}></Image>
             </View>
           </View>
           <View style={styles.menuContainer}>
