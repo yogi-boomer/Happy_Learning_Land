@@ -115,7 +115,7 @@ export default class Game_Dificil extends Component {
       const nextIndex = state.activeQuestionIndex + 1;
       if (nextIndex >= state.totalCount) {
         this.load(String(this.state.monedax));
-        return this.props.navigation.push("mainCharacter", { tareas: this.state.tareas });
+        return this.props.navigation.push("menuReciclaje", { tareas: this.state.tareas });
       }
       return {
         activeQuestionIndex: nextIndex,
@@ -260,6 +260,7 @@ const styles = StyleSheet.create({
     width: normalize(120, "width"),
     height: normalize(50, "height"),
     borderRadius: normalize(20),
+    borderWidth: 2,
     backgroundColor: "#FFC158",
   },
   coin: {

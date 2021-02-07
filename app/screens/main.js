@@ -1,21 +1,42 @@
-import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import React, { Component } from "react";
+import { View, Text, StyleSheet, Image, StatusBar } from "react-native";
+import normalize from "react-native-normalize";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import * as firebase from 'firebase';
 
-const RESPONSIVE_ALL = "100%"
-const RESPONSIVE_TOP = "60%"
-const RESPONSIVE_LEFT = "25%"
 export default class Main extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.text}>
-                    Happy Learning Land
-                </Text>
-                <View style={styles.button}>
-                    <TouchableOpacity onPress={()=> this.props.navigation.navigate('m')}>
-                        <Text>Jugar</Text>
-                    </TouchableOpacity>
+                <StatusBar barStyle="dark-content" />
+                <View>
+                    <StatusBar hidden={true} />
+                </View>
+                <View style={styles.elementsContainer}>
+                    <View style={styles.iconContainer}>
+                        <View style={styles.txtContainer}>
+                            <Text style={styles.txt}>
+                                Happy Learning Land
+                            </Text>
+                        </View>
+                        <View style={styles.imgContainer}>
+                            <View style={{flex: 1}}></View>
+                            <View style={{flex: 2}}>
+                                <Image style={styles.img} source={require('../../assets/sources/Iconos/icon_happy.png')}>
+
+                                </Image>
+                            </View>
+                            <View style={{flex: 1}}></View>
+                        </View>
+                    </View>
+                    <View style={styles.btnContainer}>
+                        <TouchableOpacity style={styles.btn} onPress={()=> this.props.navigation.navigate('m')}>
+                            <Text style={styles.txtBtn}>Jugar</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+                <View style={styles.bottomContainer}>
+
                 </View>
             </View>
         );
@@ -24,25 +45,54 @@ export default class Main extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        width: RESPONSIVE_ALL,
-        height: RESPONSIVE_ALL,
-        alignContent: 'center',
+        flex: 1,
+        backgroundColor: '#f8dc81'
+    },
+    elementsContainer: {
+        flex: 10,
+        flexDirection: "column",
+    },
+    bottomContainer: {
+        flex: 0.2
+    },
+    iconContainer: {
+        flex: 7,
+        justifyContent: 'center'
+    },
+    txtContainer: {
+        flex: 3,
+        justifyContent: 'flex-end'
+    },
+    imgContainer: {
+        flex: 4,
+        flexDirection: "row"
+    },
+    btnContainer: {
+        flex: 3,
+        justifyContent: 'center',
         alignItems: 'center'
     },
-    text: {
-        fontSize: 24,
-        marginTop: RESPONSIVE_TOP,
-        alignItems: 'center',
-        alignContent: 'center'
+    txt: {
+        fontWeight: 'bold',
+        fontSize: normalize(30),
+        textAlign: 'center'
     },
-    button: {
-        borderRadius: 18,
-        borderWidth: 2,
-        width: 150,
-        height: 50,
-        alignItems: 'center',
+    img: {
+        width: '100%',
+        height: '100%',
+        resizeMode: "contain"
+    },
+    btn: {
+        width: normalize(120, 'width'),
+        height: normalize(50, 'height'),
         justifyContent: 'center',
-        backgroundColor: 'orange',
-        marginTop: RESPONSIVE_TOP,
+        borderRadius: 30,
+        borderWidth: 2,
+        backgroundColor: "#a2d0c1"
+    },
+    txtBtn: {
+        textAlign: "center",
+        fontSize: normalize(25),
+        fontWeight: "bold"    
     }
 });

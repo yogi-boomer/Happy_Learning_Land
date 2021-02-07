@@ -168,6 +168,7 @@ const styles = StyleSheet.create({
     height: "80%",
     justifyContent: "center",
     borderRadius: 30,
+    borderWidth: 2,
   },
   txtMenu: {
     textAlign: "center",

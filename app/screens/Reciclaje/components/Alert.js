@@ -4,8 +4,6 @@ import {
   View,
   Image
 } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import normalize from "react-native-normalize";
 import { useNavigation } from "@react-navigation/native";
 
 export const Alert = ({ correct, visible }) => {
@@ -47,6 +45,7 @@ const styles = StyleSheet.create({
     width: "80%",
     height: "100%",
     borderRadius: 25,
+    borderWidth: 2,
     alignItems: "center",
     justifyContent: "center",
   },

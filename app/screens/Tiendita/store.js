@@ -516,7 +516,7 @@ const styles = StyleSheet.create({
   },
   bottomElement: {
     flex: 1.5,
-    flexDirection: "row"
+    flexDirection: "row",
   },
   bottomContainer: {
     flex: 0.2,
@@ -601,6 +601,7 @@ const styles = StyleSheet.create({
     width: normalize(120, "width"),
     height: normalize(50, "height"),
     borderRadius: normalize(20),
+    borderWidth: 2,
     backgroundColor: "#FFC158",
   },
   coin: {
@@ -650,7 +651,8 @@ const styles = StyleSheet.create({
   },
   btnOpen: {
     borderRadius: 25,
+    borderWidth: 2,
     padding: 12,
     margin: 10,
-  }
+  },
 });

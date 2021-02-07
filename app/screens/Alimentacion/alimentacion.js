@@ -1063,6 +1063,7 @@ const styles = StyleSheet.create({
     width: normalize(120, "width"),
     height: normalize(50, "height"),
     borderRadius: normalize(20),
+    borderWidth: 2,
     backgroundColor: "#FFC158",
   },
   coin: {
@@ -1186,6 +1187,7 @@ const styles = StyleSheet.create({
   },
   btnOpen: {
     borderRadius: 25,
+    borderWidth: 2,
     padding: 12,
     margin: 10,
   }

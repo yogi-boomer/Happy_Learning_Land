@@ -24,10 +24,10 @@ export default class outsideStore extends Component {
           </View>
           <View style={styles.buttonsContainer}>
             <View style={styles.btnStyle}>
-              <TouchableOpacity style={{ borderRadius: 35, backgroundColor: "#0d7377" }} onPress={() => this.props.navigation.goBack()}>
+              <TouchableOpacity style={{ borderRadius: 35, borderWidth: 2, backgroundColor: "#0d7377" }} onPress={() => this.props.navigation.goBack()}>
                 <Image style={styles.arrows} source={require('../../../assets/sources/Img-Tiendita/flecha_atras.png')}></Image>
               </TouchableOpacity>
-              <TouchableOpacity style={{ borderRadius: 35, backgroundColor: "#0d7377" }} onPress={() => this.props.navigation.navigate('store', { tareas: this.state.tareas })}>
+              <TouchableOpacity style={{ borderRadius: 35, borderWidth: 2, backgroundColor: "#0d7377" }} onPress={() => this.props.navigation.navigate('store', { tareas: this.state.tareas })}>
                 <Image style={styles.arrows} source={require('../../../assets/sources/Img-Tiendita/flecha_arriba.png')}></Image>
               </TouchableOpacity>
             </View>

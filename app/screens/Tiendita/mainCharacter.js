@@ -207,6 +207,7 @@ const styles = StyleSheet.create({
     height: normalize(50, "height"),
     left: normalize(5, "width"),
     borderRadius: normalize(20),
+    borderWidth: 2,
     backgroundColor: "#FFC158",
   },
   coin: {

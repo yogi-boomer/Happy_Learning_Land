@@ -76,7 +76,7 @@ export default class ListActivity extends Component {
                     <StatusBar hidden={true} />
                 </View>
                 <View style={styles.elementsContainer}>
-                    <ImageBackground source={require('../../../assets/sources/Img-Tiendita/lista_navidad.png')} style={styles.img}>
+                    <ImageBackground source={require('../../../assets/sources/Img-Tiendita/checklist.png')} style={styles.img}>
                         <View style={styles.topList}>
                             <Text style={styles.txtTitle}>¡Sé un niño responsable!</Text>
                         </View>
