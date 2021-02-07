@@ -4,7 +4,6 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import normalize from 'react-native-normalize';
 import Animated from 'react-native-reanimated';
 
-
 export default class alimentacion extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +14,6 @@ export default class alimentacion extends Component {
     };
   }
 
- 
   modalType = 1;
   item = [{key: '', src:''}];
   daysTranscurred = 0;
@@ -52,8 +50,7 @@ export default class alimentacion extends Component {
           <Image
             style={{ width: 30, height: 30, alignSelf: "center" }}
             source={require("../../../assets/sources/Img-Alimentacion/happy.png")}
-          />
-          
+          /> 
         );
       case 2:
         return (
@@ -71,7 +68,6 @@ export default class alimentacion extends Component {
         )
     }
   }
-  
 
   renderModal = (modalType) => {
     switch (modalType) {
