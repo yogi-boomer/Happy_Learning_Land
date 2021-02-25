@@ -106,7 +106,7 @@ export default class ListActivity extends Component {
                         </View>
                         <View style={styles.bottomList}>
                             <View style={styles.listHw}>
-                                <Text style={styles.txtReward} > Haz obtenido: {monedax}</Text>
+                                <Text style={styles.txtReward} > Has obtenido: {monedax}</Text>
                                 <Image style={styles.coin} source={require('../../../assets/sources/Img-Tiendita/moneda.png')}></Image>
                                 <Button title='✔' color='green' onPress={() => this.props.navigation.push('mainCharacter', { tareas: this.state.tareas }, this.load(String(monedax)))}></Button>
                             </View>

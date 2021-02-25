@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { StyleSheet, View, Image, StatusBar, Modal, Text, TouchableHighlight, AsyncStorage, Alert } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import normalize from "react-native-normalize";
-import { useNavigation } from "@react-navigation/native";
 import { Audio } from "expo-av";
 
 export default class MainCharacter extends Component {

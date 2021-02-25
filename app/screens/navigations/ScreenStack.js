@@ -6,6 +6,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import LoginUser from "../loginUser";
 import M from "../../utils/m";
 import Register from "../counts/register";
+import SelectGrade from "../selectGrade";
 import SelectCharacter from "../selectCharacter";
 import Main from "../main";
 import MainCharacter from "../Tiendita/mainCharacter";
@@ -43,6 +44,11 @@ export default function ScreenStack() {
       <Stack.Screen
         name="register"
         component={Register}
+        options={{ title: "", headerLeft: false, headerTransparent: true }}
+      />
+      <Stack.Screen
+        name="selectGrade"
+        component={SelectGrade}
         options={{ title: "", headerLeft: false, headerTransparent: true }}
       />
       <Stack.Screen

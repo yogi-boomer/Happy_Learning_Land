@@ -864,6 +864,14 @@ export default class alimentacion extends Component {
                   <Text style={styles.txtCoin}>x</Text>
                 </View>
             </View>
+            <View style={{width: '45%'}}>
+
+            </View>
+            <View style={styles.flecha_atras}>
+              <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+                <Image style={styles.imgBack} source={require('../../../assets/sources/Img-Tiendita/flecha_atras.png')}></Image>
+              </TouchableOpacity>
+            </View>
           </View>
           <View style={styles.centerElements}>
             <View style={styles.barraContainer}>
@@ -1070,6 +1078,17 @@ const styles = StyleSheet.create({
   txtCoin: {
     marginTop: 6,
     fontSize: normalize(25),
+  },
+  flecha_atras: {
+    width: "15%",
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  imgBack: {
+    width: normalize(40, "width"),
+    height: normalize(40, "height"),
+    resizeMode: "contain",
   },
   centerElements: {
     flex: 4,

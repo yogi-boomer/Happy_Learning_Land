@@ -35,7 +35,7 @@ export default function Register() {
             firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
             .then(response => {
                 setLoading(false); 
-                navigation.navigate('selectCharacter');
+                navigation.navigate('selectGrade');
             }).catch(error => {
                 setLoading(false); 
                 Alert.alert("Este email ya se encuentra en uso");

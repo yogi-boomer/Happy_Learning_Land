@@ -421,11 +421,11 @@ export default class GameRobot extends Component {
               <View style={styles.blankSpace}></View>
               <View style={styles.information}>
                 <TouchableOpacity
-                  onPress={() => this.setModalVisible(true, 1)}
+                  onPress={() => this.props.navigation.goBack()}
                 >
                   <Image
                     style={styles.img}
-                    source={require("../../../assets/sources/Img-Robot/info.png")}
+                    source={require('../../../assets/sources/Img-Tiendita/flecha_atras.png')}
                   ></Image>
                 </TouchableOpacity>
               </View>
@@ -754,7 +754,15 @@ export default class GameRobot extends Component {
                   </View>
                 </View>
                 <View style={styles.blankRight}>
-                  <View style={styles.refreshContainer}>
+                  <View style={{ ...styles.itemsContainer}}>
+                    <TouchableOpacity onPress={() => this.setModalVisible(true, 1)}>
+                      <Image
+                        style={styles.imgRefresh}
+                        source={require("../../../assets/sources/Img-Robot/info.png")}
+                      ></Image>
+                    </TouchableOpacity>
+                  </View>
+                  <View style={{ ...styles.itemsContainer}}>
                     <TouchableOpacity onPress={() => this.refresh()}>
                       <Image
                         style={styles.imgRefresh}
@@ -1089,6 +1097,7 @@ const styles = StyleSheet.create({
   },
   blankRight: {
     flex: 1,
+    flexDirection: "column"
   },
   coinContainer: {
     width: "40%",
@@ -1115,9 +1124,9 @@ const styles = StyleSheet.create({
   blankSpace: {
     width: "45%",
   },
-  refreshContainer: {
+  itemsContainer: {
     width: "100%",
-    height: "30%",
+    height: "20%",
     justifyContent: "center",
     alignItems: "center",
   },
