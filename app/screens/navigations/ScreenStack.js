@@ -6,8 +6,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import LoginUser from "../loginUser";
 import M from "../../utils/m";
 import Register from "../counts/register";
-import SelectGrade from "../selectGrade";
 import SelectCharacter from "../selectCharacter";
+import SelectGrade2 from "../selectGrade2";
 import Main from "../main";
 import MainCharacter from "../Tiendita/mainCharacter";
 import ListActivity from "../Tiendita/listActivity";
@@ -47,11 +47,6 @@ export default function ScreenStack() {
         options={{ title: "", headerLeft: false, headerTransparent: true }}
       />
       <Stack.Screen
-        name="selectGrade"
-        component={SelectGrade}
-        options={{ title: "", headerLeft: false, headerTransparent: true }}
-      />
-      <Stack.Screen
         name="selectCharacter"
         component={SelectCharacter}
         options={{ title: "", headerLeft: false, headerTransparent: true }}
@@ -59,6 +54,11 @@ export default function ScreenStack() {
       <Stack.Screen
         name="mainCharacter"
         component={MainCharacter}
+        options={{ title: "", headerLeft: false, headerTransparent: true }}
+      />
+      <Stack.Screen
+        name= "selectGrade2"
+        component={SelectGrade2}
         options={{ title: "", headerLeft: false, headerTransparent: true }}
       />
       <Stack.Screen
