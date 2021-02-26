@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet,TouchableOpacity } from "react-native";
 import * as firebase from "firebase";
 import LoginUser from "../screens/loginUser"
-import SelectGrade2 from "../screens/selectGrade2"
-import SelectCharacter from "../screens/selectCharacter"
+import SelectGrade from "../screens/selectGrade"
 import Loagin from "../screens/components/loading"
 
 const RESPONSIVE_ALL = "100%"
@@ -20,7 +19,7 @@ export default function M() {
     // Estado preliminar deacuerdo si el estado login es null
     if (login === null)  return <Loagin isVisible={true} text= "Cargando..."></Loagin>
     //retornando pantallas en caso de estar logeado o no estar logeado
-        return login ? <SelectGrade2/> : <LoginUser/> 
+        return login ? <SelectGrade/> : <LoginUser/> 
    
 }
 
