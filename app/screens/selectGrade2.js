@@ -6,7 +6,7 @@ export default function selectGrade2(){
     const navigation = useNavigation();
     useEffect(()=>{
         Animated.spring(translation, {
-            toValue: 85,
+            toValue: 70,
             speed: 1,
             bounciness: 65,
             useNativeDriver: true,
