@@ -37,7 +37,7 @@ export default function SelectCharacter() {
                 <View style={styles.containerCharacter}>
                     <View style={styles.character}>
                         <View style={{ ...styles.kids }}>
-                            <TouchableOpacity onPress={() => navigation.navigate('mainCharacter', { tareas: 5 }, load(value1))}>
+                            <TouchableOpacity onPress={() => navigation.navigate('mainCharacter1', { tareas: 5 }, load(value1))}>
                                 <Image style={styles.imgCharacter} source={character1}></Image>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => navigation.navigate('mainCharacter', { tareas: 5 }, load(value2))}>

@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { StyleSheet, View, TouchableOpacity, StatusBar, Animated, Image,Text } from 'react-native';
 import normalize from "react-native-normalize";
 import { useNavigation } from "@react-navigation/native";
-export default function selectGrade2(){
+
+export default function selectGrade(){
     const navigation = useNavigation();
     useEffect(()=>{
         Animated.spring(translation, {
@@ -57,7 +58,7 @@ export default function selectGrade2(){
                         </View>
                         <View style={styles.buttons}>
                             <Animated.View style={[styles.grado, { transform: [{ translateX: translation }] } ]}>
-                                <TouchableOpacity onPress={() => navigation.navigate('selectCharacter')}>
+                                <TouchableOpacity onPress={() => navigation.navigate('mainCharacter')}>
                                     <Image style={styles.img} source={require('../../assets/sources/Iconos/globo_3.png')}>
 
                                     </Image>

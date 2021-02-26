@@ -6,10 +6,13 @@ import { createStackNavigator } from "@react-navigation/stack";
 import LoginUser from "../loginUser";
 import M from "../../utils/m";
 import Register from "../counts/register";
+import SelectGrade from "../selectGrade";
 import SelectCharacter from "../selectCharacter";
-import SelectGrade2 from "../selectGrade2";
 import Main from "../main";
+import MainCharacter1 from "../Principal/mainCharacter1";
 import MainCharacter from "../Tiendita/mainCharacter";
+import MenuPalabras from "../Palabras/menuPalabras";
+import Facil from "../Palabras/facil";
 import ListActivity from "../Tiendita/listActivity";
 import Store from "../Tiendita/store";
 import OutsideStore from "../Tiendita/outsideStore";
@@ -47,8 +50,18 @@ export default function ScreenStack() {
         options={{ title: "", headerLeft: false, headerTransparent: true }}
       />
       <Stack.Screen
+        name= "selectGrade"
+        component={SelectGrade}
+        options={{ title: "", headerLeft: false, headerTransparent: true }}
+      />
+      <Stack.Screen
         name="selectCharacter"
         component={SelectCharacter}
+        options={{ title: "", headerLeft: false, headerTransparent: true }}
+      />
+      <Stack.Screen
+        name="mainCharacter1"
+        component={MainCharacter1}
         options={{ title: "", headerLeft: false, headerTransparent: true }}
       />
       <Stack.Screen
@@ -57,13 +70,18 @@ export default function ScreenStack() {
         options={{ title: "", headerLeft: false, headerTransparent: true }}
       />
       <Stack.Screen
-        name= "selectGrade2"
-        component={SelectGrade2}
+        name="listActivity"
+        component={ListActivity}
         options={{ title: "", headerLeft: false, headerTransparent: true }}
       />
       <Stack.Screen
-        name="listActivity"
-        component={ListActivity}
+        name="menuPalabras"
+        component={MenuPalabras}
+        options={{ title: "", headerLeft: false, headerTransparent: true }}
+      />
+      <Stack.Screen
+        name="facil"
+        component={Facil}
         options={{ title: "", headerLeft: false, headerTransparent: true }}
       />
       <Stack.Screen
