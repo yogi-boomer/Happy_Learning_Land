@@ -95,7 +95,7 @@ export default class Facil extends Component {
         }
     }
     //segunda y tercera palabra aleatorea 
-    speak2 = (thingToSay2) => {
+    speak2 = (thingToSay2) => { 
         Speech.speak(thingToSay2);
     }
      //Caso erroneo
