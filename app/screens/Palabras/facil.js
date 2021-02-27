@@ -280,7 +280,7 @@ export default class Facil extends Component {
                                                             flex: 1,
                                                             justifyContent: 'center',
                                                             borderWidth: 3,
-                                                            borderRadius: normalize(20),
+                                                            borderRadius: 20,
                                                             position: "relative",
                                                             backgroundColor: this.state.normal,
                                                         },
@@ -321,7 +321,7 @@ export default class Facil extends Component {
                                                             flex: 1,
                                                             justifyContent: 'center',
                                                             borderWidth: 3,
-                                                            borderRadius: normalize(20),
+                                                            borderRadius: 20,
                                                             position: "relative",
                                                             backgroundColor: this.state.normal2,
                                                         },
@@ -362,7 +362,7 @@ export default class Facil extends Component {
                                                             flex: 1,
                                                             justifyContent: 'center',
                                                             borderWidth: 3,
-                                                            borderRadius: normalize(20),
+                                                            borderRadius: 20,
                                                             position: "relative",
                                                             backgroundColor: this.state.normal3,
                                                         },
@@ -409,7 +409,7 @@ export default class Facil extends Component {
                                                         width: '80%',
                                                         justifyContent: 'center',
                                                         borderWidth: 3,
-                                                        borderRadius: normalize(20),
+                                                        borderRadius: 20,
                                                         backgroundColor: 'pink',
                                                         position: "relative"
                                                     }]}
@@ -440,7 +440,7 @@ export default class Facil extends Component {
                                                         width: '80%',
                                                         justifyContent: 'center',
                                                         borderWidth: 3,
-                                                        borderRadius: normalize(20),
+                                                        borderRadius: 20,
                                                         backgroundColor: 'pink',
                                                         position: "relative"
                                                     }]}
@@ -471,7 +471,7 @@ export default class Facil extends Component {
                                                         width: '80%',
                                                         justifyContent: 'center',
                                                         borderWidth: 3,
-                                                        borderRadius: normalize(20),
+                                                        borderRadius: 20,
                                                         backgroundColor: 'pink',
                                                         position: "relative"
                                                     }]}
@@ -502,7 +502,7 @@ export default class Facil extends Component {
                                                         width: '80%',
                                                         justifyContent: 'center',
                                                         borderWidth: 3,
-                                                        borderRadius: normalize(20),
+                                                        borderRadius: 20,
                                                         backgroundColor: 'pink',
                                                         position: "relative"
                                                     }]}
@@ -535,7 +535,7 @@ export default class Facil extends Component {
                                                         width: '80%',
                                                         justifyContent: 'center',
                                                         borderWidth: 3,
-                                                        borderRadius: normalize(20),
+                                                        borderRadius: 20,
                                                         backgroundColor: 'pink',
                                                         position: "relative"
                                                     }]}
@@ -566,7 +566,7 @@ export default class Facil extends Component {
                                                         width: '80%',
                                                         justifyContent: 'center',
                                                         borderWidth: 3,
-                                                        borderRadius: normalize(20),
+                                                        borderRadius: 20,
                                                         backgroundColor: 'pink',
                                                         position: "relative"
                                                     }]}
@@ -597,7 +597,7 @@ export default class Facil extends Component {
                                                         width: '80%',
                                                         justifyContent: 'center',
                                                         borderWidth: 3,
-                                                        borderRadius: normalize(20),
+                                                        borderRadius: 20,
                                                         backgroundColor: 'pink',
                                                         position: "relative"
                                                     }]}
@@ -628,7 +628,7 @@ export default class Facil extends Component {
                                                         width: '80%',
                                                         justifyContent: 'center',
                                                         borderWidth: 3,
-                                                        borderRadius: normalize(20),
+                                                        borderRadius: 20,
                                                         backgroundColor: 'pink',
                                                         position: "relative"
                                                     }]}
@@ -678,7 +678,7 @@ const styles = StyleSheet.create({
         width: normalize(120, "width"),
         height: normalize(50, "height"),
         marginLeft: normalize(10),
-        borderRadius: normalize(20),
+        borderRadius: 20,
         borderWidth: 2,
         backgroundColor: "#FFC158",
     },
