@@ -607,7 +607,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: normalize(120, "width"),
     height: normalize(50, "height"),
-    borderRadius: normalize(20),
+    borderRadius: 20,
     borderWidth: 2,
     backgroundColor: "#FFC158",
   },

@@ -86,49 +86,49 @@ export default class MenuReciclaje extends Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection: 'column',
-        backgroundColor: "#b2f7ef",
-    },
-    elementsContainer: {
-        flex: 7,
-        flexDirection: "row"
-    },
-    elements: {
-        flex: 5.5,
-        flexDirection: "column"
-    },
-    img: {
-        width: "100%",
-        height: "100%",
-        resizeMode: "contain"
-    },
-    menuContainer: {
-        flex: 3,
-        flexDirection: "column"
-    },
-    buttons: {
-        width: "100%",
-        height: "80%",
-        justifyContent: "center",
-        borderRadius: 30,
-        borderWidth: 2, 
-    },
-    txtMenu: {
-        textAlign: "center",
-        fontSize: normalize(25),
-        fontWeight: "bold",
-    },
-    btnBack: {
-        width: "15%",
-        height: "100%",
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    imgBack: {
-        width: normalize(40, "width"),
-        height: normalize(40, "height"),
-        resizeMode: "contain",
-    }
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: "#b2f7ef",
+  },
+  elementsContainer: {
+    flex: 7,
+    flexDirection: "row"
+  },
+  elements: {
+    flex: 5.5,
+    flexDirection: "column"
+  },
+  img: {
+    width: "100%",
+    height: "100%",
+    resizeMode: "contain"
+  },
+  menuContainer: {
+    flex: 3,
+    flexDirection: "column"
+  },
+  buttons: {
+    width: "100%",
+    height: "80%",
+    justifyContent: "center",
+    borderRadius: 30,
+    borderWidth: 2, 
+  },
+  txtMenu: {
+    textAlign: "center",
+    fontSize: normalize(25),
+    fontWeight: "bold",
+  },
+  btnBack: {
+    width: "15%",
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  imgBack: {
+    width: normalize(40, "width"),
+    height: normalize(40, "height"),
+    resizeMode: "contain",
+  }
 });

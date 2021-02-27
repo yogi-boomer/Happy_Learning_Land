@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
     width: normalize(120, "width"),
     height: normalize(50, "height"),
     left: normalize(5, "width"),
-    borderRadius: normalize(20),
+    borderRadius: 20,
     borderWidth: 2,
     backgroundColor: "#FFC158",
   },
@@ -220,7 +220,7 @@ const styles = StyleSheet.create({
     left: normalize(135, "width"),
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: normalize(25)
+    borderRadius: 25
   },
   text: {
     alignItems: "center",
