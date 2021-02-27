@@ -58,7 +58,7 @@ export default function selectGrade(){
                         </View>
                         <View style={styles.buttons}>
                             <Animated.View style={[styles.grado, { transform: [{ translateX: translation }] } ]}>
-                                <TouchableOpacity onPress={() => navigation.navigate('mainCharacter')}>
+                                <TouchableOpacity onPress={() => navigation.navigate('selectCharacter')}>
                                     <Image style={styles.img} source={require('../../assets/sources/Iconos/globo_3.png')}>
 
                                     </Image>

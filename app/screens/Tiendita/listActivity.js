@@ -76,7 +76,16 @@ export default class ListActivity extends Component {
                     <StatusBar hidden={true} />
                 </View>
                 <View style={styles.elementsContainer}>
-                    <ImageBackground source={require('../../../assets/sources/Img-Tiendita/checklist.png')} style={styles.img}>
+                    <ImageBackground source={require('../../../assets/sources/Img-Tiendita/checklist.png')} style={styles.backgroundContainer}>
+                        <View style={styles.elementsTop}>
+                            <View style={styles.btnBack}>
+                                <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+                                    <Image style={styles.imgBack} source={require('../../../assets/sources/Img-Tiendita/flecha_atras.png')}>
+
+                                    </Image>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
                         <View style={styles.topList}>
                             <Text style={styles.txtTitle}>¡Sé un niño responsable!</Text>
                         </View>
@@ -128,15 +137,36 @@ const styles = StyleSheet.create({
         backgroundColor: "#b2f7ef",
     },
     elementsContainer: {
-        flex: 10
+        flex: 10,
+        alignItems: "center"
     },
     bottomContainer: {
         flex: 0.2
     },
+    backgroundContainer: {
+        height: '100%',
+        width: '100%',
+        resizeMode: 'contain'
+    },
+    elementsTop: {
+        flex: 3,
+        alignItems: 'flex-end'
+    },
+    btnBack: {
+        width: "15%",
+        height: "100%",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    imgBack: {
+        width: normalize(40, "width"),
+        height: normalize(40, "height"),
+        resizeMode: "contain",
+    },
     topList: {
-        flex: 7,
+        flex: 4,
         justifyContent: 'flex-end',
-        alignItems: "center"
+        alignItems: "center",
     },
     txtTitle: {
         fontSize: normalize(30),
@@ -171,6 +201,7 @@ const styles = StyleSheet.create({
     },
     img: {
         height: '100%',
-        resizeMode: 'stretch'
+        width: '100%',
+        resizeMode: 'contain'
     }
 });

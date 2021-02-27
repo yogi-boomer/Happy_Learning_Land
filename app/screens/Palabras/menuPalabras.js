@@ -49,7 +49,13 @@ export default class ListActivity extends Component {
                     </View>
                 </View>
                 <View style={{flex: 2}}>
+                    <View style={styles.btnBack}>
+                        <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+                            <Image style={styles.imgBack} source={require('../../../assets/sources/Img-Tiendita/flecha_atras.png')}>
 
+                            </Image>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
         )
@@ -91,4 +97,15 @@ const styles = StyleSheet.create({
         fontSize: normalize(25),
         fontWeight: "bold",
     },
+    btnBack: {
+        width: "15%",
+        height: "100%",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    imgBack: {
+        width: normalize(40, "width"),
+        height: normalize(40, "height"),
+        resizeMode: "contain",
+    }
 });
