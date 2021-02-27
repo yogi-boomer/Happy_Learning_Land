@@ -419,7 +419,7 @@ export default class GameRobot extends Component {
                 </View>
               </View>
               <View style={styles.blankSpace}></View>
-              <View style={styles.information}>
+              <View style={styles.btnBack}>
                 <TouchableOpacity
                   onPress={() => this.props.navigation.goBack()}
                 >
@@ -1203,7 +1203,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  information: {
+  btnBack: {
     width: "15%",
     height: "100%",
     justifyContent: "center",

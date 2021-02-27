@@ -41,7 +41,6 @@ export default class Store extends Component {
         console.log(this.state.monedax);
       }
     };
-
     storage();
   }
 
@@ -66,7 +65,6 @@ export default class Store extends Component {
       console.log(res);
       this.setState({ monedax: res });
     }
-
   }
 
   renderModal = (modalType) => {
@@ -371,11 +369,8 @@ export default class Store extends Component {
           >
             {this.renderModal(this.modalType)}
           </Modal>
-          <View style={styles.imageBackground}>
-            <ImageBackground
-              style={styles.imgBack}
-              source={require("../../../assets/sources/Img-Tiendita/estante.png")}
-            >
+          <View style={styles.backgroundContainer}>
+            <ImageBackground style={styles.imgContainer} source={require("../../../assets/sources/Img-Tiendita/estante.png")}>
               <View style={styles.first}>
                 <View style={styles.one}>
                   <TouchableOpacity
@@ -409,7 +404,7 @@ export default class Store extends Component {
                 </View>
               </View>
               <View style={styles.second}>
-                <View style={{ ...styles.four, marginTop: 40 }}>
+                <View style={styles.four}>
                   <TouchableOpacity
                     onPress={() => this.setModalVisible(true, 4)}
                   >
@@ -419,7 +414,7 @@ export default class Store extends Component {
                     ></Image>
                   </TouchableOpacity>
                 </View>
-                <View style={{ ...styles.five, marginTop: 40 }}>
+                <View style={styles.five}>
                   <TouchableOpacity
                     onPress={() => this.setModalVisible(true, 5)}
                   >
@@ -427,9 +422,9 @@ export default class Store extends Component {
                       style={styles.img}
                       source={require("../../../assets/sources/Img-Tiendita/huevos.png")}
                     ></Image>
-                  </TouchableOpacity>
+                  </TouchableOpacity>      
                 </View>
-                <View style={{ ...styles.six, marginTop: 40 }}>
+                <View style={styles.six}>
                   <TouchableOpacity
                     onPress={() => this.setModalVisible(true, 6)}
                   >
@@ -441,7 +436,7 @@ export default class Store extends Component {
                 </View>
               </View>
               <View style={styles.third}>
-                <View style={{ ...styles.seven, marginTop: 30 }}>
+                <View style={styles.seven}>
                   <TouchableOpacity
                     onPress={() => this.setModalVisible(true, 7)}
                   >
@@ -449,9 +444,9 @@ export default class Store extends Component {
                       style={styles.img}
                       source={require("../../../assets/sources/Img-Tiendita/agua.png")}
                     ></Image>
-                  </TouchableOpacity>
+                  </TouchableOpacity> 
                 </View>
-                <View style={{ ...styles.eight, marginTop: 40 }}>
+                <View style={styles.eight}>
                   <TouchableOpacity
                     onPress={() => this.setModalVisible(true, 8)}
                   >
@@ -461,7 +456,7 @@ export default class Store extends Component {
                     ></Image>
                   </TouchableOpacity>
                 </View>
-                <View style={{ ...styles.nine, marginTop: 40 }}>
+                <View style={styles.nine}>
                   <TouchableOpacity
                     onPress={() => this.setModalVisible(true, 9)}
                   >
@@ -472,7 +467,9 @@ export default class Store extends Component {
                   </TouchableOpacity>
                 </View>
               </View>
-              <View style={styles.fourth}></View>
+              <View style={styles.fourth}>
+
+              </View>
             </ImageBackground>
           </View>
           <View style={styles.bottomElement}>
@@ -488,6 +485,13 @@ export default class Store extends Component {
             <View style={styles.btnCompra}>
               <TouchableOpacity onPress={() => this.props.navigation.push('mainCharacter', { tareas: this.state.tareas }, this.load(String(this.state.monedax)))}>
                 <Button title="Comprar Lista"></Button>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.btnBack}>
+              <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+                <Image style={styles.imgBack} source={require('../../../assets/sources/Img-Tiendita/flecha_atras.png')}>
+
+                </Image>
               </TouchableOpacity>
             </View>
           </View>
@@ -508,11 +512,11 @@ const styles = StyleSheet.create({
     flex: 10,
     flexDirection: "column",
   },
-  imageBackground: {
+  backgroundContainer: {
     flex: 10,
-    resizeMode: "cover",
-    justifyContent: "center",
     backgroundColor: "#f5ca99",
+    justifyContent: "center",
+    alignItems: 'center'
   },
   bottomElement: {
     flex: 1.5,
@@ -521,67 +525,67 @@ const styles = StyleSheet.create({
   bottomContainer: {
     flex: 0.2,
   },
-  imgBack: {
-    flex: 12,
-    resizeMode: "cover",
-    justifyContent: "center",
+  imgContainer: {
+    height: '98%',
+    width: '100%',
+    resizeMode: "contain"
   },
   first: {
-    flex: 2.5,
+    flex: 1,
     flexDirection: "row",
     justifyContent: "space-around",
-    alignItems: "center",
+    alignItems: "flex-end",
   },
   second: {
-    flex: 3,
+    flex: 1.5,
     flexDirection: "row",
     justifyContent: "space-around",
-    alignItems: "center",
+    alignItems: "flex-end"
   },
   third: {
-    flex: 3,
+    flex: 1.4,
     flexDirection: "row",
     justifyContent: "space-around",
-    alignItems: "center",
+    alignItems: "flex-end"
   },
   fourth: {
-    flex: 2.7,
+    flex: 1.4,
   },
   one: {
     width: "25%",
-    height: normalize(100, "height"),
+    height: '90%'
   },
   two: {
     width: "25%",
-    height: normalize(100, "height"),
+    height: '90%',
   },
   three: {
     width: "25%",
-    height: normalize(100, "height"),
+    height: '90%',
   },
   four: {
     width: "25%",
-    height: normalize(100, "height"),
+    height: '60%',
   },
   five: {
     width: "25%",
-    height: normalize(120, "height"),
+    height: '60%',
   },
   six: {
     width: "25%",
-    height: normalize(120, "height"),
+    height: '60%',
   },
   seven: {
     width: "25%",
-    height: normalize(120, "height"),
+    height: '64%',
   },
   eight: {
-    width: "30%",
-    height: normalize(120, "height"),
+    width: "25%",
+    height: '64%',
   },
   nine: {
-    width: "28%",
-    height: normalize(120, "height"),
+    width: "25%",
+    height: '64%',
   },
   img: {
     height: "100%",
@@ -591,10 +595,13 @@ const styles = StyleSheet.create({
   coinContainer: {
     width: "40%",
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "center"
   },
   btnCompra: {
+    width: "40%",
+    height: "100%",
     justifyContent: "center",
+    alignItems: "center",
   },
   coins: {
     flexDirection: "row",
@@ -654,5 +661,16 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     padding: 12,
     margin: 10,
+  },
+  btnBack: {
+    width: "20%",
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  imgBack: {
+    width: normalize(40, "width"),
+    height: normalize(40, "height"),
+    resizeMode: "contain"
   },
 });
