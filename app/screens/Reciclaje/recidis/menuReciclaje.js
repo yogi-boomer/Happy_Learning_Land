@@ -8,7 +8,7 @@ import intermedio from "../data/intermedio";
 import dificil from "../data/dificil";
 import tutorial from "../data/tutorial";
 
-export default class ListActivity extends Component {
+export default class MenuReciclaje extends Component {
   constructor(props) {
     super(props);
     this.state = {
