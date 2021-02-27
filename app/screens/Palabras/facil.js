@@ -47,44 +47,23 @@ export default class Facil extends Component {
             correcto3: "green",
             normal3: "white",
             reset: "white",
-        }
-        this.Animation = {
-            estrellasScale: new Animated.Value(0),
-            starRotation: new Animated.Value(0)
+            reset2: "white",
+            reset3: "white",
         }
     }
     modalType = 1;
-    //primera palabra aleatoria
-    speak = (thingToSay,i) => {
-        Speech.speak(thingToSay);
-        if(i === 3){
-            Speech.stop();
-        }
-    }
-    //segunda y tercera palabra aleatorea 
-    speak2 = (thingToSay2) => {
-        Speech.speak(thingToSay2);
-    }
-    //caso ganado
-    speakWin() {
-        const thingToSay3 = "¡Felicidades eres demasiado inteligente!"
-        Speech.speak(thingToSay3);
-    }
+    
     //funcion dropeado correcto de la letra 
-    speakLetra(i) {
+    /* speakLetra(i) {
         const thingToSay5 = "Muy bien"
         Speech.speak(thingToSay5);
-        if(i === 3){
+        if (i === 3) {
             Speech.stop();
         }
-    }
-    //Caso erroneo
-    speakLetraM() {
-        const thingToSay4 = "¡Oh no!, parece que esa no es la letra"
-        Speech.speak(thingToSay4);
-    }
+    } */
+   
     //revusar implementacion 
-    animacion() {
+  /*   animacion() {
         Animated.parallel([
             Animated.timing(this.Animation.estrellasScale, {
                 toValue: 1,
@@ -92,7 +71,7 @@ export default class Facil extends Component {
                 useNativeDriver: true, // <-- Add this
             }),
         ]).start();
-    }
+    } */
 
     componentDidMount() {
         const palabraRandom2 = Math.round(Math.random() * 2);
@@ -107,6 +86,27 @@ export default class Facil extends Component {
         this.setState({ index: palabraRandom2 });
         this.setState({ imagenPrin: imagen });
         this.speak(thingToSay);
+    }
+    //primera palabra aleatoria
+    speak = (thingToSay, i) => {
+        Speech.speak(thingToSay);
+        if (i === 3) {
+            Speech.stop();
+        }
+    }
+    //segunda y tercera palabra aleatorea 
+    speak2 = (thingToSay2) => {
+        Speech.speak(thingToSay2);
+    }
+     //Caso erroneo
+     speakLetraM() {
+        const thingToSay4 = "¡Oh no!, parece que esa no es la letra"
+        Speech.speak(thingToSay4);
+    }
+    //caso ganado
+    speakWin() {
+        const thingToSay3 = "¡Felicidades eres demasiado inteligente!"
+        Speech.speak(thingToSay3);
     }
     //función para puntaje y renderizado de nueva palabra, imagen y sonido
     pointsGet(index) {
@@ -137,9 +137,9 @@ export default class Facil extends Component {
                     this.setState({ letraP2: palabra.charAt(1) });
                     this.setState({ letraP3: palabra.charAt(2) });
                     this.setState({ imagenPrin: imagen2 });
-                    this.setState({normal: this.state.reset});
-                    this.setState({normal3: this.state.reset});
-                    this.setState({normal2: this.state.reset});
+                    this.setState({ normal: this.state.reset });
+                    this.setState({ normal3: this.state.reset2 });
+                    this.setState({ normal2: this.state.reset3 });
                     let intentos = this.state.intentos;
                     let nuevoIntento = 1;
                     intentos = intentos + nuevoIntento;
@@ -147,11 +147,14 @@ export default class Facil extends Component {
                     this.setState({ intentos: intentos });
                     //Reseteo de intentos
                     if (intentos === 3) {
-                        this.setModalVisible(true,1);
+                        this.setModalVisible(true, 1);
                         this.speakWin();
-                        let intentoF =  0;
-                        this.setState({intentos: intentoF});
-                        this.setState({aciertos: intentoF});
+                        let intentoF = 0;
+                        this.setState({ intentos: intentoF });
+                        this.setState({ aciertos: intentoF });
+                        this.setState({ normal: this.state.reset });
+                        this.setState({ normal3: this.state.reset2 });
+                        this.setState({ normal2: this.state.reset3 });
                         this.speak(3);
                     }
                 }
@@ -171,19 +174,18 @@ export default class Facil extends Component {
             case 1:
                 return (
                     <View style={styles.modalContainer}>
-                        {this.animacion()}
                         <View style={styles.viewModal}>
                             <View style={styles.elementsModal}>
                                 <Image style={styles.imgModals} source={require("../../../assets/sources/Iconos/smiley.png")}></Image>
                                 <Text style={styles.txtModal}>¡Sorprendente!.</Text>
                                 <View style={styles.estrellas}>
-                                    <Animated.View style={{...styles.contenedorEstrella, opacity: this.Animation.estrellasScale, marginLeft:0}}>
+                                    <Animated.View style={{ ...styles.contenedorEstrella,  marginLeft: 0 }}>
                                         <Image style={styles.imgEstrella} source={require("../../../assets/sources/Iconos/estrella.png")}></Image>
                                     </Animated.View>
-                                    <Animated.View style={{...styles.contenedorEstrella, opacity: this.Animation.estrellasScale}}>
+                                    <Animated.View style={{ ...styles.contenedorEstrella }}>
                                         <Image style={styles.imgEstrella} source={require("../../../assets/sources/Iconos/estrella.png")}></Image>
                                     </Animated.View>
-                                    <Animated.View style={{...styles.contenedorEstrella, opacity: this.Animation.estrellasScale}}>
+                                    <Animated.View style={{ ...styles.contenedorEstrella }}>
                                         <Image style={styles.imgEstrella} source={require("../../../assets/sources/Iconos/estrella.png")}></Image>
                                     </Animated.View>
                                 </View>
@@ -247,7 +249,7 @@ export default class Facil extends Component {
                                 </View>
                             </View>
                             <View style={{ flex: 1, justifyContent: "center" }}>
-                                <Text style={styles.txtQuestion}>¿Qué es?</Text>
+                                
                             </View>
                             <Animated.View style={styles.lettersContainer}>
                                 <View style={{ flex: 0.8 }}>
@@ -263,7 +265,6 @@ export default class Facil extends Component {
                                                 this.setState({ letraP1: this.state.letraP1 });
                                                 this.setState({ normal: this.state.correcto });
                                                 this.pointsGet(this.state.index);
-                                                this.speakLetra();
                                             } else {
                                                 this.speakLetraM();
                                                 this.setState({ normal: this.state.error });
@@ -305,7 +306,6 @@ export default class Facil extends Component {
                                                 this.setState({ letraP2: this.state.letraP2 });
                                                 this.pointsGet(this.state.index);
                                                 this.setState({ normal2: this.state.correcto2 });
-                                                this.speakLetra();
                                             } else {
                                                 this.speakLetraM();
                                                 this.setState({ normal2: this.state.error2 });
@@ -347,7 +347,6 @@ export default class Facil extends Component {
                                                 this.setState({ letraP3: this.state.letraP3 });
                                                 this.pointsGet(this.state.index);
                                                 this.setState({ normal3: this.state.correcto3 });
-                                                this.speakLetra();
                                             } else {
                                                 this.speakLetraM();
                                                 this.setState({ normal3: this.state.error3 });
