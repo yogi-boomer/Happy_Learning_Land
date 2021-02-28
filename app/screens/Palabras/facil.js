@@ -178,20 +178,28 @@ export default class Facil extends Component {
                             <View style={styles.elementsModal}>
                                 <Image style={styles.imgModals} source={require("../../../assets/sources/Img-Palabras/feliz.png")}></Image>
                                 <Text style={styles.txtModal}>¡Sorprendente!</Text>
-                                <View style={styles.estrellas}>
-                                    <Animated.View style={{ ...styles.contenedorEstrella,  marginLeft: 0 }}>
-                                        <Image style={styles.imgEstrella} source={require("../../../assets/sources/Img-Palabras/estrella.png")}></Image>
-                                    </Animated.View>
-                                    <Animated.View style={{ ...styles.contenedorEstrella }}>
-                                        <Image style={styles.imgEstrella} source={require("../../../assets/sources/Img-Palabras/estrella.png")}></Image>
-                                    </Animated.View>
-                                    <Animated.View style={{ ...styles.contenedorEstrella }}>
-                                        <Image style={styles.imgEstrella} source={require("../../../assets/sources/Img-Palabras/estrella.png")}></Image>
-                                    </Animated.View>
+                                <View style={styles.startContainer}>
+                                        <View style={{ ...styles.starts, alignSelf: "flex-end"}}>
+                                            <Image style={styles.imgStart} source={require("../../../assets/sources/Img-Palabras/estrella.png")}>
+
+                                            </Image>
+                                        </View>
+                                        <View style={{ ...styles.starts, alignSelf: "flex-start" }}>
+                                            <Image style={styles.imgStart} source={require("../../../assets/sources/Img-Palabras/estrella.png")}>
+
+                                            </Image>
+                                        </View>
+                                        <View style={{ ...styles.starts, alignSelf: "flex-end" }}>
+                                            <Image style={styles.imgStart} source={require("../../../assets/sources/Img-Palabras/estrella.png")}>
+
+                                            </Image>
+                                        </View>
                                 </View>
                             </View>
-                            <TouchableHighlight style={{ ...styles.btnOpen, backgroundColor: "salmon" }} onPress={() => this.setModalVisible(false)}>
-                                <Text>Continuar</Text>
+                            <TouchableHighlight style={styles.btnContinue} onPress={() => this.setModalVisible(false)}>
+                                <Text>
+                                    Continuar
+                                </Text>
                             </TouchableHighlight>
                         </View>
                     </View>
@@ -207,6 +215,9 @@ export default class Facil extends Component {
                         <StatusBar hidden={true} />
                     </View>
                     <View style={styles.topContainer}>
+                        
+                    </View>
+                    <View style={styles.elementsContainer}>
                         <Modal
                             animationType="slide"
                             transparent={true}
@@ -220,8 +231,6 @@ export default class Facil extends Component {
                         >
                             {this.renderModal(this.modalType)}
                         </Modal>
-                    </View>
-                    <View style={styles.elementsContainer}>
                         <View style={styles.topElements}>
                             <View style={styles.coins}>
                                 <Image style={styles.coin} source={require("../../../assets/sources/Img-Tiendita/moneda.png")}></Image>
@@ -382,7 +391,7 @@ export default class Facil extends Component {
                             <View style={{ flex: 0.75, justifyContent: "center" }}>
                                 <View style={{ alignItems: 'center' }}>
                                     <TouchableOpacity onPress={() => this.setModalVisible(true, 1)}>
-                                        <Button title="Check" color="#939b62"></Button>
+                                        <Button title="Comprobar" color="#939b62"></Button>
                                     </TouchableOpacity>
                                 </View>
                             </View>
@@ -736,16 +745,10 @@ const styles = StyleSheet.create({
         flex: 0.2
     },
     modalContainer: {
-        height: "100%",
-        width: "100%",
+        flex: 1,
         alignItems: "center",
         justifyContent: "center",
-    },
-    imgModals: {
-        width: normalize(100, "width"),
-        height: normalize(100, "height"),
-        resizeMode: "contain",
-    },
+    },    
     viewModal: {
         backgroundColor: "white",
         borderRadius: 25,
@@ -763,28 +766,34 @@ const styles = StyleSheet.create({
     elementsModal: {
         alignItems: "center",
     },
+    imgModals: {
+        width: normalize(100, "width"),
+        height: normalize(100, "height"),
+        resizeMode: "contain",
+    },
     txtModal: {
         textAlign: "center",
         fontSize: normalize(35),
         fontWeight: "bold",
     },
-    estrellas: {
+    startContainer: {
         width: "100%",
         height: "40%",
-        backgroundColor: "red",
         flexDirection: "row",
     },
-    imgEstrella: {
-        height: "50%",
+    starts: {
+        width: "25%",
+        height: "85%",
+    },
+    imgStart: {
+        height: "100%",
         width: "100%",
         resizeMode: "contain",
     },
-    contenedorEstrella: {
-        marginLeft: 15,
-        width: "25%",
-        height: "100%",
-        backgroundColor: "blue",
-        justifyContent: "center",
-        alignItems: "center",
+    btnContinue: {
+        borderRadius: 25,
+        borderWidth: 2,
+        padding: 15,
+        backgroundColor: "silver"
     }
 });
