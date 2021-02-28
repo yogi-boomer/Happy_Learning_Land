@@ -7,14 +7,14 @@ import * as Speech from 'expo-speech';
 
 const { Provider, Droppable, Draggable } = createDndContext();
 const tutorial = ["uva", "ave", "sol"];
-const imagenes = [require('../../../assets/sources/Iconos/uva(1).png'), require('../../../assets/sources/Iconos/robin.png'), require('../../../assets/sources/Iconos/dom(1).png')]//cambiar por objetos relacionados 
+const imagenes = [require('../../../assets/sources/Img-Palabras/uva.png'), require('../../../assets/sources/Img-Palabras/ave.png'), require('../../../assets/sources/Img-Palabras/sol.png')]//cambiar por objetos relacionados 
 
 export default class Facil extends Component {
     constructor(props) {
         super(props);
         this.state = {
             modalVisible: false,
-            imagenPrin: require('../../../assets/sources/Img-Alimentacion/foods/Arroz.png'),
+            imagenPrin: require('../../../assets/sources/Img-Palabras/uva.png'),
             letraP1: "a",
             letraP2: "e",
             letraP3: "i",
@@ -176,17 +176,17 @@ export default class Facil extends Component {
                     <View style={styles.modalContainer}>
                         <View style={styles.viewModal}>
                             <View style={styles.elementsModal}>
-                                <Image style={styles.imgModals} source={require("../../../assets/sources/Iconos/smiley.png")}></Image>
-                                <Text style={styles.txtModal}>¡Sorprendente!.</Text>
+                                <Image style={styles.imgModals} source={require("../../../assets/sources/Img-Palabras/feliz.png")}></Image>
+                                <Text style={styles.txtModal}>¡Sorprendente!</Text>
                                 <View style={styles.estrellas}>
                                     <Animated.View style={{ ...styles.contenedorEstrella,  marginLeft: 0 }}>
-                                        <Image style={styles.imgEstrella} source={require("../../../assets/sources/Iconos/estrella.png")}></Image>
+                                        <Image style={styles.imgEstrella} source={require("../../../assets/sources/Img-Palabras/estrella.png")}></Image>
                                     </Animated.View>
                                     <Animated.View style={{ ...styles.contenedorEstrella }}>
-                                        <Image style={styles.imgEstrella} source={require("../../../assets/sources/Iconos/estrella.png")}></Image>
+                                        <Image style={styles.imgEstrella} source={require("../../../assets/sources/Img-Palabras/estrella.png")}></Image>
                                     </Animated.View>
                                     <Animated.View style={{ ...styles.contenedorEstrella }}>
-                                        <Image style={styles.imgEstrella} source={require("../../../assets/sources/Iconos/estrella.png")}></Image>
+                                        <Image style={styles.imgEstrella} source={require("../../../assets/sources/Img-Palabras/estrella.png")}></Image>
                                     </Animated.View>
                                 </View>
                             </View>
