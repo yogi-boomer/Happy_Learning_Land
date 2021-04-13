@@ -8,6 +8,7 @@ import M from "../../utils/m";
 import Register from "../counts/register";
 import SelectGrade from "../selectGrade";
 import SelectCharacter from "../selectCharacter";
+import SelectCharacter2 from "../selectCharacter2";
 import Main from "../main";
 import MainCharacter1 from "../Principal/mainCharacter1";
 import MainCharacter from "../Tiendita/mainCharacter";
@@ -57,6 +58,11 @@ export default function ScreenStack() {
       <Stack.Screen
         name="selectCharacter"
         component={SelectCharacter}
+        options={{ title: "", headerLeft: false, headerTransparent: true }}
+      />
+      <Stack.Screen
+        name="selectCharacter2"
+        component={SelectCharacter2}
         options={{ title: "", headerLeft: false, headerTransparent: true }}
       />
       <Stack.Screen

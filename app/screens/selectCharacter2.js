@@ -7,7 +7,7 @@ import { useNavigation } from "@react-navigation/native"
 import { Audio } from "expo-av";
 
 
-export default function SelectCharacter() {
+export default function SelectCharacter2() {
     const navigation = useNavigation();
 
     const value1 = 'https://i.ibb.co/dL2ZzTf/character-11.png';
@@ -37,18 +37,18 @@ export default function SelectCharacter() {
                 <View style={styles.containerCharacter}>
                     <View style={styles.character}>
                         <View style={{ ...styles.kids }}>
-                            <TouchableOpacity onPress={() => navigation.navigate('mainCharacter1', { tareas: 5 },handlePost(value1))}>
+                            <TouchableOpacity onPress={() => navigation.navigate('mainCharacter', { tareas: 5 },handlePost(value1))}>
                                 <Image style={styles.imgCharacter} source={character1}></Image>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => navigation.navigate('mainCharacter1', { tareas: 5 },handlePost(value2))}>
+                            <TouchableOpacity onPress={() => navigation.navigate('mainCharacter', { tareas: 5 },handlePost(value2))}>
                                 <Image style={styles.imgCharacter} source={character2}></Image>
                             </TouchableOpacity>
                         </View>
                         <View style={{ ...styles.teenagers }}>
-                            <TouchableOpacity onPress={() => navigation.navigate('mainCharacter1', { tareas: 5 },handlePost(value3))}>
+                            <TouchableOpacity onPress={() => navigation.navigate('mainCharacter', { tareas: 5 },handlePost(value3))}>
                                 <Image style={styles.imgCharacter} source={character3}></Image>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => navigation.navigate('mainCharacter1', { tareas: 5 },handlePost(value4))}>
+                            <TouchableOpacity onPress={() => navigation.navigate('mainCharacter', { tareas: 5 },handlePost(value4))}>
                                 <Image style={styles.imgCharacter} source={character4}></Image>
                             </TouchableOpacity>
                         </View>

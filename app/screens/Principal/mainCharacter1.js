@@ -3,6 +3,7 @@ import { StyleSheet, View, Image, StatusBar, Modal, Text, TouchableHighlight, As
 import { TouchableOpacity } from "react-native-gesture-handler";
 import normalize from "react-native-normalize";
 import { Audio } from "expo-av";
+import firebase from "firebase";
 
 export default class MainCharacter1 extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ export default class MainCharacter1 extends Component {
       modalVisible: false,
       charac: '',
       monedax: 0,
+      image: '',
       tareas: this.props.route.params.tareas
     };
   }
@@ -33,16 +35,23 @@ export default class MainCharacter1 extends Component {
     }
     this.sounds[0].loadAsync(require('../../../assets/sources/Music/GameSample.mp3'), status, true);
 
+    const getImage = async () =>{
+      const userid = (firebase.auth().currentUser || {}).uid;
+      const path = "characters/"+userid+"/character.png";
+      const url = await firebase.storage().ref(path).getDownloadURL();
+      this.setState({image: url});
+      console.log(url);
+      console.log(userid);
+    };
+    getImage();
+
     const storage = async () => {
-      const value = await AsyncStorage.getItem('character');
       const value2 = await AsyncStorage.getItem('coins');
       const monedax = parseInt(value2);
       if (value != null && value2 != null) {
-        this.setState({ charac: value });
         if (monedax > 0) {
           this.setState({ monedax: monedax });
         }
-        console.log(this.state.charac);
         console.log(this.state.monedax);
         console.log(this.state.tareas);
       }
@@ -122,7 +131,7 @@ export default class MainCharacter1 extends Component {
           </Modal>
           <View style={styles.charaContainer}>
             <View style={styles.character}>
-              <Image style={styles.img} source={{ uri: imagen}}></Image>
+              <Image style={styles.img} source={{ uri: this.state.image}}></Image>
             </View>
           </View>
           <View style={styles.menuContainer}>
@@ -236,6 +245,7 @@ const styles = StyleSheet.create({
   },
   img: {
     height: "100%",
+    width: "100%",
     resizeMode: "contain"
   },
   modalContainer: {
