@@ -1,4 +1,5 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
+import { Alert } from 'react-native';
 import { StyleSheet, View, Image, Text, StatusBar, TouchableHighlight, Modal } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import normalize from 'react-native-normalize';
@@ -10,12 +11,14 @@ export default class alimentacion extends Component {
 
     this.state = {
       modalVisible: false,
-      conteo : 0
+      conteo: 0,
+      barra: 0,
     };
+   
   }
 
   modalType = 1;
-  item = [{key: '', src:''}];
+  item = [{ key: '', src: '' }];
   daysTranscurred = 0;
   stateOfDay = 0;
   text_color = 'black';
@@ -34,23 +37,32 @@ export default class alimentacion extends Component {
     this.modalType = modalType;
     this.item = listItem;
   };
-  healthIndicatorOperations = (value) =>{
+  healthIndicatorOperations = (value) => {
     let points = value;
     console.log(points);
-    let conteo  = this.state.conteo;
+    let conteo = this.state.conteo;
     conteo = points + conteo;
-    this.setState({conteo: conteo});
+    this.setState({ conteo: conteo });
     console.log(conteo);
+    let barra = this.state.barra
+    barra = (conteo * -1)-150;
+    this.setState({ barra: barra });
+    if(conteo > 40){
+      Alert.alert("Felicidades")
+    }
+    if(conteo < -63){
+      Alert.alert("Cuidado")
+    }
   }
   //render para las imagenes de estados de comida
   renderHealthIndicator = (item) => {
-    switch(item){
+    switch (item) {
       case 1:
         return (
           <Image
             style={{ width: 30, height: 30, alignSelf: "center" }}
             source={require("../../../assets/sources/Img-Alimentacion/happy.png")}
-          /> 
+          />
         );
       case 2:
         return (
@@ -62,8 +74,8 @@ export default class alimentacion extends Component {
       case 3:
         return (
           <Image
-            style = {{width: 30, height: 30, alignSelf: 'center'}}
-            source = {require('../../../assets/sources/Img-Alimentacion/sad.png')}
+            style={{ width: 30, height: 30, alignSelf: 'center' }}
+            source={require('../../../assets/sources/Img-Alimentacion/sad.png')}
           />
         )
     }
@@ -83,14 +95,14 @@ export default class alimentacion extends Component {
                   style={{ ...styles.imgModals, marginTop: 20 }}
                   source={require("../../../assets/sources/Img-Alimentacion/foods/Verduras.png")}
                 ></Image>
-                <View style = {{flexDirection: "row"}}>
-                  <Text style={{ ...styles.txtIndicador, marginTop: 5}}>Indicador de Salud:</Text>
+                <View style={{ flexDirection: "row" }}>
+                  <Text style={{ ...styles.txtIndicador, marginTop: 5 }}>Indicador de Salud:</Text>
                   {this.renderHealthIndicator(1)}
                 </View>
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
-                    source = {require("../../../assets/sources/Img-Alimentacion/sound.png")}
+                    source={require("../../../assets/sources/Img-Alimentacion/sound.png")}
                   ></Image>
                 </TouchableOpacity>
               </View>
@@ -103,7 +115,7 @@ export default class alimentacion extends Component {
                 </TouchableHighlight>
                 <TouchableHighlight
                   style={{ ...styles.btnOpen, backgroundColor: "#12947f" }}
-                  onPress={() =>this.healthIndicatorOperations( 5,this.setModalVisible(false))}
+                  onPress={() => this.healthIndicatorOperations(5, this.setModalVisible(false))}
                 >
                   <Text>Comer</Text>
                 </TouchableHighlight>
@@ -123,12 +135,12 @@ export default class alimentacion extends Component {
                   style={{ ...styles.imgModals, marginTop: 20 }}
                   source={require("../../../assets/sources/Img-Alimentacion/foods/Ensalada.png")}
                 ></Image>
-                <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                <Text style={{ ...styles.txtIndicador, marginTop: 20 }}>Indicador de Salud:</Text>
                 {this.renderHealthIndicator(1)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
-                    source = {require("../../../assets/sources/Img-Alimentacion/sound.png")}
+                    source={require("../../../assets/sources/Img-Alimentacion/sound.png")}
                   ></Image>
                 </TouchableOpacity>
               </View>
@@ -161,12 +173,12 @@ export default class alimentacion extends Component {
                   style={{ ...styles.imgModals, marginTop: 20 }}
                   source={require("../../../assets/sources/Img-Alimentacion/foods/Frutas.png")}
                 ></Image>
-                <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                <Text style={{ ...styles.txtIndicador, marginTop: 20 }}>Indicador de Salud:</Text>
                 {this.renderHealthIndicator(1)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
-                    source = {require("../../../assets/sources/Img-Alimentacion/sound.png")}
+                    source={require("../../../assets/sources/Img-Alimentacion/sound.png")}
                   ></Image>
                 </TouchableOpacity>
               </View>
@@ -199,12 +211,12 @@ export default class alimentacion extends Component {
                   style={{ ...styles.imgModals, marginTop: 20 }}
                   source={require("../../../assets/sources/Img-Alimentacion/foods/Pollo.png")}
                 ></Image>
-                <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                <Text style={{ ...styles.txtIndicador, marginTop: 20 }}>Indicador de Salud:</Text>
                 {this.renderHealthIndicator(2)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
-                    source = {require("../../../assets/sources/Img-Alimentacion/sound.png")}
+                    source={require("../../../assets/sources/Img-Alimentacion/sound.png")}
                   ></Image>
                 </TouchableOpacity>
               </View>
@@ -237,12 +249,12 @@ export default class alimentacion extends Component {
                   style={{ ...styles.imgModals, marginTop: 20 }}
                   source={require("../../../assets/sources/Img-Alimentacion/foods/Pescado.png")}
                 ></Image>
-                <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                <Text style={{ ...styles.txtIndicador, marginTop: 20 }}>Indicador de Salud:</Text>
                 {this.renderHealthIndicator(1)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
-                    source = {require("../../../assets/sources/Img-Alimentacion/sound.png")}
+                    source={require("../../../assets/sources/Img-Alimentacion/sound.png")}
                   ></Image>
                 </TouchableOpacity>
               </View>
@@ -275,12 +287,12 @@ export default class alimentacion extends Component {
                   style={{ ...styles.imgModals, marginTop: 20 }}
                   source={require("../../../assets/sources/Img-Alimentacion/foods/Huevos.png")}
                 ></Image>
-                <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                <Text style={{ ...styles.txtIndicador, marginTop: 20 }}>Indicador de Salud:</Text>
                 {this.renderHealthIndicator(2)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
-                    source = {require("../../../assets/sources/Img-Alimentacion/sound.png")}
+                    source={require("../../../assets/sources/Img-Alimentacion/sound.png")}
                   ></Image>
                 </TouchableOpacity>
               </View>
@@ -313,12 +325,12 @@ export default class alimentacion extends Component {
                   style={{ ...styles.imgModals, marginTop: 20 }}
                   source={require("../../../assets/sources/Img-Alimentacion/foods/Queso.png")}
                 ></Image>
-                <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                <Text style={{ ...styles.txtIndicador, marginTop: 20 }}>Indicador de Salud:</Text>
                 {this.renderHealthIndicator(1)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
-                    source = {require("../../../assets/sources/Img-Alimentacion/sound.png")}
+                    source={require("../../../assets/sources/Img-Alimentacion/sound.png")}
                   ></Image>
                 </TouchableOpacity>
               </View>
@@ -351,12 +363,12 @@ export default class alimentacion extends Component {
                   style={{ ...styles.imgModals, marginTop: 20 }}
                   source={require("../../../assets/sources/Img-Alimentacion/foods/Almendra.png")}
                 ></Image>
-                <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                <Text style={{ ...styles.txtIndicador, marginTop: 20 }}>Indicador de Salud:</Text>
                 {this.renderHealthIndicator(1)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
-                    source = {require("../../../assets/sources/Img-Alimentacion/sound.png")}
+                    source={require("../../../assets/sources/Img-Alimentacion/sound.png")}
                   ></Image>
                 </TouchableOpacity>
               </View>
@@ -389,12 +401,12 @@ export default class alimentacion extends Component {
                   style={{ ...styles.imgModals, marginTop: 20 }}
                   source={require("../../../assets/sources/Img-Alimentacion/foods/Sandwich.png")}
                 ></Image>
-                <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                <Text style={{ ...styles.txtIndicador, marginTop: 20 }}>Indicador de Salud:</Text>
                 {this.renderHealthIndicator(2)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
-                    source = {require("../../../assets/sources/Img-Alimentacion/sound.png")}
+                    source={require("../../../assets/sources/Img-Alimentacion/sound.png")}
                   ></Image>
                 </TouchableOpacity>
               </View>
@@ -427,12 +439,12 @@ export default class alimentacion extends Component {
                   style={{ ...styles.imgModals, marginTop: 20 }}
                   source={require("../../../assets/sources/Img-Alimentacion/foods/Pastel.png")}
                 ></Image>
-                <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                <Text style={{ ...styles.txtIndicador, marginTop: 20 }}>Indicador de Salud:</Text>
                 {this.renderHealthIndicator(3)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
-                    source = {require("../../../assets/sources/Img-Alimentacion/sound.png")}
+                    source={require("../../../assets/sources/Img-Alimentacion/sound.png")}
                   ></Image>
                 </TouchableOpacity>
               </View>
@@ -465,12 +477,12 @@ export default class alimentacion extends Component {
                   style={{ ...styles.imgModals, marginTop: 20 }}
                   source={require("../../../assets/sources/Img-Alimentacion/foods/Hamburguesa.png")}
                 ></Image>
-                <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                <Text style={{ ...styles.txtIndicador, marginTop: 20 }}>Indicador de Salud:</Text>
                 {this.renderHealthIndicator(3)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
-                    source = {require("../../../assets/sources/Img-Alimentacion/sound.png")}
+                    source={require("../../../assets/sources/Img-Alimentacion/sound.png")}
                   ></Image>
                 </TouchableOpacity>
               </View>
@@ -503,12 +515,12 @@ export default class alimentacion extends Component {
                   style={{ ...styles.imgModals, marginTop: 20 }}
                   source={require("../../../assets/sources/Img-Alimentacion/foods/Papas.png")}
                 ></Image>
-                <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                <Text style={{ ...styles.txtIndicador, marginTop: 20 }}>Indicador de Salud:</Text>
                 {this.renderHealthIndicator(3)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
-                    source = {require("../../../assets/sources/Img-Alimentacion/sound.png")}
+                    source={require("../../../assets/sources/Img-Alimentacion/sound.png")}
                   ></Image>
                 </TouchableOpacity>
               </View>
@@ -541,12 +553,12 @@ export default class alimentacion extends Component {
                   style={{ ...styles.imgModals, marginTop: 20 }}
                   source={require("../../../assets/sources/Img-Alimentacion/foods/AguaSimple.png")}
                 ></Image>
-                <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                <Text style={{ ...styles.txtIndicador, marginTop: 20 }}>Indicador de Salud:</Text>
                 {this.renderHealthIndicator(1)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
-                    source = {require("../../../assets/sources/Img-Alimentacion/sound.png")}
+                    source={require("../../../assets/sources/Img-Alimentacion/sound.png")}
                   ></Image>
                 </TouchableOpacity>
               </View>
@@ -579,12 +591,12 @@ export default class alimentacion extends Component {
                   style={{ ...styles.imgModals, marginTop: 20 }}
                   source={require("../../../assets/sources/Img-Alimentacion/foods/AguaLimon.png")}
                 ></Image>
-                <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                <Text style={{ ...styles.txtIndicador, marginTop: 20 }}>Indicador de Salud:</Text>
                 {this.renderHealthIndicator(2)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
-                    source = {require("../../../assets/sources/Img-Alimentacion/sound.png")}
+                    source={require("../../../assets/sources/Img-Alimentacion/sound.png")}
                   ></Image>
                 </TouchableOpacity>
               </View>
@@ -617,12 +629,12 @@ export default class alimentacion extends Component {
                   style={{ ...styles.imgModals, marginTop: 20 }}
                   source={require("../../../assets/sources/Img-Alimentacion/foods/AguaNaranja.png")}
                 ></Image>
-                <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                <Text style={{ ...styles.txtIndicador, marginTop: 20 }}>Indicador de Salud:</Text>
                 {this.renderHealthIndicator(1)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
-                    source = {require("../../../assets/sources/Img-Alimentacion/sound.png")}
+                    source={require("../../../assets/sources/Img-Alimentacion/sound.png")}
                   ></Image>
                 </TouchableOpacity>
               </View>
@@ -655,12 +667,12 @@ export default class alimentacion extends Component {
                   style={{ ...styles.imgModals, marginTop: 20 }}
                   source={require("../../../assets/sources/Img-Alimentacion/foods/JugoNaranja.png")}
                 ></Image>
-                <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                <Text style={{ ...styles.txtIndicador, marginTop: 20 }}>Indicador de Salud:</Text>
                 {this.renderHealthIndicator(1)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
-                    source = {require("../../../assets/sources/Img-Alimentacion/sound.png")}
+                    source={require("../../../assets/sources/Img-Alimentacion/sound.png")}
                   ></Image>
                 </TouchableOpacity>
               </View>
@@ -693,12 +705,12 @@ export default class alimentacion extends Component {
                   style={{ ...styles.imgModals, marginTop: 20 }}
                   source={require("../../../assets/sources/Img-Alimentacion/foods/Leche.png")}
                 ></Image>
-                <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                <Text style={{ ...styles.txtIndicador, marginTop: 20 }}>Indicador de Salud:</Text>
                 {this.renderHealthIndicator(1)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
-                    source = {require("../../../assets/sources/Img-Alimentacion/sound.png")}
+                    source={require("../../../assets/sources/Img-Alimentacion/sound.png")}
                   ></Image>
                 </TouchableOpacity>
               </View>
@@ -731,12 +743,12 @@ export default class alimentacion extends Component {
                   style={{ ...styles.imgModals, marginTop: 20 }}
                   source={require("../../../assets/sources/Img-Alimentacion/foods/LecheC.png")}
                 ></Image>
-                <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                <Text style={{ ...styles.txtIndicador, marginTop: 20 }}>Indicador de Salud:</Text>
                 {this.renderHealthIndicator(2)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
-                    source = {require("../../../assets/sources/Img-Alimentacion/sound.png")}
+                    source={require("../../../assets/sources/Img-Alimentacion/sound.png")}
                   ></Image>
                 </TouchableOpacity>
               </View>
@@ -769,12 +781,12 @@ export default class alimentacion extends Component {
                   style={{ ...styles.imgModals, marginTop: 20 }}
                   source={require("../../../assets/sources/Img-Alimentacion/foods/RefrescoCola.png")}
                 ></Image>
-                <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                <Text style={{ ...styles.txtIndicador, marginTop: 20 }}>Indicador de Salud:</Text>
                 {this.renderHealthIndicator(3)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
-                    source = {require("../../../assets/sources/Img-Alimentacion/sound.png")}
+                    source={require("../../../assets/sources/Img-Alimentacion/sound.png")}
                   ></Image>
                 </TouchableOpacity>
               </View>
@@ -807,12 +819,12 @@ export default class alimentacion extends Component {
                   style={{ ...styles.imgModals, marginTop: 20 }}
                   source={require("../../../assets/sources/Img-Alimentacion/foods/Refresco.png")}
                 ></Image>
-                <Text style={{ ...styles.txtIndicador, marginTop: 20}}>Indicador de Salud:</Text>
+                <Text style={{ ...styles.txtIndicador, marginTop: 20 }}>Indicador de Salud:</Text>
                 {this.renderHealthIndicator(3)}
                 <TouchableOpacity>
                   <Image
                     style={{ ...styles.imgSound, marginTop: 10 }}
-                    source = {require("../../../assets/sources/Img-Alimentacion/sound.png")}
+                    source={require("../../../assets/sources/Img-Alimentacion/sound.png")}
                   ></Image>
                 </TouchableOpacity>
               </View>
@@ -833,15 +845,15 @@ export default class alimentacion extends Component {
             </View>
           </View>
         );
-      }
+    }
   };
 
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar barStyle = "dark-content"/>
+        <StatusBar barStyle="dark-content" />
         <View>
-          <StatusBar hidden = {true}/>
+          <StatusBar hidden={true} />
         </View>
         <View style={styles.topContainer}>
 
@@ -861,10 +873,10 @@ export default class alimentacion extends Component {
             <View style={styles.coinContainer}>
               <View style={styles.coins}>
                 <Image style={styles.coin} source={require("../../../assets/sources/Img-Tiendita/moneda.png")}></Image>
-                  <Text style={styles.txtCoin}>x</Text>
-                </View>
+                <Text style={styles.txtCoin}>x</Text>
+              </View>
             </View>
-            <View style={{width: '45%'}}>
+            <View style={{ width: '45%' }}>
 
             </View>
             <View style={styles.flecha_atras}>
@@ -876,13 +888,16 @@ export default class alimentacion extends Component {
           <View style={styles.centerElements}>
             <View style={styles.barraContainer}>
               <Image style={styles.img} source={require("../../../assets/sources/Img-Alimentacion/status_bar.png")}></Image>
+              <Animated.View style={{...styles.cuadrito, marginTop: this.state.barra}}>
+                 
+              </Animated.View>
             </View>
             <View style={styles.characterContainer}>
               <Image style={styles.img} source={require("../../../assets/sources/Personajes/character_22.png")}></Image>
             </View>
           </View>
           <View style={styles.bottomElements}>
-            <View style={{flex: 0.5}}>
+            <View style={{ flex: 0.5 }}>
 
             </View>
             <View style={styles.foodContainer}>
@@ -893,68 +908,68 @@ export default class alimentacion extends Component {
               </View>
               <View style={styles.food}>
                 <View style={styles.firstColumn}>
-                  <View style={{flex: 1}}>
+                  <View style={{ flex: 1 }}>
                     <TouchableOpacity onPress={() => this.setModalVisible(true, 1)}>
                       <Image style={styles.img} source={require("../../../assets/sources/Img-Alimentacion/foods/Verduras.png")}></Image>
                     </TouchableOpacity>
                   </View>
-                  <View style={{flex: 1}}>
+                  <View style={{ flex: 1 }}>
                     <TouchableOpacity onPress={() => this.setModalVisible(true, 2)}>
                       <Image style={styles.img} source={require("../../../assets/sources/Img-Alimentacion/foods/Ensalada.png")}></Image>
                     </TouchableOpacity>
                   </View>
-                  <View style={{flex: 1}}>
+                  <View style={{ flex: 1 }}>
                     <TouchableOpacity onPress={() => this.setModalVisible(true, 3)}>
                       <Image style={styles.img} source={require("../../../assets/sources/Img-Alimentacion/foods/Frutas.png")}></Image>
                     </TouchableOpacity>
                   </View>
                 </View>
                 <View style={styles.secondColumn}>
-                  <View style={{flex: 1}}>
+                  <View style={{ flex: 1 }}>
                     <TouchableOpacity onPress={() => this.setModalVisible(true, 4)}>
                       <Image style={styles.img} source={require("../../../assets/sources/Img-Alimentacion/foods/Pollo.png")}></Image>
                     </TouchableOpacity>
                   </View>
-                  <View style={{flex: 1}}>
+                  <View style={{ flex: 1 }}>
                     <TouchableOpacity onPress={() => this.setModalVisible(true, 5)}>
                       <Image style={styles.img} source={require("../../../assets/sources/Img-Alimentacion/foods/Pescado.png")}></Image>
                     </TouchableOpacity>
                   </View>
-                  <View style={{flex: 1}}>
+                  <View style={{ flex: 1 }}>
                     <TouchableOpacity onPress={() => this.setModalVisible(true, 6)}>
                       <Image style={styles.img} source={require("../../../assets/sources/Img-Alimentacion/foods/Huevos.png")}></Image>
                     </TouchableOpacity>
                   </View>
                 </View>
                 <View style={styles.thirdColumn}>
-                  <View style={{flex: 1}}>
+                  <View style={{ flex: 1 }}>
                     <TouchableOpacity onPress={() => this.setModalVisible(true, 7)}>
                       <Image style={styles.img} source={require("../../../assets/sources/Img-Alimentacion/foods/Queso.png")}></Image>
                     </TouchableOpacity>
                   </View>
-                  <View style={{flex: 1}}>
+                  <View style={{ flex: 1 }}>
                     <TouchableOpacity onPress={() => this.setModalVisible(true, 8)}>
                       <Image style={styles.img} source={require("../../../assets/sources/Img-Alimentacion/foods/Almendra.png")}></Image>
                     </TouchableOpacity>
                   </View>
-                  <View style={{flex: 1}}>
+                  <View style={{ flex: 1 }}>
                     <TouchableOpacity onPress={() => this.setModalVisible(true, 9)}>
                       <Image style={styles.img} source={require("../../../assets/sources/Img-Alimentacion/foods/Sandwich.png")}></Image>
                     </TouchableOpacity>
                   </View>
                 </View>
                 <View style={styles.fourthColumn}>
-                  <View style={{flex: 1}}>
+                  <View style={{ flex: 1 }}>
                     <TouchableOpacity onPress={() => this.setModalVisible(true, 10)}>
                       <Image style={styles.img} source={require("../../../assets/sources/Img-Alimentacion/foods/Pastel.png")}></Image>
                     </TouchableOpacity>
                   </View>
-                  <View style={{flex: 1}}>
+                  <View style={{ flex: 1 }}>
                     <TouchableOpacity onPress={() => this.setModalVisible(true, 11)}>
                       <Image style={styles.img} source={require("../../../assets/sources/Img-Alimentacion/foods/Hamburguesa.png")}></Image>
                     </TouchableOpacity>
                   </View>
-                  <View style={{flex: 1}}>
+                  <View style={{ flex: 1 }}>
                     <TouchableOpacity onPress={() => this.setModalVisible(true, 12)}>
                       <Image style={styles.img} source={require("../../../assets/sources/Img-Alimentacion/foods/Papas.png")}></Image>
                     </TouchableOpacity>
@@ -970,55 +985,55 @@ export default class alimentacion extends Component {
               </View>
               <View style={styles.beverage}>
                 <View style={styles.firstColumn}>
-                  <View style={{flex: 1}}>
+                  <View style={{ flex: 1 }}>
                     <TouchableOpacity onPress={() => this.setModalVisible(true, 13)}>
                       <Image style={styles.img} source={require("../../../assets/sources/Img-Alimentacion/foods/AguaSimple.png")}></Image>
                     </TouchableOpacity>
                   </View>
-                  <View style={{flex: 1}}>
+                  <View style={{ flex: 1 }}>
                     <TouchableOpacity onPress={() => this.setModalVisible(true, 14)}>
                       <Image style={styles.img} source={require("../../../assets/sources/Img-Alimentacion/foods/AguaLimon.png")}></Image>
                     </TouchableOpacity>
                   </View>
-                  <View style={{flex: 1}}>
+                  <View style={{ flex: 1 }}>
                     <TouchableOpacity onPress={() => this.setModalVisible(true, 15)}>
                       <Image style={styles.img} source={require("../../../assets/sources/Img-Alimentacion/foods/AguaNaranja.png")}></Image>
                     </TouchableOpacity>
                   </View>
                 </View>
                 <View style={styles.secondColumn}>
-                  <View style={{flex: 1}}>
+                  <View style={{ flex: 1 }}>
                     <TouchableOpacity onPress={() => this.setModalVisible(true, 16)}>
                       <Image style={styles.img} source={require("../../../assets/sources/Img-Alimentacion/foods/JugoNaranja.png")}></Image>
                     </TouchableOpacity>
                   </View>
-                  <View style={{flex: 1}}>
+                  <View style={{ flex: 1 }}>
                     <TouchableOpacity onPress={() => this.setModalVisible(true, 17)}>
                       <Image style={styles.img} source={require("../../../assets/sources/Img-Alimentacion/foods/Leche.png")}></Image>
                     </TouchableOpacity>
                   </View>
-                  <View style={{flex: 1}}>
+                  <View style={{ flex: 1 }}>
                     <TouchableOpacity onPress={() => this.setModalVisible(true, 18)}>
                       <Image style={styles.img} source={require("../../../assets/sources/Img-Alimentacion/foods/LecheC.png")}></Image>
                     </TouchableOpacity>
                   </View>
                 </View>
                 <View style={styles.thirdColumn}>
-                  <View style={{flex: 0.5}}>
-                    
+                  <View style={{ flex: 0.5 }}>
+
                   </View>
-                  <View style={{flex: 1}}>
+                  <View style={{ flex: 1 }}>
                     <TouchableOpacity onPress={() => this.setModalVisible(true, 19)}>
                       <Image style={styles.img} source={require("../../../assets/sources/Img-Alimentacion/foods/RefrescoCola.png")}></Image>
                     </TouchableOpacity>
                   </View>
-                  <View style={{flex: 1}}>
+                  <View style={{ flex: 1 }}>
                     <TouchableOpacity onPress={() => this.setModalVisible(true, 20)}>
                       <Image style={styles.img} source={require("../../../assets/sources/Img-Alimentacion/foods/Refresco.png")}></Image>
                     </TouchableOpacity>
                   </View>
-                  <View style={{flex: 0.5}}>
-                    
+                  <View style={{ flex: 0.5 }}>
+
                   </View>
                 </View>
                 <View style={styles.fourthColumn}>
@@ -1026,7 +1041,7 @@ export default class alimentacion extends Component {
                 </View>
               </View>
             </View>
-            <View style={{flex: 0.5}}>
+            <View style={{ flex: 0.5 }}>
 
             </View>
           </View>
@@ -1034,7 +1049,7 @@ export default class alimentacion extends Component {
         <View style={styles.bottomContainer}>
 
         </View>
-        
+
       </View>
     )
   }
@@ -1095,7 +1110,8 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
   barraContainer: {
-    flex: 4
+    flex: 4,
+   
   },
   characterContainer: {
     flex: 6
@@ -1149,7 +1165,7 @@ const styles = StyleSheet.create({
   },
   fourthColumn: {
     flex: 1,
-    flexDirection: "row", 
+    flexDirection: "row",
   },
   bottomContainer: {
     flex: 0.2,
@@ -1205,5 +1221,14 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     padding: 12,
     margin: 10,
-  }
+  },
+  cuadrito: {
+    width: 10,
+    height: 10,
+    backgroundColor: "black",
+  marginStart: 20,
+  marginTop: -55,
+    marginLeft: 58,
+  },
+  
 });

@@ -16,16 +16,63 @@ export default class ListActivity extends Component {
             isSelected3: false,
             isSelected4: false,
             isSelected5: false,
+            completeTask: 0,
         };
     }
 
     async componentDidMount() {
+        var date = new Date().getDate();
+        var month = new Date().getMonth() + 1;
+        var year = new Date().getFullYear();
+        var dia = date + '-' + month + '-' + year;
+        if (this.state.completeTask === 5) {
+            this.state.isSelected1 = true;
+            this.state.isSelected2 = true;
+            this.state.isSelected3 = true;
+            this.state.isSelected4 = true;
+            this.state.isSelected5 = true;
+        }else{
+            this.state.isSelected1 = false;
+            this.state.isSelected2 = false;
+            this.state.isSelected3 = false;
+            this.state.isSelected4 = false;
+            this.state.isSelected5 = false;
+        }
+        _storeData = async () => {
+            try {
+                await AsyncStorage.setItem(
+                    'fecha',
+                    dia
+                );
+                console.log("exito guardando", dia);
+            } catch (error) {
+                // Error
+            }
+        };
         const storage = async () => {
             const value = await AsyncStorage.getItem('coins');
+            const value2 = await AsyncStorage.getItem('fecha');
             const monedax = parseInt(value);
+            const complete = this.state.completeTask;
             if (value != null) {
                 if (monedax >= 1) {
                     this.setState({ monedax: monedax });
+                }
+                console.log(value);
+            }
+            if (value2 != null) {
+                if (value2 != dia ) {
+                    complete === 0
+                    this.setState ({completeTask : complete});
+                    try {
+                        await AsyncStorage.setItem(
+                            'fecha',
+                            dia
+                        );
+                        console.log("exito guardando nueva fecha ", dia);
+                    } catch (error) {
+                        // Error
+                    }
                 }
                 console.log(value);
             }
@@ -43,27 +90,47 @@ export default class ListActivity extends Component {
         let suma = this.state.suma;
         let res = this.state.res;
         let realizada = this.state.tareas;
+        let task = this.state.completeTask;
         suma = monedax + 1;
         res = realizada - 1;
         this.setState({ monedax: suma });
         this.setState({ tareas: res });
         console.log(suma)
         if (value === 1) {
-            this.setState({ isSelected1: true })
+            this.setState({ isSelected1: true });
+            task = task + 1;
+            this.setState({ completeTask: task });
+            console.log('tienes ',task);
         }
         if (value === 2) {
-            this.setState({ isSelected2: true })
+            this.setState({ isSelected2: true });
+            task = task + 1;
+            this.setState({ completeTask: task });
+            console.log('tienes ',task);
         }
         if (value === 3) {
-            this.setState({ isSelected3: true })
+            this.setState({ isSelected3: true });
+            task = task + 1;
+            this.setState({ completeTask: task });
+            console.log('tienes ',task);
         }
         if (value === 4) {
-            this.setState({ isSelected4: true })
+            this.setState({ isSelected4: true });
+            task = task + 1;
+            this.setState({ completeTask: task });
+            console.log('tienes ',task);
         }
         if (value === 5) {
-            this.setState({ isSelected5: true })
+            this.setState({ isSelected5: true });
+            task = task + 1;
+            this.setState({ completeTask: task });
+            console.log('tienes ',task);
         }
         Alert.alert('¡Bien hecho! ten una moneda como recompensa 😁');
+        if (task === 5) {
+            this.setState({ completeTask: 5 });
+            _storeData();
+        }
     }
 
     render() {
