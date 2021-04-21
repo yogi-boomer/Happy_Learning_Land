@@ -115,7 +115,7 @@ export default class Game_Dificil extends Component {
       const nextIndex = state.activeQuestionIndex + 1;
       if (nextIndex >= state.totalCount) {
         this.load(String(this.state.monedax));
-        return this.props.navigation.push("menuReciclaje", { tareas: this.state.tareas });
+        return this.props.navigation.goBack();
       }
       return {
         activeQuestionIndex: nextIndex,

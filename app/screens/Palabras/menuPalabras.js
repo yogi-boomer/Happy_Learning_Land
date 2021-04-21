@@ -28,17 +28,11 @@ export default class ListActivity extends Component {
                             <View style={{flex: 1, justifyContent: 'center'}}>
                                 <View style={{...styles.buttons, backgroundColor: 'beige'}}>
                                     <TouchableOpacity onPress={() => this.props.navigation.navigate('facil')}>
-                                        <Text style={styles.txtMenu}>Fácil</Text>
+                                        <Text style={styles.txtMenu}>Comenzar</Text>
                                     </TouchableOpacity>
                                 </View>
                             </View>
-                            <View style={{flex: 1, justifyContent: 'center'}}>
-                                <View style={{...styles.buttons, backgroundColor: 'pink'}}>
-                                    <TouchableOpacity>
-                                        <Text style={styles.txtMenu}>Difícil</Text>
-                                    </TouchableOpacity>
-                                </View>
-                            </View>
+                            
                             <View style={{flex: 1}}>
                                 
                             </View>
@@ -50,7 +44,7 @@ export default class ListActivity extends Component {
                 </View>
                 <View style={{flex: 2}}>
                     <View style={styles.btnBack}>
-                        <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('mainCharacter1')}>
                             <Image style={styles.imgBack} source={require('../../../assets/sources/Img-Tiendita/flecha_atras.png')}>
 
                             </Image>

@@ -390,8 +390,8 @@ export default class Facil extends Component {
                             </Animated.View>
                             <View style={{ flex: 0.75, justifyContent: "center" }}>
                                 <View style={{ alignItems: 'center' }}>
-                                    <TouchableOpacity onPress={() => this.setModalVisible(true, 1)}>
-                                        <Button title="Comprobar" color="#939b62"></Button>
+                                    <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+                                        <Button title="Regresar" color="#939b62"></Button>
                                     </TouchableOpacity>
                                 </View>
                             </View>

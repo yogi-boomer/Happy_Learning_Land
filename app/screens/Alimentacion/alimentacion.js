@@ -13,8 +13,22 @@ export default class alimentacion extends Component {
       modalVisible: false,
       conteo: 0,
       barra: 0,
+      image: ''
     };
    
+  }
+
+  async componentDidMount(){
+    const getImage = async () =>{
+      const userid = (firebase.auth().currentUser || {}).uid;
+      const path = "characters/"+userid+"/character.png";
+      const url = await firebase.storage().ref(path).getDownloadURL();
+      this.setState({image: url});
+      console.log(url);
+      console.log(userid);
+    };
+
+    getImage();
   }
 
   modalType = 1;
@@ -893,7 +907,7 @@ export default class alimentacion extends Component {
               </Animated.View>
             </View>
             <View style={styles.characterContainer}>
-              <Image style={styles.img} source={require("../../../assets/sources/Personajes/character_22.png")}></Image>
+              <Image style={styles.img} source={{ uri: this.state.image}}></Image>
             </View>
           </View>
           <View style={styles.bottomElements}>

@@ -7,7 +7,7 @@ export default class outsideStore extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tareas: this.props.route.params.tareas
+      
     };
   }
   render() {
@@ -27,7 +27,7 @@ export default class outsideStore extends Component {
               <TouchableOpacity style={{ borderTopLeftRadius: 35, borderBottomRightRadius: 35, borderWidth: 2, backgroundColor: "#0d7377" }} onPress={() => this.props.navigation.goBack()}>
                 <Image style={styles.arrows} source={require('../../../assets/sources/Img-Tiendita/flecha_atras.png')}></Image>
               </TouchableOpacity>
-              <TouchableOpacity style={{ borderBottomLeftRadius: 35, borderTopRightRadius: 35, borderWidth: 2, backgroundColor: "#0d7377" }} onPress={() => this.props.navigation.navigate('store', { tareas: this.state.tareas })}>
+              <TouchableOpacity style={{ borderBottomLeftRadius: 35, borderTopRightRadius: 35, borderWidth: 2, backgroundColor: "#0d7377" }} onPress={() => this.props.navigation.navigate('store')}>
                 <Image style={styles.arrows} source={require('../../../assets/sources/Img-Tiendita/flecha_arriba.png')}></Image>
               </TouchableOpacity>
             </View>

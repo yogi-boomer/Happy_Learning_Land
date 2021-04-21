@@ -13,7 +13,6 @@ export default class GameRobot extends Component {
     this.state = {
       modalVisible: false,
       monedax: 0,
-      tareas: this.props.route.params.tareas,
       reco: 5,
       setPieza: false,
       setPayload: false,
@@ -354,7 +353,7 @@ export default class GameRobot extends Component {
       suma = moneda + reco;
       this.setState({ monedax: suma });
       this.load(String(suma));
-      this.props.navigation.push('gameRobot', { tareas: this.state.tareas });
+      this.props.navigation.push('gameRobot');
     } else {
       Alert.alert("Parece que te faltan piezas por colocar");
     }

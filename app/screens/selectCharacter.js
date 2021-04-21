@@ -37,18 +37,18 @@ export default function SelectCharacter() {
                 <View style={styles.containerCharacter}>
                     <View style={styles.character}>
                         <View style={{ ...styles.kids }}>
-                            <TouchableOpacity onPress={() => navigation.navigate('mainCharacter1', { tareas: 5 },handlePost(value1))}>
+                            <TouchableOpacity onPress={() => navigation.navigate('selectGrade',handlePost(value1))}>
                                 <Image style={styles.imgCharacter} source={character1}></Image>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => navigation.navigate('mainCharacter1', { tareas: 5 },handlePost(value2))}>
+                            <TouchableOpacity onPress={() => navigation.navigate('selectGrade',handlePost(value2))}>
                                 <Image style={styles.imgCharacter} source={character2}></Image>
                             </TouchableOpacity>
                         </View>
                         <View style={{ ...styles.teenagers }}>
-                            <TouchableOpacity onPress={() => navigation.navigate('mainCharacter1', { tareas: 5 },handlePost(value3))}>
+                            <TouchableOpacity onPress={() => navigation.navigate('selectGrade',handlePost(value3))}>
                                 <Image style={styles.imgCharacter} source={character3}></Image>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => navigation.navigate('mainCharacter1', { tareas: 5 },handlePost(value4))}>
+                            <TouchableOpacity onPress={() => navigation.navigate('selectGrade',handlePost(value4))}>
                                 <Image style={styles.imgCharacter} source={character4}></Image>
                             </TouchableOpacity>
                         </View>

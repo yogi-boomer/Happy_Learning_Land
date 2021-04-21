@@ -14,7 +14,6 @@ export default class MainCharacter extends Component {
       charac: '',
       monedax: 0,
       image: '',
-      tareas: this.props.route.params.tareas
     };
   }
   modalType = 1;
@@ -48,7 +47,7 @@ export default class MainCharacter extends Component {
     const storage = async () => {
       const value2 = await AsyncStorage.getItem('coins');
       const monedax = parseInt(value2);
-      if (value != null && value2 != null) {
+      if (value2 != null) {
         if (monedax > 0) {
           this.setState({ monedax: monedax });
         }
@@ -137,19 +136,19 @@ export default class MainCharacter extends Component {
           <View style={styles.menuContainer}>
             <View style={styles.containBtn}>
               <View style={{ ...styles.Buttons }}>
-                <TouchableOpacity style={{ marginTop: 10 }} onPress={() => this.props.navigation.navigate('listActivity', { tareas: this.state.tareas })}>
+                <TouchableOpacity style={{ marginTop: 10 }} onPress={() => this.props.navigation.navigate('listActivity')}>
                   <Image style={styles.list} source={require('../../../assets/sources/Iconos/nota.png')}></Image>
                 </TouchableOpacity>
-                <TouchableOpacity style={{ marginTop: 10 }} onPress={() => this.props.navigation.navigate('gameRobot', { tareas: this.state.tareas })}>
+                <TouchableOpacity style={{ marginTop: 10 }} onPress={() => this.props.navigation.navigate('gameRobot')}>
                   <Image style={styles.list} source={require('../../../assets/sources/Iconos/robot.png')}></Image>
                 </TouchableOpacity>
-                <TouchableOpacity style={{ marginTop: 10 }} onPress={() => this.props.navigation.navigate('outsideStore', { tareas: this.state.tareas })}>
+                <TouchableOpacity style={{ marginTop: 10 }} onPress={() => this.props.navigation.navigate('outsideStore')}>
                   <Image style={styles.list} source={require('../../../assets/sources/Iconos/supermarket.png')}></Image>
                 </TouchableOpacity>
-                <TouchableOpacity style={{ marginTop: 10 }} onPress={() => this.props.navigation.navigate('alimentacion', { tareas: this.state.tareas })}>
+                <TouchableOpacity style={{ marginTop: 10 }} onPress={() => this.props.navigation.navigate('alimentacion')}>
                   <Image style={styles.list} source={require('../../../assets/sources/Iconos/comer.png')}></Image>
                 </TouchableOpacity>
-                <TouchableOpacity style={{ marginTop: 10 }} onPress={() => this.props.navigation.navigate('menuReciclaje', { tareas: this.state.tareas })}>
+                <TouchableOpacity style={{ marginTop: 10 }} onPress={() => this.props.navigation.navigate('menuReciclaje')}>
                   <Image style={styles.list} source={require('../../../assets/sources/Iconos/reciclaje.png')}></Image>
                 </TouchableOpacity>
                 <TouchableOpacity style={{ marginTop: 10 }} onPress={() => this.setModalVisible(true, 1)}>

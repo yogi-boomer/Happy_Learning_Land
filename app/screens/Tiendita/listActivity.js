@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, ImageBackground, CheckBox, Image, Button, StatusBar, AsyncStorage, Alert } from 'react-native';
 import normalize from "react-native-normalize";
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableWithoutFeedbackBase } from 'react-native';
+import { constant } from 'lodash';
 
 export default class ListActivity extends Component {
     constructor(props) {
         super(props);
         this.state = {
             monedax: 0,
-            tareas: this.props.route.params.tareas,
+            tareas: 5,
             suma: 0,
             res: 0,
             isSelected1: false,
@@ -17,6 +19,7 @@ export default class ListActivity extends Component {
             isSelected4: false,
             isSelected5: false,
             completeTask: 0,
+            diaF: ''
         };
     }
 
@@ -25,35 +28,35 @@ export default class ListActivity extends Component {
         var month = new Date().getMonth() + 1;
         var year = new Date().getFullYear();
         var dia = date + '-' + month + '-' + year;
-        if (this.state.completeTask === 5) {
-            this.state.isSelected1 = true;
-            this.state.isSelected2 = true;
-            this.state.isSelected3 = true;
-            this.state.isSelected4 = true;
-            this.state.isSelected5 = true;
-        }else{
-            this.state.isSelected1 = false;
-            this.state.isSelected2 = false;
-            this.state.isSelected3 = false;
-            this.state.isSelected4 = false;
-            this.state.isSelected5 = false;
-        }
+        this.setState({diaF: String(dia)})
         _storeData = async () => {
             try {
                 await AsyncStorage.setItem(
                     'fecha',
                     dia
                 );
-                console.log("exito guardando", dia);
+                await AsyncStorage.setItem('task', String(this.state.completeTask));
+                console.log("exito guardando", this.state.diaF);
             } catch (error) {
                 // Error
             }
         };
+        /*const remove = async () =>{
+            try {
+                await AsyncStorage.removeItem('task');
+                return true;
+            } catch (error) {
+                return false;
+            }
+        }
+        remove();*/
         const storage = async () => {
             const value = await AsyncStorage.getItem('coins');
             const value2 = await AsyncStorage.getItem('fecha');
+            const value3 = await AsyncStorage.getItem('task');
             const monedax = parseInt(value);
-            const complete = this.state.completeTask;
+            const task = parseInt(value3);
+            const complete = 0;
             if (value != null) {
                 if (monedax >= 1) {
                     this.setState({ monedax: monedax });
@@ -61,23 +64,56 @@ export default class ListActivity extends Component {
                 console.log(value);
             }
             if (value2 != null) {
-                if (value2 != dia ) {
-                    complete === 0
+                console.log(this.state.diaF);
+                console.log(value2);
+                if (this.state.diaF != value2) {
                     this.setState ({completeTask : complete});
+                    this.carga(complete);
+                    console.log('jala mamona :,v');
                     try {
                         await AsyncStorage.setItem(
                             'fecha',
                             dia
                         );
+                        await AsyncStorage.setItem(
+                            'task',
+                            String(complete)
+                        );
                         console.log("exito guardando nueva fecha ", dia);
                     } catch (error) {
                         // Error
                     }
+                }else{
+                    console.log('jala mamona x2 :,v');
+                    this.carga(task);
                 }
                 console.log(value);
             }
+            if(value3 != null){
+                this.setState({completeTask: task});
+                console.log(value3);
+            }
         }
         storage();
+        
+    }
+
+    carga = (value) =>{
+        if (value >= 5) {
+            this.setState({isSelected1 : true});
+            this.setState({isSelected2 : true});
+            this.setState({isSelected3 : true});
+            this.setState({isSelected4 : true});
+            this.setState({isSelected5 : true});
+            console.log('jala mamona :,v');
+            
+        }else{
+            this.setState({isSelected1 : false});
+            this.setState({isSelected2 : false});
+            this.setState({isSelected3 : false});
+            this.setState({isSelected4 : false});
+            this.setState({isSelected5 : false});
+        }
     }
 
     load = async (value) => {
@@ -184,7 +220,7 @@ export default class ListActivity extends Component {
                             <View style={styles.listHw}>
                                 <Text style={styles.txtReward} > Has obtenido: {monedax}</Text>
                                 <Image style={styles.coin} source={require('../../../assets/sources/Img-Tiendita/moneda.png')}></Image>
-                                <Button title='✔' color='green' onPress={() => this.props.navigation.push('mainCharacter', { tareas: this.state.tareas }, this.load(String(monedax)))}></Button>
+                                <Button title='✔' color='green' onPress={() => this.props.navigation.push('mainCharacter', this.load(String(monedax)))}></Button>
                             </View>
                         </View>
                     </ImageBackground>

@@ -8,7 +8,7 @@ import intermedio from "../data/intermedio";
 import dificil from "../data/dificil";
 import tutorial from "../data/tutorial";
 
-export default class MenuReciclaje extends Component {
+export default class MenuReciclaje1 extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -73,7 +73,7 @@ export default class MenuReciclaje extends Component {
         </View>
         <View style={{flex: 2}}>
           <View style={styles.btnBack}>
-            <TouchableOpacity onPress={() => this.props.navigation.push("mainCharacter")}>
+            <TouchableOpacity onPress={() => this.props.navigation.push("mainCharacter1")}>
               <Image style={styles.imgBack} source={require('../../../../assets/sources/Img-Tiendita/flecha_atras.png')}>
 
               </Image>

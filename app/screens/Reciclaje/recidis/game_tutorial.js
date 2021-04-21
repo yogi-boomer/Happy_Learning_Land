@@ -32,7 +32,7 @@ export default class Game_Tutorial extends Component {
     this.setState((state) => {
       const nextIndex = state.activeQuestionIndex + 1;
       if (nextIndex >= state.totalCount) {
-        return this.props.navigation.navigate("menuReciclaje", { tareas: this.state.tareas });
+        return this.props.navigation.goBack();
       } else {
         return {
           activeQuestionIndex: nextIndex,

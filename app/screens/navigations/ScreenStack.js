@@ -8,7 +8,6 @@ import M from "../../utils/m";
 import Register from "../counts/register";
 import SelectGrade from "../selectGrade";
 import SelectCharacter from "../selectCharacter";
-import SelectCharacter2 from "../selectCharacter2";
 import Main from "../main";
 import MainCharacter1 from "../Principal/mainCharacter1";
 import MainCharacter from "../Tiendita/mainCharacter";
@@ -19,6 +18,7 @@ import Store from "../Tiendita/store";
 import OutsideStore from "../Tiendita/outsideStore";
 import GameRobot from "../Robot/gameRobot";
 import MenuReciclaje from "../Reciclaje/recidis/menuReciclaje";
+import MenuReciclaje1 from "../Reciclaje/recidis/menuReciclaje1";
 import Game_Tutorial from "../Reciclaje/recidis/game_tutorial";
 import Game_Facil from "../Reciclaje/recidis/game_facil";
 import Game_Intermedio from "../Reciclaje/recidis/game_intermedio";
@@ -58,11 +58,6 @@ export default function ScreenStack() {
       <Stack.Screen
         name="selectCharacter"
         component={SelectCharacter}
-        options={{ title: "", headerLeft: false, headerTransparent: true }}
-      />
-      <Stack.Screen
-        name="selectCharacter2"
-        component={SelectCharacter2}
         options={{ title: "", headerLeft: false, headerTransparent: true }}
       />
       <Stack.Screen
@@ -108,6 +103,11 @@ export default function ScreenStack() {
       <Stack.Screen
         name="menuReciclaje"
         component={MenuReciclaje}
+        options={{ title: "", headerLeft: false, headerTransparent: true }}
+      />
+      <Stack.Screen
+        name="menuReciclaje1"
+        component={MenuReciclaje1}
         options={{ title: "", headerLeft: false, headerTransparent: true }}
       />
       <Stack.Screen

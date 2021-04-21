@@ -23,7 +23,6 @@ export default class Store extends Component {
       modalVisible: false,
       monedax: 0,
       res: 0,
-      tareas: this.props.route.params.tareas
     };
   }
 
@@ -31,7 +30,6 @@ export default class Store extends Component {
 
   async componentDidMount() {
     const storage = async () => {
-      const value = await AsyncStorage.getItem('character');
       const value2 = await AsyncStorage.getItem('coins');
       const monedax = parseInt(value2);
       if (value != null && value2 != null) {
@@ -39,8 +37,10 @@ export default class Store extends Component {
           this.setState({ monedax: monedax });
         }
         console.log(this.state.monedax);
+        console.log(this.state.tareas);
       }
     };
+
     storage();
   }
 
@@ -483,7 +483,7 @@ export default class Store extends Component {
               </View>
             </View>
             <View style={styles.btnCompra}>
-              <TouchableOpacity onPress={() => this.props.navigation.push('mainCharacter', { tareas: this.state.tareas }, this.load(String(this.state.monedax)))}>
+              <TouchableOpacity onPress={() => this.props.navigation.push('mainCharacter', this.load(String(this.state.monedax)))}>
                 <Button title="Comprar Lista"></Button>
               </TouchableOpacity>
             </View>
